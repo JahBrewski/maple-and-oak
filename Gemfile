@@ -1,16 +1,18 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.0.0'
+
+gem 'bootstrap-sass'
+gem 'coffee-rails'
+gem 'devise'
+gem 'haml-rails'
+gem 'jbuilder'
+gem 'jquery-rails'
 gem 'mysql2'
 gem 'sass-rails'
-gem 'bootstrap-sass'
-gem 'uglifier'
-gem 'coffee-rails'
-gem 'haml-rails'
 gem 'simple_form'
-gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jbuilder'
+gem 'uglifier'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
