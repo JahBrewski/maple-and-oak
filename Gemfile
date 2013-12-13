@@ -10,7 +10,6 @@ gem 'jbuilder'
 gem 'jquery-rails'
 gem 'mysql2'
 gem 'sass-rails'
-gem 'simple_form'
 gem 'turbolinks'
 gem 'uglifier'
 
