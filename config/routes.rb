@@ -1,9 +1,11 @@
 TnBusinessConnection::Application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }
   root 'static_pages#home'
+
   get "static_pages/home"
   get "static_pages/about"
 
+  match '/plans',   to:     'plans#index',              via: 'get'
   match '/about',   to:     'static_pages#about',       via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
