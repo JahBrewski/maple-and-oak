@@ -13,6 +13,15 @@
 <% if alert %>
     <p clas="alert alert-error"><%= alert %></p>
 <% end %>
+    <%= render 'layouts/header'  %>
+
+        <%= content_tag :div, class: controller.controller_name do %>
+
+            <%= content_tag :div, class: "main-container" do %>
+            
+            <% end %>
+
+        <% end %>
 
 <%= yield %>
 
