@@ -1,1 +1,13 @@
 %h1 Select Plan 
+#plans
+  %h1= @plan_type.capitalize + " plans!"
+  -@plans.each do |plan|
+    .plan
+      .name= plan.plan_level + " " + plan.plan_type
+      .details
+        .price= number_to_currency plan.price, :precision => 0
+        .per_month per month
+        .signup
+        -#=link_to "Sign up", new_subscription_path(:plan_id => plan.id)
+        =link_to "Sign up", root_path
+      .clear
