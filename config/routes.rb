@@ -5,8 +5,11 @@ TnBusinessConnection::Application.routes.draw do
   get "static_pages/home"
   get "static_pages/about"
 
-  match '/plans',   to:     'plans#index',              via: 'get'
-  match '/about',   to:     'static_pages#about',       via: 'get'
+  match '/signup/:plan',    to:     'plans#show',               via: 'get',   as: 'signup'
+  match '/plans',           to:     'plans#index',              via: 'get'
+  match '/about',           to:     'static_pages#about',       via: 'get'
+
+  resources :subscriptions
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
