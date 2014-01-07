@@ -18,8 +18,6 @@ describe "Plan pages" do
         sign_in user
         visit plans_path
       end
-
-      it { should have_content(user.user_type.capitalize + " plans") }
     end
   end
 end

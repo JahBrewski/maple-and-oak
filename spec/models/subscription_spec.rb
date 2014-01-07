@@ -29,6 +29,4 @@ describe Subscription do
 
   describe "with invalid information"
 
-  end
-
 end
