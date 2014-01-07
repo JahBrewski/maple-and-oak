@@ -1,5 +1,4 @@
 class PlansController < ApplicationController
-  before_action :authenticate_user!
 
   def index
     @user_type = current_user.user_type.to_s
