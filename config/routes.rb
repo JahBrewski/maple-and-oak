@@ -8,6 +8,7 @@ TnBusinessConnection::Application.routes.draw do
   match '/signup/:plan',    to:     'plans#show',               via: 'get',   as: 'signup'
   match '/plans',           to:     'plans#index',              via: 'get'
   match '/about',           to:     'static_pages#about',       via: 'get'
+  match '/contact',         to:     'static_pages#contact',     via: 'get'
   match '/profile',         to:     'users#show',               via: 'get'
 
   resources :subscriptions

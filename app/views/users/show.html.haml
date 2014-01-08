@@ -1,1 +1,6 @@
-%h1= @user.email
+%h1 Profile
+.user-information
+  %ul
+    %li= @user.full_name
+    %li= @user.user_type.capitalize
+    %li= @user.email

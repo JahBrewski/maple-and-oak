@@ -23,8 +23,20 @@ describe "UserPages" do
           it { should have_link('Sign out') }
           it { should have_link('Profile') }
           it { should have_content('Select Plan') }
-          
       end
     end
+  end
+
+  describe "profile page" do
+    let(:user) {FactoryGirl.create(:user) }
+    before do
+      sign_in user
+      visit profile_path
+    end
+
+    it { should have_content(user.email) }
+    it { should have_content(user.user_type) }
+    it { should have_content(user.full_name) }
+
   end
 end
