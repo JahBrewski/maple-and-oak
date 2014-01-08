@@ -13,5 +13,11 @@ describe User do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
 
+  it { should be_valid }
+
+  describe "when user type is not present" do 
+    before { user.user_type = " " }
+    it { should_not be_valid }
+  end
 end
 
