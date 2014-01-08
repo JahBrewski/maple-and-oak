@@ -21,7 +21,9 @@ describe "UserPages" do
           let(:user) { User.find_by(email: 'user@example.com') }
 
           it { should have_link('Sign out') }
+          it { should have_link('Profile') }
           it { should have_content('Select Plan') }
+          
       end
     end
   end
