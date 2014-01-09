@@ -35,7 +35,7 @@ describe "UserPages" do
     end
 
     it { should have_content(user.email) }
-    it { should have_content(user.user_type) }
+    it { should have_content(user.user_type.capitalize) }
     it { should have_content(user.full_name) }
 
   end

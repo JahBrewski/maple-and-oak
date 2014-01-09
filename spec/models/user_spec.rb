@@ -15,6 +15,11 @@ describe User do
 
   it { should be_valid }
 
+  it "should have one subscription" do
+    t = User.reflect_on_association(:subscription)
+    t.macro.should == :has_one
+  end
+
   describe "when user type is not present" do 
     before { user.user_type = " " }
     it { should_not be_valid }

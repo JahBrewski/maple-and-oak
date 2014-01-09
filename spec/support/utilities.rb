@@ -22,7 +22,7 @@ def valid_card_data
     number:               '4242424242424242',
     cvc:                  '123',
     address_zip:          '12312',
-    exp_month:            exp_date.moth,
+    exp_month:            exp_date.month,
     exp_year:             exp_date.year
   }
 end
