@@ -29,14 +29,29 @@ describe "UserPages" do
 
   describe "profile page" do
     let(:user) {FactoryGirl.create(:user) }
+    let(:plan) { Plan.where(:plan_type => user.user_type).sample }
+    let(:card) do 
+    { :number => '4242424242424242', :exp_month => '11', :exp_year => '2020' }
+    end
+
     before do
       sign_in user
+      FactoryGirl.create(:subscription, :stripe_card_token => card, :user => user, :plan_id => plan.id)
       visit profile_path
     end
+
 
     it { should have_content(user.email) }
     it { should have_content(user.user_type.capitalize) }
     it { should have_content(user.full_name) }
 
+    describe "when user has available projects remaining" do
+      before { user.plan.user_project_limit = 10 }
+
+      describe "should have a link to create a new project" do
+        it { should have_link('Add a Project!') }
+      end
+
+    end
   end
 end

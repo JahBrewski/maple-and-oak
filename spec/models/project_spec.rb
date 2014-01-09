@@ -12,6 +12,10 @@ describe Project do
   let(:plan) { Plan.where(:plan_type => user.user_type).sample }
   let(:project) { user.projects.build(title: "New Project") }
 
+  before do
+    FactoryGirl.create(:subscription, :stripe_card_token => card, :user => user, :plan_id => plan.id)
+  end
+
   subject { project }
 
   it { should respond_to(:title) }
