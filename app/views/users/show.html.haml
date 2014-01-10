@@ -5,4 +5,4 @@
     %li= @user.user_type.capitalize
     %li= @user.email
     - if @user.projects.count < @project_limit
-      = link_to "Add a Project!", root_path
+      = link_to "Add project", new_project_path

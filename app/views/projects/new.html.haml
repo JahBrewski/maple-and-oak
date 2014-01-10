@@ -1,0 +1,44 @@
+<%= form_for @project, :html => { :multipart => true } do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+<div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+</div>
+
+<div>
+    <%= f.label :contact_name %>
+    <%= f.text_field :contact_name %>
+</div>
+
+<div>
+    <%= f.label :email_address %>
+    <%= f.text_field :email_address %>
+</div>
+
+<div>
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_number %>
+</div>
+
+<div>
+    <%= f.label :description%>
+    <%= f.text_field :description%>
+</div>
+
+<div>
+    <%= f.label :business_plan%>
+    <%= f.file_field :business_plan%>
+</div>
+
+<div>
+    <%= f.label :category%>
+    <%= f.select(:category, options_for_select([['Restaurants', 'restaurants'], ['Real Estate', 'real_estate']]))%>
+</div>
+
+<div>
+    <%= f.label :sub_category%>
+    <%= f.select(:category, options_for_select([['Coffee Shops', 'coffee_shops'], ['Gyms', 'gyms']]))%>
+</div>
+
+    <%= f.submit "Create Project" %>
+<% end %>

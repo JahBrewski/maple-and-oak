@@ -49,9 +49,15 @@ describe "UserPages" do
       before { user.plan.user_project_limit = 10 }
 
       describe "should have a link to create a new project" do
-        it { should have_link('Add a Project!') }
-      end
+        it { should have_link('Add project') }
 
+        describe "clicking add project link"  do
+          before { click_link "Add project" }
+          it "should direct to new project page" do
+            current_path.should == new_project_path
+          end
+        end
+      end
     end
   end
 end
