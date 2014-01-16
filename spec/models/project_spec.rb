@@ -8,7 +8,7 @@ describe Project do
   end
   let(:plan) { FactoryGirl.create(:plan_with_subscription, user: user) }
 
-  let(:project) { user.projects.build(title: "New Project") }
+  let(:project) { FactoryGirl.build(:project, :user => user) }
 
   #before do
   #  FactoryGirl.create(:subscription, :stripe_card_token => card, :user => user, :plan_id => plan.id)

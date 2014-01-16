@@ -36,7 +36,13 @@ FactoryGirl.define do
   end
 
   factory :project do
+    association :user
     title "Sample Project"
-    user
+    contact_name "Jay Z"
+    email_address "jay@z.com"
+    phone_number "123-456-7890"
+    description "Best project ever"
+    category "clothing store"
+    sub_category "record studio"
   end
 end
