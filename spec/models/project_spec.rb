@@ -6,12 +6,13 @@ describe Project do
   let(:card) do 
     { :number => '4242424242424242', :exp_month => '11', :exp_year => '2020' }
   end
-  let(:plan) { Plan.where(:plan_type => user.user_type).sample }
+  let(:plan) { FactoryGirl.create(:plan_with_subscription, user: user) }
+
   let(:project) { user.projects.build(title: "New Project") }
 
-  before do
-    FactoryGirl.create(:subscription, :stripe_card_token => card, :user => user, :plan_id => plan.id)
-  end
+  #before do
+  #  FactoryGirl.create(:subscription, :stripe_card_token => card, :user => user, :plan_id => plan.id)
+  #end
 
   subject { project }
 
