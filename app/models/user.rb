@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  #add mailboxer methods
+  acts_as_messageable
+
   has_one :subscription
   has_one :plan, :through => :subscription
   has_many :projects, dependent: :destroy
@@ -10,6 +11,13 @@ class User < ActiveRecord::Base
 
   def full_name
       first_name + " " + last_name
+  end
+
+  def name
+    self.id  
+  end
+
+  def mailboxer_email(object)
   end
  
 end

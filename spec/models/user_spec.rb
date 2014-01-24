@@ -13,6 +13,8 @@ describe User do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
 
+  it { should respond_to(:send_message) }
+
   it { should be_valid }
 
   it "should have one subscription" do
