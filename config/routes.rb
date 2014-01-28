@@ -9,6 +9,7 @@ TnBusinessConnection::Application.routes.draw do
     member do
       post :reply
       post :trash
+      post :delete
       post :untrash
     end
   end
