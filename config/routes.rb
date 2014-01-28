@@ -5,7 +5,7 @@ TnBusinessConnection::Application.routes.draw do
 
   resources :projects
   resources :subscriptions
-  resources :messages, only: [:index, :show, :new, :create] do
+  resources :conversations, only: [:index, :show, :new, :create] do
     member do
       post :reply
       post :trash

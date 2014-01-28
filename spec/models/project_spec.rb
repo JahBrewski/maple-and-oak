@@ -2,6 +2,14 @@ require 'spec_helper'
 
 describe Project do
 
+  it "has a valid factory" do
+    FactoryGirl.create(:project). should be_valid
+  end
+
+  it "is invalid without a description" do
+    FactoryGirl.build(:project, description: nil).should_not be_valid
+  end
+
   let(:user) { FactoryGirl.create(:user) }
   let(:card) do 
     { :number => '4242424242424242', :exp_month => '11', :exp_year => '2020' }
@@ -9,10 +17,6 @@ describe Project do
   let(:plan) { FactoryGirl.create(:plan_with_subscription, user: user) }
 
   let(:project) { FactoryGirl.build(:project, :user => user) }
-
-  #before do
-  #  FactoryGirl.create(:subscription, :stripe_card_token => card, :user => user, :plan_id => plan.id)
-  #end
 
   subject { project }
 

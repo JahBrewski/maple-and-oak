@@ -23,6 +23,7 @@ describe "UserPages" do
           it { should have_link('Sign out') }
           it { should have_link('Profile') }
           it { should have_content('Select Plan') }
+          it { should have_link('Messages') }
       end
     end
   end
