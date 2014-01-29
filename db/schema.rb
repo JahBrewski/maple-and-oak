@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20140128223641) do
     t.datetime "expires"
   end
 
-  add_index "notifications", ["conversation_id"], name: "index_notifications_on_conversation_id", using: :btree
+  add_index "notifications", ["conversation_id"], name: "index_notifications_on_conversation_id"
 
   create_table "plans", force: true do |t|
     t.integer  "price"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20140128223641) do
     t.string   "sub_category"
   end
 
-  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id"
 
   create_table "receipts", force: true do |t|
     t.integer  "receiver_id"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20140128223641) do
     t.datetime "updated_at",                                 null: false
   end
 
-  add_index "receipts", ["notification_id"], name: "index_receipts_on_notification_id", using: :btree
+  add_index "receipts", ["notification_id"], name: "index_receipts_on_notification_id"
 
   create_table "subscriptions", force: true do |t|
     t.datetime "created_at"
@@ -86,8 +86,8 @@ ActiveRecord::Schema.define(version: 20140128223641) do
     t.integer  "user_id"
   end
 
-  add_index "subscriptions", ["plan_id"], name: "index_subscriptions_on_plan_id", using: :btree
-  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
+  add_index "subscriptions", ["plan_id"], name: "index_subscriptions_on_plan_id"
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -108,12 +108,8 @@ ActiveRecord::Schema.define(version: 20140128223641) do
     t.string   "username"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["username"], name: "index_users_on_username", using: :btree
-
-  add_foreign_key "notifications", "conversations", name: "notifications_on_conversation_id"
-
-  add_foreign_key "receipts", "notifications", name: "receipts_on_notification_id"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["username"], name: "index_users_on_username"
 
 end
