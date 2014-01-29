@@ -21,6 +21,19 @@ class User < ActiveRecord::Base
     self.id  
   end
 
+  def initiate_conversation(recipient, subject, body)
+    self.send_message(recipient, subject, body)
+    self.increment!(:conversations_initiated)
+  end
+
+  def conversation_initiations_remaining
+    if self.subscription
+      self.subscription.plan.user_conversation_limit - self.conversations_initiated
+    else
+      0
+    end
+  end
+
   def mailboxer_email(object)
   end
  

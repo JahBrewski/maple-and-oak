@@ -11,6 +11,8 @@ class ConversationsController < ApplicationController
   end
 
   def index
+    @user = current_user
+    @conversation_initiations_remaining = current_user.conversation_initiations_remaining
   end
 
   def show
