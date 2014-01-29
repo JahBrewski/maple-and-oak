@@ -10,6 +10,9 @@ FactoryGirl.define do
     password "booyabooya"
     password_confirmation "booyabooya"
     user_type "entrepreneur"
+    sequence :username do |n|
+      "#{first_name}#{n}".downcase
+    end
   end
 
   factory :plan do
@@ -46,5 +49,11 @@ FactoryGirl.define do
     description "Best project ever"
     category "clothing store"
     sub_category "record studio"
+  end
+
+  factory :conversation do
+    subject "test subject"
+    recipients "testrecipient@gmail.com"
+    body "test body"
   end
 end

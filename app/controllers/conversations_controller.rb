@@ -11,9 +11,6 @@ class ConversationsController < ApplicationController
   end
 
   def index
-    #@inbox = current_user.mailbox.inbox
-    #@sendbox = current_user.mailbox.sentbox
-    #@trash = current_user.mailbox.trash
   end
 
   def show

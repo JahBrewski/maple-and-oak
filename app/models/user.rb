@@ -1,8 +1,6 @@
 class User < ActiveRecord::Base
   #add mailboxer methods
   acts_as_messageable
-  #accepts_nested_attributes_for :conversations
-
 
   has_one :subscription
   has_one :plan, :through => :subscription
@@ -10,6 +8,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :user_type, presence: true
+
+  validates :username, presence: true
+  validates_uniqueness_of :username
+ 
 
   def full_name
       first_name + " " + last_name
