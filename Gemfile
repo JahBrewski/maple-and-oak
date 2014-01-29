@@ -10,8 +10,10 @@ gem 'figaro'
 gem 'haml-rails'
 gem 'jbuilder'
 gem 'jquery-rails'
+gem 'mailboxer'
 gem 'mysql2'
 gem 'sass-rails'
+gem 'simple_form'
 gem 'stripe'
 gem 'turbolinks'
 gem 'uglifier'
@@ -22,6 +24,7 @@ group :doc do
 end
 
 group :development, :test do
+  gem 'pry'
   gem 'rspec-rails'
 end
 

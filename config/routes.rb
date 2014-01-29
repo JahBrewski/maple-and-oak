@@ -1,17 +1,26 @@
 TnBusinessConnection::Application.routes.draw do
+
   devise_for :users, :controllers => { :registrations => "registrations" }
   root 'static_pages#home'
 
-  get "static_pages/home"
-  get "static_pages/about"
+  resources :projects
+  resources :subscriptions
+  resources :conversations, only: [:index, :show, :new, :create] do
+    member do
+      post :reply
+      post :trash
+      post :delete
+      post :untrash
+    end
+  end
 
   match '/signup/:plan',    to:     'plans#show',               via: 'get',   as: 'signup'
   match '/plans',           to:     'plans#index',              via: 'get'
+  match '/home',            to:     'static_pages#home',        via: 'get'
   match '/about',           to:     'static_pages#about',       via: 'get'
   match '/contact',         to:     'static_pages#contact',     via: 'get'
   match '/profile',         to:     'users#show',               via: 'get'
 
-  resources :subscriptions
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
