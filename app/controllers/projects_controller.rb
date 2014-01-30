@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :correct_user,    only: :destroy
+  before_action :correct_user, only: :destroy
 
   def create
     @project = current_user.projects.build(project_params)
@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = current_user.projects.build
+    @categories = ProjectCategory.all
   end
 
   def update

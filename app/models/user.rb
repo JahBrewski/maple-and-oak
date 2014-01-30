@@ -17,13 +17,21 @@ class User < ActiveRecord::Base
       first_name + " " + last_name
   end
 
+  def total_projects
+    self.projects.count
+  end
+
   def name
     self.id  
   end
 
   def initiate_conversation(recipient, subject, body)
-    self.send_message(recipient, subject, body)
-    self.increment!(:conversations_initiated)
+    if conversation_initiations_remaining > 0
+      self.send_message(recipient, subject, body)
+      self.increment!(:conversations_initiated)
+    else
+      false
+    end
   end
 
   def conversation_initiations_remaining

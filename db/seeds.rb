@@ -11,3 +11,14 @@ Plan.create(id: "3", plan_level: "gold"  , price: "40.00", plan_type: "investor"
 Plan.create(id: "4", plan_level: "bronze", price: "15.00", plan_type: "entrepreneur", user_project_limit: 1, user_conversation_limit: 5)
 Plan.create(id: "5", plan_level: "silver", price: "30.00", plan_type: "entrepreneur", user_project_limit: 2, user_conversation_limit: 10)
 Plan.create(id: "6", plan_level: "gold"  , price: "40.00", plan_type: "entrepreneur", user_project_limit: 3, user_conversation_limit: 15)
+
+# read in categories
+filepath = "#{Rails.root}/public/categories.txt"
+File.open(filepath).each_line do |s|
+  ProjectCategory.create(key_name: "#{s.strip.gsub(" ", "_").downcase.singularize}")
+end
+
+#create sub categories
+ProjectSubCategory.create(key_name: "purchase", description: "Purchase an existing restaurant")
+ProjectSubCategory.create(key_name: "startup", description: "Start up restaurant")
+ProjectSubCategory.create(key_name: "add_location", description: "Add location(s) to an existing concept")

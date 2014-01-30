@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140129230714) do
+ActiveRecord::Schema.define(version: 20140130162730) do
 
   create_table "conversations", force: true do |t|
     t.string   "subject",    default: ""
@@ -48,6 +48,23 @@ ActiveRecord::Schema.define(version: 20140129230714) do
     t.datetime "updated_at"
     t.integer  "user_conversation_limit"
   end
+
+  create_table "project_categories", force: true do |t|
+    t.string   "key_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "project_categories", ["key_name"], name: "index_project_categories_on_key_name", using: :btree
+
+  create_table "project_sub_categories", force: true do |t|
+    t.string   "key_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "description"
+  end
+
+  add_index "project_sub_categories", ["key_name"], name: "index_project_sub_categories_on_key_name", using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "title"
