@@ -12,6 +12,11 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def index
+    @search = Project.search(params[:q])
+    @projects = @search.result
+  end
+
   def edit
     @project = current_user.projects.find_by(id: params[:id])
   end

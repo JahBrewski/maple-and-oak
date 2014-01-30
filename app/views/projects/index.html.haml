@@ -1,0 +1,22 @@
+%h1 Projects
+= search_form_for @search do |f|
+  .field
+    = f.label :category_cont, "Category"
+    = f.collection_select :category_cont, ProjectCategory.all, :key_name, :pluralized_name, prompt: true
+  .field
+    = f.label :sub_category_cont, "Sub Category"
+    = f.collection_select :sub_category_cont, ProjectSubCategory.all, :key_name, :description, prompt: true
+
+  .actions 
+    = f.submit "search"
+
+- @projects.each do |project|
+  .div
+    %ul
+      %li= project.title
+      %li= project.email_address
+      %li= project.phone_number
+      %li= project.description
+      %li= project.category
+      %li= project.sub_category
+
