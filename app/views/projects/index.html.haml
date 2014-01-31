@@ -19,4 +19,6 @@
       %li= project.description
       %li= project.category
       %li= project.sub_category
+      -if project.business_plan.url
+        %li= link_to("#{project.title} business plan", project.business_plan.url, :target => "_blank")
 
