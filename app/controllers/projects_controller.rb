@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :correct_user, only: :destroy
+  before_action :current_user_is_project_creator, only: :destroy
+  before_action :investor_only, only: :index
 
   def create
     @project = current_user.projects.build(project_params)
@@ -43,12 +44,11 @@ class ProjectsController < ApplicationController
 
   private
 
-    def correct_user
+    def current_user_is_project_creator
       @project = current_user.projects.find_by(id: params[:id])
     rescue
       redirect_to profile_path
     end
-
 
     def project_params
       params.require(:project).permit(

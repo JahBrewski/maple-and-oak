@@ -1,12 +1,11 @@
 %nav
   %ul
-    %li= link_to "Home", root_path
-    %li= link_to "About", about_path
-    %li= link_to "Contact", contact_path
+    = render 'layouts/all_user_links'
     - if signed_in?
-      %li= link_to "Profile", profile_path
-      %li= link_to "Projects", projects_path
-      %li= link_to "Sign out", destroy_user_session_path, method: "delete"
-      %li= link_to "Messages", conversations_path
+      - if current_user.investor?
+        = render 'layouts/investor_links'
+      - if current_user.entrepreneur?
+        = render 'layouts/entrepreneur_links'
+      = render 'layouts/all_signed_in_user_links'
     - else
       %li= link_to "Sign in", new_user_session_path

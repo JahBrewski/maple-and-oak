@@ -21,6 +21,14 @@ class User < ActiveRecord::Base
     self.projects.count
   end
 
+  def investor?
+    self.user_type == "investor"
+  end
+
+  def entrepreneur?
+    self.user_type = "entrepreneur"
+  end
+
   def name
     self.id  
   end
