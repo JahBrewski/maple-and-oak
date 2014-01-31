@@ -1,2 +1,3 @@
 %h1 Update Project
 = render 'form'
+= link_to("#{@project.title} business plan", @project.business_plan.url, :target => "_blank")

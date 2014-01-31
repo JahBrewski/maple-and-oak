@@ -3,7 +3,8 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    @projects = current_user.projects
+    @projects = current_user.projects 
+
     @subscription = nil
     @plan = nil
     @project_limit = 0

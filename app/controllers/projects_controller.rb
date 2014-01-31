@@ -52,6 +52,7 @@ class ProjectsController < ApplicationController
 
     def project_params
       params.require(:project).permit(
+        :business_plan,
         :title,
         :contact_name,
         :email_address,

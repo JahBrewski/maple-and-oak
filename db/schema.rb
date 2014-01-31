@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140130162730) do
+ActiveRecord::Schema.define(version: 20140131173535) do
 
   create_table "conversations", force: true do |t|
     t.string   "subject",    default: ""
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20140130162730) do
     t.string   "description"
     t.string   "category"
     t.string   "sub_category"
+    t.string   "business_plan"
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
