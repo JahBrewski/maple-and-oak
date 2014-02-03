@@ -18,8 +18,9 @@
         - flash.each do |type, message|
           .flash{ class: type }= message
 
-      = render 'layouts/header'
+        = render current_user ? 'layouts/header_when_logged_in' : 'layouts/header_when_logged_out'
+      .container
 
-      = yield
+        = yield
 
       %footer
