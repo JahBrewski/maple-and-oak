@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  def investor_only
+    unless current_user.investor?
+      redirect_to root_path
+    end
+  end
+
   protected
 
   def configure_permitted_parameters

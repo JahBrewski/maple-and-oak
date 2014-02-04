@@ -11,15 +11,16 @@
     %title
       = yield :title
 
-    %body{ class: Rails.env }
+    %body{ class: controller_name + "-" + controller.action_name }
 
       %header
         = yield :header
         - flash.each do |type, message|
           .flash{ class: type }= message
 
-      = render 'layouts/header'
+        = render current_user ? 'layouts/header_when_logged_in' : 'layouts/header_when_logged_out'
+      .container
 
-      = yield
+        = yield
 
       %footer

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140128223641) do
+ActiveRecord::Schema.define(version: 20140204171125) do
 
   create_table "conversations", force: true do |t|
     t.string   "subject",    default: ""
@@ -46,7 +46,26 @@ ActiveRecord::Schema.define(version: 20140128223641) do
     t.integer  "user_project_limit"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_conversation_limit"
+    t.string   "description"
   end
+
+  create_table "project_categories", force: true do |t|
+    t.string   "key_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "project_categories", ["key_name"], name: "index_project_categories_on_key_name", using: :btree
+
+  create_table "project_sub_categories", force: true do |t|
+    t.string   "key_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "description"
+  end
+
+  add_index "project_sub_categories", ["key_name"], name: "index_project_sub_categories_on_key_name", using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "title"
@@ -59,6 +78,9 @@ ActiveRecord::Schema.define(version: 20140128223641) do
     t.string   "description"
     t.string   "category"
     t.string   "sub_category"
+    t.string   "business_plan"
+    t.string   "state"
+    t.string   "city"
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id"
@@ -90,12 +112,12 @@ ActiveRecord::Schema.define(version: 20140128223641) do
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                   default: "", null: false
+    t.string   "encrypted_password",      default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",           default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -106,6 +128,7 @@ ActiveRecord::Schema.define(version: 20140128223641) do
     t.string   "last_name"
     t.string   "user_type"
     t.string   "username"
+    t.integer  "conversations_initiated", default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

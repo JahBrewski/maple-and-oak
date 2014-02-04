@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :correct_user,    only: :destroy
+  before_action :current_user_is_project_creator, only: :destroy
+  before_action :investor_only, only: :index
 
   def create
     @project = current_user.projects.build(project_params)
@@ -12,12 +13,18 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def index
+    @search = Project.search(params[:q])
+    @projects = @search.result
+  end
+
   def edit
     @project = current_user.projects.find_by(id: params[:id])
   end
 
   def new
     @project = current_user.projects.build
+    @categories = ProjectCategory.all
   end
 
   def update
@@ -37,15 +44,15 @@ class ProjectsController < ApplicationController
 
   private
 
-    def correct_user
+    def current_user_is_project_creator
       @project = current_user.projects.find_by(id: params[:id])
     rescue
       redirect_to profile_path
     end
 
-
     def project_params
       params.require(:project).permit(
+        :business_plan,
         :title,
         :contact_name,
         :email_address,

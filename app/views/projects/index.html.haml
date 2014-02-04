@@ -1,0 +1,18 @@
+%h1.text-center Browse Entrepreneur Profiles
+.search-bar.text-center
+  = search_form_for @search do |f|
+    = f.label :category_cont, "Category"
+    = f.collection_select :category_cont, ProjectCategory.all, :key_name, :pluralized_name, prompt: true
+    = f.label :sub_category_cont, "Sub Category"
+    = f.collection_select :sub_category_cont, ProjectSubCategory.all, :key_name, :description, prompt: true
+    = f.submit "search"
+.row.projects-container
+- @projects.each do |project|
+  .project-container.col-md-4
+    %ul
+      %li= project.title
+      %li= project.location_state_city
+      %li= project.description
+      -if project.business_plan.url
+        %li= link_to("#{project.title} business plan", project.business_plan.url, :target => "_blank")
+

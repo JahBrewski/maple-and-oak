@@ -10,6 +10,9 @@ describe ConversationsController do
       let(:conversation_to_user) { other_user.send_message( user, "test subject", "hello user").conversation }
       before { sign_in user }
 
+      # need to keep track of initiated conversations
+      it "assigns the remaining conversations to @conversations_remaining"
+
       it "renders the :index view" do
         get :index
         response.should render_template :index
@@ -34,6 +37,7 @@ describe ConversationsController do
         get :show, id: conversation_to_user
         response.should render_template :show
       end
+
     end
   end
 

@@ -17,8 +17,37 @@ class User < ActiveRecord::Base
       first_name + " " + last_name
   end
 
+  def total_projects
+    self.projects.count
+  end
+
+  def investor?
+    self.user_type == "investor"
+  end
+
+  def entrepreneur?
+    self.user_type = "entrepreneur"
+  end
+
   def name
     self.id  
+  end
+
+  def initiate_conversation(recipient, subject, body)
+    if conversation_initiations_remaining > 0
+      self.send_message(recipient, subject, body)
+      self.increment!(:conversations_initiated)
+    else
+      false
+    end
+  end
+
+  def conversation_initiations_remaining
+    if self.subscription
+      self.subscription.plan.user_conversation_limit - self.conversations_initiated
+    else
+      0
+    end
   end
 
   def mailboxer_email(object)

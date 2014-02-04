@@ -14,7 +14,8 @@ TnBusinessConnection::Application.routes.draw do
     end
   end
 
-  match '/signup/:plan',    to:     'plans#show',               via: 'get',   as: 'signup'
+  match '/signup',          to:     'static_pages#signup',      via: 'get'
+  match '/plan/:plan',      to:     'plans#show',               via: 'get',   as: 'plan'
   match '/plans',           to:     'plans#index',              via: 'get'
   match '/home',            to:     'static_pages#home',        via: 'get'
   match '/about',           to:     'static_pages#about',       via: 'get'
