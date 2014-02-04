@@ -3,22 +3,16 @@
   .field
     = f.label :category_cont, "Category"
     = f.collection_select :category_cont, ProjectCategory.all, :key_name, :pluralized_name, prompt: true
-  .field
     = f.label :sub_category_cont, "Sub Category"
     = f.collection_select :sub_category_cont, ProjectSubCategory.all, :key_name, :description, prompt: true
-
-  .actions 
     = f.submit "search"
-
-- @projects.each do |project|
-  .div
-    %ul
-      %li= project.title
-      %li= project.email_address
-      %li= project.phone_number
-      %li= project.description
-      %li= project.category
-      %li= project.sub_category
-      -if project.business_plan.url
-        %li= link_to("#{project.title} business plan", project.business_plan.url, :target => "_blank")
+  .row
+  - @projects.each do |project|
+    .project_container.col-md-4
+      %ul
+        %li= project.title
+        %li= project.location_state_city
+        %li= project.description
+        -if project.business_plan.url
+          %li= link_to("#{project.title} business plan", project.business_plan.url, :target => "_blank")
 

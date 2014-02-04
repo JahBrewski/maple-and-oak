@@ -23,6 +23,8 @@ namespace :db do
     
     users = User.all(limit: 20)
     users.each do |u|
+      state = Faker::Address.state_abbr
+      city = Faker::Address.city
       title = Faker::Company.name
       contact_name = Faker::Name.name
       email_address = Faker::Internet.email
@@ -32,6 +34,8 @@ namespace :db do
       sub_category = ProjectSubCategory.random.key_name
 
       u.projects.create!(title: title,
+                        city: city,
+                        state: state,
                         contact_name: contact_name,
                         email_address: email_address,
                         phone_number: phone_number,

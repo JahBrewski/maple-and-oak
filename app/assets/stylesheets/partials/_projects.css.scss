@@ -1,0 +1,10 @@
+.project_container {
+  margin-top: 15px;
+  ul {
+    list-style-type: none;
+    li:first-child {
+      font-weight: bold;
+      font-size: 125%;
+    }
+  }
+}

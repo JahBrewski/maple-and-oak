@@ -1,0 +1,28 @@
+@mixin alpha-attribute($attribute, $color, $background) {
+  $percent: alpha($color) * 100%;
+  $opaque: opacify($color, 1);
+  $solid-color: mix($opaque, $background, $percent);
+  #{$attribute}: $solid-color;
+  #{$attribute}: $color;
+}
+
+body
+{
+  font: $gray-lighter;
+  //background-image: image-url("stardust.png");
+}
+
+
+/*
+.container 
+{
+  @include alpha-attribute('background-color', rgba($gold, 0.7), white); 
+} 
+/*
+body { background-color: $white; }
+.container
+{
+  background-color: $tan;
+}
+*/
+

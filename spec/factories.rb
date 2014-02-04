@@ -45,6 +45,8 @@ FactoryGirl.define do
   factory :project do
     association :user
     title "Sample Project"
+    city "Nashville"
+    state "TN"
     contact_name "Jay Z"
     email_address "jay@z.com"
     phone_number "123-456-7890"
