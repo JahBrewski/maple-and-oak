@@ -31,10 +31,6 @@ describe "UserPages" do
   describe "profile page" do
     let(:user) {FactoryGirl.create(:user) }
 
-    let(:card) do 
-    { :number => '4242424242424242', :exp_month => '11', :exp_year => '2020' }
-    end
-
     before do
       sign_in user
       visit profile_path
@@ -47,10 +43,9 @@ describe "UserPages" do
       it { should have_content(user.full_name) }
 
       describe "if user has a subscription" do
-        before do 
-          FactoryGirl.create(:plan_with_subscription, user: user)
-          visit profile_path
-        end
+        let!(:user) { FactoryGirl.create(:user) }
+        let!(:plan) { FactoryGirl.create(:plan_with_subscription, user: user) }
+        before { visit profile_path }
 
         it { should have_content(user.subscription.plan.name) }
 
@@ -58,12 +53,13 @@ describe "UserPages" do
     end
 
 
-    describe "when user has created a project"
-      before do
-        FactoryGirl.create(:project, user: user)
-        FactoryGirl.create(:project, user: user, title: "Another Project")
-        visit profile_path
-      end
+    describe "when user has created a project" do
+      let!(:user) { FactoryGirl.create(:user) }
+      let!(:plan) { FactoryGirl.create(:plan_with_subscription, user: user, user_project_limit: 5) }
+      let!(:project) { FactoryGirl.create(:project, user: user) }
+      let!(:another_project) { FactoryGirl.create(:project, user: user) }
+
+      before { visit profile_path}
 
       it { should have_content("Projects") }
 
@@ -72,9 +68,11 @@ describe "UserPages" do
           expect(page).to have_content(project.title)
         end
       end
+    end
 
 
     describe "when user does not have available projects remaining" do
+        let!(:user) { FactoryGirl.create(:user) }
       before do
         FactoryGirl.create(:plan_with_subscription, user: user, user_project_limit: '0')
         visit profile_path
@@ -86,6 +84,7 @@ describe "UserPages" do
     end
 
     describe "when user has available projects remaining" do
+        let!(:user) { FactoryGirl.create(:user) }
       before do
         FactoryGirl.create(:plan_with_subscription, user: user, user_project_limit: '10')
         visit profile_path

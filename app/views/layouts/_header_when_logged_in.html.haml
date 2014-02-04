@@ -6,7 +6,10 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to "Maple and Oak", root_path, class: "navbar-brand"
+
+      = link_to root_path do
+        .ico-tree-sm.navbar-brand
+
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
         = render 'layouts/all_user_links'

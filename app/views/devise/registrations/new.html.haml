@@ -1,0 +1,33 @@
+.row
+  %h2.text-center Sign up
+  .col-md-6.col-md-offset-3
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+      = devise_error_messages!
+      .form-group
+        = f.label :first_name
+        = f.text_field :first_name, :autofocus => true, :class => "form-control"
+      .form-group
+        = f.label :last_name
+        = f.text_field :last_name, :autofocus => true, :class => "form-control"
+      .form-group
+        = f.label :username
+        = f.text_field :username, :autofocus => true, :class => "form-control"
+      .form-group
+        = f.label :email
+        = f.email_field :email, :autofocus => true, :class => "form-control"
+      .form-group
+        = f.label :password
+        = f.password_field :password, :class => "form-control"
+      .form-group
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation, :class => "form-control"
+      .form-group
+        = f.label :user_type, "Investor", :value => "investor"
+        = f.radio_button :user_type, "investor"
+        = f.label :user_type, "Entrepreneur", :value => "entrepreneur"
+        = f.radio_button :user_type, "entrepreneur", :checked => true
+        %p Choose investor if you are interested in financially supporting an entrepreneur on Maple and Oak.
+        %p Choose entrepreneur if you are seeking funding from an investor(s) on Maple and Oak.
+      .form-group
+        = f.submit "Sign up"
+    = render "devise/shared/links"
