@@ -6,24 +6,13 @@
   #{$attribute}: $color;
 }
 
-body
+body.static_pages-home
 {
-  font: $gray-lighter;
-  //background-image: image-url("stardust.png");
+  background: image-url("oak_trees.jpg") 0 -200px;
 }
 
-
-
-/*
-.container 
+.jumbotron
 {
-  @include alpha-attribute('background-color', rgba($gold, 0.7), white); 
-} 
-/*
-body { background-color: $white; }
-.container
-{
-  background-color: $tan;
+  color: white;
+  @include alpha-attribute('background-color', rgba($red, 0.3), white);
 }
-*/
-

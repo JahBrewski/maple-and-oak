@@ -11,7 +11,7 @@
     %title
       = yield :title
 
-    %body{ class: Rails.env }
+    %body{ class: controller_name + "-" + controller.action_name }
 
       %header
         = yield :header
