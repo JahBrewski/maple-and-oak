@@ -6,13 +6,14 @@
   #{$attribute}: $color;
 }
 
-body.static_pages-home
-{
-  background: image-url("oak_trees.jpg") 0 -200px;
-}
-
 .jumbotron
 {
   color: white;
   @include alpha-attribute('background-color', rgba($red, 0.3), white);
+}
+
+.opaque-container
+{
+  color: white;
+  @include alpha-attribute('background-color', rgba(black, 0.5), white);
 }

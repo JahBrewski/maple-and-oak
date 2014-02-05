@@ -1,6 +1,6 @@
 .row
-  %h2.text-center Sign up
-  .col-md-6.col-md-offset-3
+  .col-md-6.col-md-offset-3.opaque-container
+    %h2.text-center Sign up
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
       = devise_error_messages!
       .form-group
