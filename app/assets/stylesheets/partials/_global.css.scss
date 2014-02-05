@@ -17,3 +17,5 @@
   color: white;
   @include alpha-attribute('background-color', rgba(black, 0.5), white);
 }
+
+.navbar-brand { padding: 25px 30px; }
