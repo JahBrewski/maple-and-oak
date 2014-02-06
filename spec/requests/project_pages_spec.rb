@@ -20,7 +20,7 @@ describe "Project pages" do
     describe "with invalid information" do
 
       it "should not create a project" do
-        expect { click_button "Create Project" }.not_to change(Project, :count)
+        expect { click_button "Save Project" }.not_to change(Project, :count)
       end
     end
    
@@ -31,12 +31,13 @@ describe "Project pages" do
         fill_in 'project_email_address', with: "jay@z.com"
         fill_in 'project_phone_number',  with: "123-567-7890"
         fill_in 'project_description', with: "I will make music and sell cool clothes."
-        select  'Restaurants', from: "project_category"
-        select  'Coffee Shops', from: "project_sub_category"
+        #page.execute_script("$('#project_cateogry').val('bakery')")
+        select 'Cookie stores', :from => 'project[category]'
+        select 'Start up restaurant', from: "project_sub_category"
       end
 
       describe  "should create a project" do
-        before { click_button "Create Project" }
+        before { click_button "Save Project" }
 
         it { should have_content("Profile") }
         it { should have_content("Sample Project") }
