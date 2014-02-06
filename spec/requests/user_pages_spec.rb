@@ -1,29 +1,32 @@
 require 'spec_helper'
 
-describe "UserPages" do
+describe "User Pages" do
 
   subject { page }
 
-  describe "signup page" do
-    before {visit new_user_registration_path }
+  describe "Registration Pages" do
 
-    it { should have_content('Sign up') }
+    context "with valid attributes" do
 
-    describe "with valid information" do
-      before { valid_signup "investor" }
+      before do
+        visit new_user_registration_path
+        valid_signup "investor"
+      end
 
-      it "should create a new user" do
+      it "creates a new user" do
         expect { click_button "Sign up" }.to change(User, :count).by(1)
       end
 
-      describe "after saving the user" do
-        before { click_button "Sign up" }
-          let(:user) { User.find_by(email: 'user@example.com') }
+      it "redirects to plans page" do
+        click_button "Sign up"
+        page.should have_content("Select Plan")
+      end
+    end
 
-          it { should have_link('Sign out') }
-          it { should have_link('Profile') }
-          it { should have_content('Select Plan') }
-          it { should have_link('Messages') }
+    context "with invalid attributes" do
+      it "does not create a new user" do
+        visit new_user_registration_path
+        expect { click_button "Sign up" }.not_to change(User, :count) 
       end
     end
   end

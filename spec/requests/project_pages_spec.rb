@@ -28,10 +28,11 @@ describe "Project pages" do
       before do
         fill_in 'project_title', with: "Sample Project"
         fill_in 'project_contact_name', with: "Jay Z"
+        select 'Alabama', :from => 'project[state]'
+        fill_in 'project_city', with: "Birmingham"
         fill_in 'project_email_address', with: "jay@z.com"
         fill_in 'project_phone_number',  with: "123-567-7890"
         fill_in 'project_description', with: "I will make music and sell cool clothes."
-        #page.execute_script("$('#project_cateogry').val('bakery')")
         select 'Cookie stores', :from => 'project[category]'
         select 'Start up restaurant', from: "project_sub_category"
       end
@@ -52,7 +53,7 @@ describe "Project pages" do
             describe "with valid information" do
               before do 
                 fill_in 'project_title', with: "Updated Project"
-                click_button "Update Project"
+                click_button "Save Project"
               end
 
               it { should have_content("Updated Project") }
