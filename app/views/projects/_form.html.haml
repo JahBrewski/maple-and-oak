@@ -3,8 +3,8 @@
     = form_for @project, :html => {:multipart => true} do |f|
       = render 'shared/error_messages', object: f.object
       .form-group
-        = f.label :title
-        = f.text_field :title, :class => "form-control"
+        = f.label :company_name
+        = f.text_field :company_name, :class => "form-control"
       .form-group
         = f.label :contact_name
         = f.text_field :contact_name, :class => "form-control"
@@ -32,6 +32,9 @@
       .upload-plan
         = f.label "Upload business plan"
         = f.file_field :business_plan, :class => "form-control"
+      .upload-company-image
+        = f.label "Upload company image"
+        = f.file_field :company_image, :class => "form-control"
       .form-group
-        = f.submit "Save Project", :class => "btn btn-primary"
+        = f.submit "Update Profile", :class => "btn btn-primary"
 

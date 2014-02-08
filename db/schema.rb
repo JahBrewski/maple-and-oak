@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204171125) do
+ActiveRecord::Schema.define(version: 20140206180205) do
 
   create_table "conversations", force: true do |t|
     t.string   "subject",    default: ""
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20140204171125) do
     t.datetime "expires"
   end
 
-  add_index "notifications", ["conversation_id"], name: "index_notifications_on_conversation_id"
+  add_index "notifications", ["conversation_id"], name: "index_notifications_on_conversation_id", using: :btree
 
   create_table "plans", force: true do |t|
     t.integer  "price"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20140204171125) do
   add_index "project_sub_categories", ["key_name"], name: "index_project_sub_categories_on_key_name", using: :btree
 
   create_table "projects", force: true do |t|
-    t.string   "title"
+    t.string   "company_name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
@@ -81,9 +81,10 @@ ActiveRecord::Schema.define(version: 20140204171125) do
     t.string   "business_plan"
     t.string   "state"
     t.string   "city"
+    t.string   "company_image"
   end
 
-  add_index "projects", ["user_id"], name: "index_projects_on_user_id"
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
   create_table "receipts", force: true do |t|
     t.integer  "receiver_id"
@@ -97,7 +98,7 @@ ActiveRecord::Schema.define(version: 20140204171125) do
     t.datetime "updated_at",                                 null: false
   end
 
-  add_index "receipts", ["notification_id"], name: "index_receipts_on_notification_id"
+  add_index "receipts", ["notification_id"], name: "index_receipts_on_notification_id", using: :btree
 
   create_table "subscriptions", force: true do |t|
     t.datetime "created_at"
@@ -108,8 +109,8 @@ ActiveRecord::Schema.define(version: 20140204171125) do
     t.integer  "user_id"
   end
 
-  add_index "subscriptions", ["plan_id"], name: "index_subscriptions_on_plan_id"
-  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"
+  add_index "subscriptions", ["plan_id"], name: "index_subscriptions_on_plan_id", using: :btree
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                   default: "", null: false
@@ -131,8 +132,12 @@ ActiveRecord::Schema.define(version: 20140204171125) do
     t.integer  "conversations_initiated", default: 0
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["username"], name: "index_users_on_username"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", using: :btree
+
+  add_foreign_key "notifications", "conversations", name: "notifications_on_conversation_id"
+
+  add_foreign_key "receipts", "notifications", name: "receipts_on_notification_id"
 
 end

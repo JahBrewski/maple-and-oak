@@ -1,0 +1,14 @@
+%h1 Profile
+.user-information
+  %ul
+    %li= @user.full_name
+    %li= @user.user_type.capitalize
+    %li= @user.email
+    - if @plan
+      %li= @plan.name
+    - if @projects.any?
+      %h2 Projects
+      %ul
+        = render @projects
+    - if @user.projects.count < @project_limit
+      = link_to "Add project", new_project_path

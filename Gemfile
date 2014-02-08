@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.0'
 
+gem 'better_errors'
+gem 'binding_of_caller'
 gem 'bootstrap-sass'
 gem 'carrierwave'
 gem 'coffee-rails'
@@ -14,10 +16,10 @@ gem 'haml-rails'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'mailboxer'
+gem 'mini_magick'
 gem 'mysql2'
 gem 'ransack'
 gem 'random_record'
-gem 'sass-rails'
 gem 'simple_form'
 gem 'stripe'
 gem 'turbolinks'
@@ -37,6 +39,11 @@ end
 group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
+end
+
+group :assets do
+  gem 'sass-rails'
+  gem 'compass-rails'
 end
 
 # Use ActiveModel has_secure_password

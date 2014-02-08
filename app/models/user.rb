@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
 
   has_one :subscription
   has_one :plan, :through => :subscription
-  has_many :projects, dependent: :destroy
+  has_one :project
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :user_type, presence: true
@@ -17,9 +18,9 @@ class User < ActiveRecord::Base
       first_name + " " + last_name
   end
 
-  def total_projects
-    self.projects.count
-  end
+  #def total_projects
+  #  self.projects.count
+  #end
 
   def investor?
     self.user_type == "investor"

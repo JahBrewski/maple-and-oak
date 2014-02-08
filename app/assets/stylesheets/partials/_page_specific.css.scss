@@ -13,3 +13,13 @@ body.registrations-new
   background: image-url("woody_path_smaller.jpg");
 }
 
+body.users-show
+{
+  background: image-url("oak_trees.jpg") 0 -200px;
+  .profile-information {
+    h1 {
+      padding-top: 0;
+      margin-top: 0;
+    }
+  }
+}

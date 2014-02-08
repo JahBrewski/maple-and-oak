@@ -31,76 +31,34 @@ describe "User Pages" do
     end
   end
 
-  describe "profile page" do
-    let(:user) {FactoryGirl.create(:user) }
+  describe "entrepreneur user" do
 
-    before do
-      sign_in user
-      visit profile_path
-    end
-
-    describe "user information" do
-
-      it { should have_content(user.email) }
-      it { should have_content(user.user_type.capitalize) }
-      it { should have_content(user.full_name) }
-
-      describe "if user has a subscription" do
-        let!(:user) { FactoryGirl.create(:user) }
-        let!(:plan) { FactoryGirl.create(:plan_with_subscription, user: user) }
-        before { visit profile_path }
-
-        it { should have_content(user.subscription.plan.name) }
-
-      end
-    end
+    let!(:user) { FactoryGirl.create(:user, user_type: "entrepreneur") }
+    let!(:plan) { FactoryGirl.create(:plan_with_subscription, user: user, user_project_limit: 1) }
+    before { sign_in user }
 
 
-    describe "when user has created a project" do
-      let!(:user) { FactoryGirl.create(:user) }
-      let!(:plan) { FactoryGirl.create(:plan_with_subscription, user: user, user_project_limit: 5) }
-      let!(:project) { FactoryGirl.create(:project, user: user) }
-      let!(:another_project) { FactoryGirl.create(:project, user: user) }
+    describe "profile page" do
 
-      before { visit profile_path}
-
-      it { should have_content("Projects") }
-
-      it "should render the user's projects" do
-        user.projects.each do |project|
-          expect(page).to have_content(project.title)
+      context "before user has updated their profile" do
+        it "alerts the user to update their profile" do
+          visit profile_path
+          page.should have_content("Start filling out your profile")
         end
       end
-    end
 
+      context "after user has updated their profile" do
 
-    describe "when user does not have available projects remaining" do
-        let!(:user) { FactoryGirl.create(:user) }
-      before do
-        FactoryGirl.create(:plan_with_subscription, user: user, user_project_limit: '0')
-        visit profile_path
-      end
+        let!(:project) { FactoryGirl.create(:project, user: user) }
+        before { visit profile_path }
 
-      describe "should not have a link to create a new project" do
-        it { should_not have_link('Add project') }
-      end
-    end
+        it "displays profile information" do
+          page.should have_content(user.user_type.capitalize) 
+          page.should have_content(user.full_name) 
+        end
 
-    describe "when user has available projects remaining" do
-        let!(:user) { FactoryGirl.create(:user) }
-      before do
-        FactoryGirl.create(:plan_with_subscription, user: user, user_project_limit: '10')
-        visit profile_path
-      end
-
-      describe "should have a link to create a new project" do
-        it { should have_link('Add project') }
-
-        describe "clicking add project link"  do
-          before { click_link "Add project" }
-          it "should direct to new project page" do
-            current_path.should == new_project_path
-          end
+        it "displays company image" do
+          page.should have_selector("img[alt='#{project.company_name}']")
         end
       end
     end

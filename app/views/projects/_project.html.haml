@@ -1,10 +1,8 @@
 %div
-  %span.content= project.title
+  %span.content= project.company_name
   %span.timestamp
     = "(Posted #{time_ago_in_words(project.created_at)} ago.)"
     = link_to "edit", edit_project_path(project)
     = link_to "delete", project, method: :delete,
                                    data: { confirm: "You sure?" },
-                                   title: project.title
-
-
+                                   company_name: project.company_name

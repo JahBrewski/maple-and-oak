@@ -1,0 +1,26 @@
+.opaque-container.col-md-8.col-md-offset-2
+  .row
+    .col-md-12
+      .company_image.pull-left
+        - if @project.company_image?
+          = image_tag @project.company_image.url(:thumb_lg), alt: @project.company_name, class: "img-responsive company-image"
+      .profile-information
+        %h1= @project.company_name
+        .location
+          %h4= @project.location_state_city
+        .category
+          %h4= @project.category_and_sub_category
+        .description
+        = link_to "edit", edit_project_path(@project)
+  .row
+    .col-md-12
+      %h2 Description
+      = @project.description
+      - if @project.business_plan?
+        %h2 Documents
+        %span.glyphicon.glyphicon-file
+        = link_to "#{@project.company_name} business plan", @project.business_plan.url, target: "_blank"
+      %h2 Photos
+      %p You currently have no photos!
+  
+      

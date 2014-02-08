@@ -6,6 +6,8 @@
   #{$attribute}: $color;
 }
 
+a:hover { text-decoration: none; }
+
 .jumbotron
 {
   color: white;
@@ -14,8 +16,15 @@
 
 .opaque-container
 {
-  color: white;
-  @include alpha-attribute('background-color', rgba(black, 0.5), white);
+  color: black;
+  @include alpha-attribute('background-color', rgba(white, 0.7), black);
+  padding: 20px;
+}
+
+.company-image
+{
+  padding-right: 20px;
 }
 
 .navbar-brand { padding: 25px 30px; }
+.top-buffer { padding-top: 20px; } .bottom-buffer { padding-bottom: 20px; }

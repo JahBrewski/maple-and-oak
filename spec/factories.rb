@@ -44,7 +44,7 @@ FactoryGirl.define do
 
   factory :project do
     association :user
-    title "Sample Project"
+    company_name "Sample Project"
     city "Nashville"
     state "TN"
     contact_name "Jay Z"

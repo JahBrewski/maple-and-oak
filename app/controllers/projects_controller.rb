@@ -1,10 +1,9 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :current_user_is_project_creator, only: :destroy
   before_action :investor_only, only: :index
 
   def create
-    @project = current_user.projects.build(project_params)
+    @project = current_user.create_project(project_params)
     if @project.save
       flash[:success] = "Project created!"
       redirect_to profile_path
@@ -19,16 +18,16 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = current_user.projects.find_by(id: params[:id])
+    @project = current_user.project
   end
 
   def new
-    @project = current_user.projects.build
+    @project = current_user.build_project
     @categories = ProjectCategory.all
   end
 
   def update
-    @project= Project.find_by_id(params[:id])
+    @project = current_user.project
     if @project.update_attributes(project_params)
       flash[:success] = "Project updated"
       redirect_to profile_path
@@ -38,24 +37,19 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project.destroy
+    current_user.project.destroy
     redirect_to profile_path
   end
 
   private
 
-    def current_user_is_project_creator
-      @project = current_user.projects.find_by(id: params[:id])
-    rescue
-      redirect_to profile_path
-    end
-
     def project_params
       params.require(:project).permit(
         :business_plan,
+        :company_image,
         :city,
         :state,
-        :title,
+        :company_name,
         :contact_name,
         :email_address,
         :phone_number,
