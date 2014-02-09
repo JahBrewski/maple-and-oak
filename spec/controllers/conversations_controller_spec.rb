@@ -10,9 +10,6 @@ describe ConversationsController do
       let(:conversation_to_user) { other_user.send_message( user, "test subject", "hello user").conversation }
       before { sign_in user }
 
-      # need to keep track of initiated conversations
-      it "assigns the remaining conversations to @conversations_remaining"
-
       it "renders the :index view" do
         get :index
         response.should render_template :index
@@ -59,11 +56,6 @@ describe ConversationsController do
         post :create, conversation: FactoryGirl.attributes_for(:conversation, recipients: other_user.email)
         response.should redirect_to conversations_path
       end
-    end
-
-    context "with invalid attributes" do
-      it "does not create a new conversation"
-      it "re-renders the :new template"
     end
   end
 end

@@ -10,9 +10,9 @@
 - @projects.each do |project|
   .project-container.col-md-4
     %ul
-      %li= project.title
+      %li= link_to project.company_name, user_path(project.user)
       %li= project.location_state_city
       %li= project.description
       -if project.business_plan.url
-        %li= link_to("#{project.title} business plan", project.business_plan.url, :target => "_blank")
+        %li= link_to("#{project.company_name} business plan", project.business_plan.url, :target => "_blank")
 

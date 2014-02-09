@@ -59,12 +59,12 @@ describe User, '#initiate_conversation' do
   end
 end
 
-describe User, '#total_projects' do
-  let(:user) { FactoryGirl.create(:user) }
-  before { FactoryGirl.create(:plan_with_subscription, :user => user) }
-
-  it 'returns the number of projects associated with the user' do
-    FactoryGirl.create(:project, :user => user)
-    user.total_projects.should == 1
-  end
-end
+#describe User, '#total_projects' do
+#  let(:user) { FactoryGirl.create(:user) }
+#  before { FactoryGirl.create(:plan_with_subscription, :user => user) }
+#
+#  it 'returns the number of projects associated with the user' do
+#    FactoryGirl.create(:project, :user => user)
+#    user.total_projects.should == 1
+#  end
+#end

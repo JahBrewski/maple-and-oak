@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   def owner_or_investor_only
       @owner = User.find(params[:id])
       unless current_user.investor? || current_user == @owner
-        redirect_to root_path
+        redirect_to current_user
       end
   end
 

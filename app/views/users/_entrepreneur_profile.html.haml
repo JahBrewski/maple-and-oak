@@ -10,7 +10,8 @@
           %h4= @project.location_state_city
         .category
           %h4= @project.category_and_sub_category
-        = link_to "edit", edit_project_path(@project)
+        - if current_user == @project.user
+          = link_to "edit", edit_project_path(@project)
   .row
     .col-md-12
       %h2 Description
