@@ -42,7 +42,7 @@ describe "User Pages" do
 
       context "before user has updated their profile" do
         it "alerts the user to update their profile" do
-          visit profile_path
+          visit user_path(user)
           page.should have_content("Start filling out your profile")
         end
       end
@@ -50,16 +50,17 @@ describe "User Pages" do
       context "after user has updated their profile" do
 
         let!(:project) { FactoryGirl.create(:project, user: user) }
-        before { visit profile_path }
+        before { visit user_path(user) }
 
         it "displays profile information" do
-          page.should have_content(user.user_type.capitalize) 
-          page.should have_content(user.full_name) 
+          page.should have_content(project.company_name) 
+          page.should have_content(project.location_state_city) 
+          page.should have_content(project.description) 
         end
 
-        it "displays company image" do
-          page.should have_selector("img[alt='#{project.company_name}']")
-        end
+        #it "displays company image" do
+        #  page.should have_selector("img[alt='#{project.company_name}']")
+        #end
       end
     end
   end

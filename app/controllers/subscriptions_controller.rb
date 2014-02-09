@@ -10,7 +10,7 @@ class SubscriptionsController < ApplicationController
 
     if @subscription.save_with_payment
       flash[:success] = 'Subscription added!'
-      redirect_to profile_path
+      redirect_to user_path(current_user)
     else
       flash.now[:error] = 'Unable to add subscription!'
       render template: 'plans/show'

@@ -19,6 +19,6 @@
         %li
           = link_to '<span class="glyphicon glyphicon-envelope"></span> Messages'.html_safe, conversations_path
         %li
-          = link_to '<span class="glyphicon glyphicon-user"></span> Profile'.html_safe, profile_path
+          = link_to '<span class="glyphicon glyphicon-user"></span> Profile'.html_safe, user_path(current_user)
         %li
           = link_to "Sign out", destroy_user_session_path, method: "delete"

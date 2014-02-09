@@ -10,8 +10,21 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def investor_and_owner_only(owner)
+    unless current_user.investor? || current_user == owner
+      redirect_to root_path
+    end
+  end
+
+  def owner_or_investor_only
+      @owner = User.find(params[:id])
+      unless current_user.investor? || current_user == @owner
+        redirect_to root_path
+      end
+  end
+
   def after_sign_in_path_for(user)
-    profile_path
+    user_path(user)
   end
 
   def after_sign_up_path_for(user)
