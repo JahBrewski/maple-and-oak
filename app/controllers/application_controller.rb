@@ -4,23 +4,21 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
-  def investor_only
-    unless current_user.investor?
-      redirect_to root_path
-    end
-  end
-
-  def investor_and_owner_only(owner)
-    unless current_user.investor? || current_user == owner
-      redirect_to root_path
-    end
-  end
-
-  def owner_or_investor_only
-      @owner = User.find(params[:id])
-      unless current_user.investor? || current_user == @owner
+  def authorized_users_only(authorized_users)
+    authorized_users.each do |authorized_user|
+      unless current_user.user_type == authorized_user
         redirect_to current_user
       end
+    end
+  end
+
+  def authorized_users_and_owner_only(authorized_users)
+    @owner = User.find(params[:id])
+    authorized_users.each do |authorized_user|
+      unless current_user == @owner || current_user.user_type == authorized_user
+        redirect_to current_user
+      end
+    end
   end
 
   def after_sign_in_path_for(user)

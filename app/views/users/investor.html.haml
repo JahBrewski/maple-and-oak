@@ -1,17 +1,5 @@
-%h1 Profile
-.user-information
-  %ul
-    %li= @user.full_name
-    %li= @user.user_type.capitalize
-    %li= @user.email
-    - if @plan
-      %li= @plan.name
-    -# 
-      - if @projects.any?
-        %h2 Projects
-        %ul
-          = render @projects
-      - if @user.projects.count < @project_limit
-        = link_to "Add project", new_project_path
-
-
+.opaque-container.col-md-8.col-md-offset-2
+  .row
+    .col-md-12
+      .profile-information
+        %h1= @user.full_name

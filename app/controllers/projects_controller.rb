@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :investor_only, only: :index
+  before_filter(:only => [:show]) { |c| c.authorized_users ["investor"] } 
+
   before_action :correct_user,    only: [:edit, :update]
 
   def create

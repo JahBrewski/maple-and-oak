@@ -12,6 +12,9 @@
           %h4= @project.category_and_sub_category
         - if current_user == @project.user
           = link_to "edit", edit_project_path(@project)
+        - if current_user != @project.user
+          = link_to "Message me", new_conversation_path(receiver: @project.user)
+
   .row
     .col-md-12
       %h2 Description

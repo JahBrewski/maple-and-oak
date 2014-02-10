@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
   #def total_projects
   #  self.projects.count
   #end
+  
+  def admin?
+    self.user_type == "admin"
+  end
 
   def investor?
     self.user_type == "investor"
