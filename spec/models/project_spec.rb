@@ -9,22 +9,49 @@ describe Project do
     FactoryGirl.create(:project, user: user). should be_valid
   end
 
-  it "is invalid without a description" do
-    FactoryGirl.build(:project, user: user, description: nil).should_not be_valid
-  end
-
-  it "is invalid without a state" do
-    FactoryGirl.build(:project, user: user, state: nil).should_not be_valid
-  end
-
-  it "is invalid without a city" do
-    FactoryGirl.build(:project, user: user, city: nil).should_not be_valid
-  end
-
   describe "#location_state_city" do
     let(:project) { FactoryGirl.build(:project, user: user, state: "TN", city: "Nashville") }
     it 'returns the state and city of the project' do
       project.location_state_city.should == "Nashville, TN"
+    end
+  end
+
+  describe "#ready_to_publish?" do
+
+    it 'returns false if the project is missing a city' do
+      FactoryGirl.build(:project, user: user, city: nil).ready_to_publish?.should == false
+    end
+
+    it 'returns false if the project is missing a state' do
+      FactoryGirl.build(:project, user: user, state: nil).ready_to_publish?.should == false
+    end
+
+    it 'returns false if the project is missing a company_name' do
+      FactoryGirl.build(:project, user: user, company_name: nil).ready_to_publish?.should == false
+    end
+
+    it 'returns false if the project is missing an email_address' do
+      FactoryGirl.build(:project, user: user, email_address: nil).ready_to_publish?.should == false
+    end
+
+    it 'returns false if the project is missing a phone_number' do
+      FactoryGirl.build(:project, user: user, phone_number: nil).ready_to_publish?.should == false
+    end
+
+    it 'returns false if the project is missing a description' do
+      FactoryGirl.build(:project, user: user, description: nil).ready_to_publish?.should == false
+    end
+
+    it 'returns false if the project is missing a category' do
+      FactoryGirl.build(:project, user: user, category: nil).ready_to_publish?.should == false
+    end
+
+    it 'returns false if the project is missing a sub_category' do
+      FactoryGirl.build(:project, user: user, sub_category: nil).ready_to_publish?.should == false
+    end
+
+    it 'returns true if the project is not missing requisite fields' do
+      FactoryGirl.build(:project, user: user).ready_to_publish?.should == true
     end
   end
 end
