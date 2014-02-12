@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   #end
   
   def admin?
-    self.user_type == "admin"
+    self.admin
   end
 
   def investor?

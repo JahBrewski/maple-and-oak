@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140206180205) do
+ActiveRecord::Schema.define(version: 20140211193843) do
 
   create_table "conversations", force: true do |t|
     t.string   "subject",    default: ""
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20140206180205) do
     t.string   "state"
     t.string   "city"
     t.string   "company_image"
+    t.string   "status",        default: "not_approved"
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
@@ -113,12 +114,12 @@ ActiveRecord::Schema.define(version: 20140206180205) do
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                   default: "", null: false
-    t.string   "encrypted_password",      default: "", null: false
+    t.string   "email",                   default: "",    null: false
+    t.string   "encrypted_password",      default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",           default: 0,  null: false
+    t.integer  "sign_in_count",           default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -130,6 +131,7 @@ ActiveRecord::Schema.define(version: 20140206180205) do
     t.string   "user_type"
     t.string   "username"
     t.integer  "conversations_initiated", default: 0
+    t.boolean  "admin",                   default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -22,10 +22,10 @@ namespace :db do
     end
     
     users = User.all(limit: 20)
-    users.each do |u|
+    users.each_with_index do |u,i|
       state = Faker::Address.state_abbr
       city = Faker::Address.city
-      title = Faker::Company.name
+      company_name = Faker::Company.name
       contact_name = Faker::Name.name
       email_address = Faker::Internet.email
       phone_number = Faker::PhoneNumber.phone_number
@@ -33,9 +33,16 @@ namespace :db do
       category = ProjectCategory.random.key_name
       sub_category = ProjectSubCategory.random.key_name
 
-      u.projects.create!(title: title,
+      if i % 2 == 0
+        status = "pending_approval"
+      else
+        status = "not_approved"
+      end
+
+      u.create_project!(company_name: company_name,
                         city: city,
                         state: state,
+                        status: status,
                         contact_name: contact_name,
                         email_address: email_address,
                         phone_number: phone_number,

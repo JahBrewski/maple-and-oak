@@ -17,6 +17,9 @@ describe Project do
   end
 
   describe "#ready_to_publish?" do
+    it 'returns false if the project has not been approved' do
+      FactoryGirl.build(:project, user: user, status: "not_approved").ready_to_publish?.should == false
+    end
 
     it 'returns false if the project is missing a city' do
       FactoryGirl.build(:project, user: user, city: nil).ready_to_publish?.should == false
@@ -50,7 +53,7 @@ describe Project do
       FactoryGirl.build(:project, user: user, sub_category: nil).ready_to_publish?.should == false
     end
 
-    it 'returns true if the project is not missing requisite fields' do
+    it 'returns true if the project is not missing requisite fields and project is approved' do
       FactoryGirl.build(:project, user: user).ready_to_publish?.should == true
     end
   end

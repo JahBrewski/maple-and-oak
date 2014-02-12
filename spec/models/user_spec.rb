@@ -6,6 +6,11 @@ describe User, 'validations' do
     FactoryGirl.create(:user).should be_valid
   end
 
+  it "should respond to admin" do
+    user = FactoryGirl.create(:user)
+    user.should respond_to(:admin)
+  end
+
   it "is invalid without a username" do
     FactoryGirl.build(:user, username: nil).should_not be_valid
   end

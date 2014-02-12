@@ -12,6 +12,7 @@ FactoryGirl.define do
     password_confirmation "booyabooya"
     user_type "entrepreneur"
     username
+    admin false
   end
 
   factory :plan do
@@ -52,6 +53,7 @@ FactoryGirl.define do
     description "Best project ever"
     category "clothing store"
     sub_category "record studio"
+    status "approved"
   end
 
   factory :conversation do

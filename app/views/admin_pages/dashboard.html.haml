@@ -1,0 +1,5 @@
+%h1 Project Authorization
+%ul
+- @projects.each do |project|
+  %li= link_to project.company_name, project.user
+  
