@@ -3,7 +3,7 @@ class AdminPagesController < ApplicationController
   before_filter :admin_user
 
   def dashboard 
-    @projects = Project.where
+    @projects = Project.where(status: "pending_approval")
   end
 
   private

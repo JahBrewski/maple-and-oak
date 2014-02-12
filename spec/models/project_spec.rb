@@ -21,36 +21,10 @@ describe Project do
       FactoryGirl.build(:project, user: user, status: "not_approved").ready_to_publish?.should == false
     end
 
-    it 'returns false if the project is missing a city' do
-      FactoryGirl.build(:project, user: user, city: nil).ready_to_publish?.should == false
-    end
-
-    it 'returns false if the project is missing a state' do
-      FactoryGirl.build(:project, user: user, state: nil).ready_to_publish?.should == false
-    end
-
-    it 'returns false if the project is missing a company_name' do
-      FactoryGirl.build(:project, user: user, company_name: nil).ready_to_publish?.should == false
-    end
-
-    it 'returns false if the project is missing an email_address' do
-      FactoryGirl.build(:project, user: user, email_address: nil).ready_to_publish?.should == false
-    end
-
-    it 'returns false if the project is missing a phone_number' do
-      FactoryGirl.build(:project, user: user, phone_number: nil).ready_to_publish?.should == false
-    end
-
-    it 'returns false if the project is missing a description' do
-      FactoryGirl.build(:project, user: user, description: nil).ready_to_publish?.should == false
-    end
-
-    it 'returns false if the project is missing a category' do
-      FactoryGirl.build(:project, user: user, category: nil).ready_to_publish?.should == false
-    end
-
-    it 'returns false if the project is missing a sub_category' do
-      FactoryGirl.build(:project, user: user, sub_category: nil).ready_to_publish?.should == false
+    [:city, :state, :company_name, :email_address, :phone_number, :description, :category, :sub_category].each do |attribute|
+      it "returns false if the project is missing #{attribute}" do
+        FactoryGirl.build(:project, user: user, :"#{attribute}" => nil).should_not be_ready_to_publish
+      end
     end
 
     it 'returns true if the project is not missing requisite fields and project is approved' do
