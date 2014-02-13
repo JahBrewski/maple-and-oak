@@ -35,6 +35,7 @@
       .upload-company-image
         = f.label "Upload company image"
         = f.file_field :company_image, :class => "form-control"
-      .form-group
-        = f.submit "Update Profile", :class => "btn btn-primary"
+      .actions
+        = f.submit "Update Profile", :class => "btn btn-success pull-left"
+        = button_to "Cancel", user_path(current_user), :class => "btn btn-danger pull-left"
 

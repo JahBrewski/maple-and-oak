@@ -54,6 +54,7 @@ FactoryGirl.define do
     category "clothing store"
     sub_category "record studio"
     status "approved"
+    published false
   end
 
   factory :conversation do

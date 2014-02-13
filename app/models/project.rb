@@ -20,6 +20,30 @@ class Project < ActiveRecord::Base
     contains_required_fields? && approved?
   end
 
+  def update_status_with(status)
+    self.update_attribute(:status, status)
+  end
+
+  def approve
+    self.update_attribute(:status, "approved")
+  end
+
+  def publish
+    self.update_attribute(:published, true)
+  end
+
+  def unpublish
+    self.update_attribute(:published, false)
+  end
+
+  def deny
+    self.update_attribute(:status, "not_approved")
+  end
+
+  def submit_for_approval
+    self.update_attribute(:status, "pending_approval")
+  end
+
   private
 
   def contains_required_fields?

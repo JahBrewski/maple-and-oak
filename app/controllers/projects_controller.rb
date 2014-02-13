@@ -1,8 +1,43 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter(:only => [:show]) { |c| c.authorized_users ["investor"] } 
+  before_filter(:only => [:index]) { |c| c.authorized_users_and_admin_only ["investor"] } 
+  before_filter :admin, only: [:approve, :deny]
+  before_action :correct_user, only: [:edit, :update, :submit_for_approval]
+  before_filter :approved?, only: [:publish]
 
-  before_action :correct_user,    only: [:edit, :update]
+  def approve
+    @project = Project.find(params[:id])
+    @project.update_status_with("approved")
+    redirect_to admin_path
+  end
+
+  def deny
+    @project = Project.find(params[:id])
+    @project.update_status_with("not_approved")
+    redirect_to admin_path
+  end
+
+  def submit_for_approval
+    @project = Project.find(params[:id])
+    @project.update_status_with("pending_approval")
+    redirect_to user_path(current_user)
+  end
+
+  def publish
+    @project = Project.find(params[:id])
+    @project.publish
+    redirect_to user_path(current_user)
+  end
+
+  def unpublish
+    @project = Project.find(params[:id])
+    @project.unpublish
+    redirect_to user_path(current_user)
+  end
+
+  def update_status
+    @project = Project.find(params[:id])
+  end
 
   def create
     @project = current_user.create_project(project_params)
@@ -65,5 +100,14 @@ class ProjectsController < ApplicationController
     def correct_user
       @user = Project.find(params[:id]).user
       redirect_to(root_url) unless current_user == @user
+    end
+
+    def approved?
+      @project = Project.find(params[:id])
+      redirect_to(current_user) unless @project.status == "approved" 
+    end
+
+    def admin
+      current_user.admin?
     end
 end

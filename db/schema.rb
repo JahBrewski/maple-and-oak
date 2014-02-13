@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140211193843) do
+ActiveRecord::Schema.define(version: 20140213000735) do
 
   create_table "conversations", force: true do |t|
     t.string   "subject",    default: ""
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20140211193843) do
     t.string   "city"
     t.string   "company_image"
     t.string   "status",        default: "not_approved"
+    t.boolean  "published",     default: false
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree

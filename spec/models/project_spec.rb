@@ -16,6 +16,25 @@ describe Project do
     end
   end
 
+  describe "#publish" do
+    let!(:project) { FactoryGirl.create(:project, user: user) }
+    it 'sets the publish attribute to true' do
+      project.publish
+      project.reload
+      project.published.should == true
+    end
+  end
+
+  describe "#unpublish" do
+    it 'sets the publish attribute to false' do
+      project = FactoryGirl.create(:project, user: user)
+      project.unpublish
+      project.reload
+      project.published.should == false
+    end
+  end
+
+
   describe "#ready_to_publish?" do
     it 'returns false if the project has not been approved' do
       FactoryGirl.build(:project, user: user, status: "not_approved").ready_to_publish?.should == false

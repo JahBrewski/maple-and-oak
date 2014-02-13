@@ -1,4 +1,4 @@
-- if @project.nil?
-  = render 'entrepreneur_profile_no_project'
-- else
+- if @user.project
   = render 'entrepreneur_profile'
+- else
+  = render 'entrepreneur_profile_no_project'

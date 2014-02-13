@@ -1,0 +1,20 @@
+.col-md-6.col-md-offset-3
+  %table.table.table-bordered
+    %thead
+      %tr
+        %th Company Name
+        %th Created On
+        %th Authorize
+        %th Deny
+    %tbody
+      - @projects.each do |project|
+        %tr
+          %td
+            = link_to project.company_name, project.user
+          %td
+            = project.created_at.strftime("%d %B %Y")
+          %td
+            = button_to "Authorize", approve_project_path(project), class: "btn btn-success", method: :put, data: { confirm: "Click OK to authorize \"#{project.company_name}\"" }
+          %td
+            = button_to "Deny", deny_project_path(project), class: "btn btn-danger", method: :put, data: { confirm: "Click OK to deny \"#{project.company_name}\"" }
+

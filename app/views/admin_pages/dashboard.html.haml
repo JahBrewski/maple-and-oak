@@ -1,5 +1,6 @@
-%h1 Project Authorization
-%ul
-- @projects.each do |project|
-  %li= link_to project.company_name, project.user
-  
+.row
+  %h1.text-center Project Authorization
+  - if @projects.any?
+    = render 'project_authorization_table'
+  - else
+    %h2.text-center No projects to authorize :)

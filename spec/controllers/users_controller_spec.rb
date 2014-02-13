@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe UsersController do
 
+  let!(:admin) { FactoryGirl.create(:user, user_type: "entrepreneur", admin: true) }
   let!(:investor) { FactoryGirl.create(:user, user_type: "investor") }
   let!(:entrepreneur) { FactoryGirl.create(:user, user_type: "entrepreneur") }
 
@@ -55,6 +56,15 @@ describe UsersController do
       it "renders the #show view for the other user" do
         get :show, id: entrepreneur
         response.should render_template :entrepreneur
+      end
+    end
+
+    context "when admin is viewing another user's page" do
+      before { sign_in admin }
+
+      it "renders the #show view for the other user" do
+        get :show, id: entrepreneur
+        response.should be_success
       end
     end
   end
