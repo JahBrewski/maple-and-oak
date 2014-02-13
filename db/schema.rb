@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140213000735) do
+ActiveRecord::Schema.define(version: 20140213182957) do
 
   create_table "conversations", force: true do |t|
     t.string   "subject",    default: ""
@@ -73,17 +73,24 @@ ActiveRecord::Schema.define(version: 20140213000735) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "contact_name"
-    t.string   "email_address"
-    t.string   "phone_number"
-    t.string   "description"
+    t.string   "contact_email_address"
+    t.string   "contact_phone_number"
+    t.string   "short_description"
     t.string   "category"
     t.string   "sub_category"
     t.string   "business_plan"
     t.string   "state"
     t.string   "city"
     t.string   "company_image"
-    t.string   "status",        default: "not_approved"
-    t.boolean  "published",     default: false
+    t.string   "status",                         default: "not_approved"
+    t.boolean  "published",                      default: false
+    t.string   "long_description"
+    t.string   "user_hospitality_experience"
+    t.string   "user_management_experience"
+    t.string   "user_current_position"
+    t.string   "user_highest_position"
+    t.string   "user_current_restaurant_owner"
+    t.string   "user_previous_restaurant_owner"
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree

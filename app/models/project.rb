@@ -1,4 +1,13 @@
 class Project < ActiveRecord::Base
+
+  USER_EXPERIENCE_VALUES =
+    [
+      ['<2', '<2'],
+      ['2-5', '2-5'],
+      ['5-7', '5-7'],
+      ['7-10', '7-10'],
+      ['10+', '10+']
+    ]
   REQUIRED_FIELDS_FOR_PUBLISHING = ["state", "city", "company_name", "email_address",
                      "phone_number", "description", "category", "sub_category"]
 

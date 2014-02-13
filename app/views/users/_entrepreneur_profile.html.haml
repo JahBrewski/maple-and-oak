@@ -18,7 +18,8 @@
   .row
     .col-md-12
       %h2 Description
-      = @project.description
+      = @project.short_description
+      = @project.long_description
       - if @project.business_plan?
         %h2 Documents
         %span.glyphicon.glyphicon-file

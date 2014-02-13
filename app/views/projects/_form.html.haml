@@ -2,6 +2,7 @@
   .col-md-6.col-md-offset-3
     = form_for @project, :html => {:multipart => true} do |f|
       = render 'shared/error_messages', object: f.object
+      %h2 Company Information
       .form-group
         = f.label :company_name
         = f.text_field :company_name, :class => "form-control"
@@ -10,19 +11,22 @@
         = f.text_field :contact_name, :class => "form-control"
       .form-group
         = f.label :state
-        = f.select :state, options_for_select(us_states), :class => "form-control"
+        = f.select :state, us_states, :class => "form-control"
       .form-group
         = f.label :city
         = f.text_field :city, :class => "form-control"
       .form-group
-        = f.label :email_address
-        = f.text_field :email_address, :class => "form-control"
+        = f.label :contact_email_address
+        = f.text_field :contact_email_address, :class => "form-control"
       .form-group
-        = f.label :phone_number
-        = f.text_field :phone_number, :class => "form-control"
+        = f.label :contact_phone_number
+        = f.text_field :contact_phone_number, :class => "form-control"
       .form-group
-        = f.label :description
-        = f.text_field :description, :class => "form-control"
+        = f.label :short_description
+        = f.text_field :short_description, :class => "form-control"
+      .form-group
+        = f.label :long_description
+        = f.text_field :long_description, :class => "form-control"
       .form-group
         = f.label :category
         = f.collection_select :category, ProjectCategory.all, :key_name, :pluralized_name, prompt: true, :class => "form-control"
@@ -31,10 +35,39 @@
         = f.collection_select :sub_category, ProjectSubCategory.all, :key_name, :description, prompt: true, :class => "form-control"
       .upload-plan
         = f.label "Upload business plan"
+        - if @project.business_plan?
+          .current_business_plan
+            %span.glyphicon.glyphicon-file
+            %span= link_to "Current business plan", @project.business_plan.url, target: "_blank"
         = f.file_field :business_plan, :class => "form-control"
+        = f.hidden_field :business_plan_cache
       .upload-company-image
         = f.label "Upload company image"
+        - if @project.company_image?
+          .current_company_image
+            %span Current Image:
+            = image_tag(@project.company_image.url(:thumb_sm)) 
         = f.file_field :company_image, :class => "form-control"
+        = f.hidden_field :company_image_cache
+      %h2 Personal Information
+      .form-group
+        = f.label :user_hospitality_experience
+        = f.select :user_hospitality_experience, Project::USER_EXPERIENCE_VALUES, :class => "form-control"
+      .form-group
+        = f.label :user_management_experience
+        = f.select :user_management_experience, Project::USER_EXPERIENCE_VALUES, :class => "form-control"
+      .form-group
+        = f.label "Current position/title"
+        = f.text_field :user_current_position, :class => "form-control"
+      .form-group
+        = f.label "Highest position/title"
+        = f.text_field :user_highest_position, :class => "form-control"
+      .form-group
+        = f.label "Do you currently owned/operated a restaurant?"
+        = f.text_field :user_current_restaurant_owner, :class => "form-control"
+      .form-group
+        = f.label "Have you ever owned/operated a restaurant?"
+        = f.text_field :user_previous_restaurant_owner, :class => "form-control"
       .actions
         = f.submit "Update Profile", :class => "btn btn-success pull-left"
         = button_to "Cancel", user_path(current_user), :class => "btn btn-danger pull-left"

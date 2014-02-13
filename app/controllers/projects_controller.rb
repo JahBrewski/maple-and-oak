@@ -83,15 +83,24 @@ class ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit(
         :business_plan,
+        :business_plan_cache,
+        :company_image_cache,
         :company_image,
         :city,
         :state,
         :company_name,
         :contact_name,
-        :email_address,
-        :phone_number,
-        :description,
+        :contact_email_address,
+        :contact_phone_number,
+        :short_description,
+        :long_description,
         :category,
+        :user_hospitality_experience,
+        :user_management_experience,
+        :user_highest_position,
+        :user_current_position,
+        :user_current_restaurant_owner?,
+        :user_previous_restaurant_owner?,
         :sub_category)
     end
 

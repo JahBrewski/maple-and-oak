@@ -9,6 +9,10 @@ describe Project do
     FactoryGirl.create(:project, user: user). should be_valid
   end
 
+  describe "it responds to all fields" do
+    [:
+
+
   describe "#location_state_city" do
     let(:project) { FactoryGirl.build(:project, user: user, state: "TN", city: "Nashville") }
     it 'returns the state and city of the project' do
