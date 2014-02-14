@@ -27,9 +27,10 @@ namespace :db do
       city = Faker::Address.city
       company_name = Faker::Company.name
       contact_name = Faker::Name.name
-      email_address = Faker::Internet.email
-      phone_number = Faker::PhoneNumber.phone_number
-      description = Faker::Company.catch_phrase
+      contact_email_address = Faker::Internet.email
+      contact_phone_number = Faker::PhoneNumber.phone_number
+      short_description = Faker::Company.catch_phrase
+      long_description = Faker::Lorem.sentences(sentence_count = 3)
       category = ProjectCategory.random.key_name
       sub_category = ProjectSubCategory.random.key_name
 
@@ -44,9 +45,10 @@ namespace :db do
                         state: state,
                         status: status,
                         contact_name: contact_name,
-                        email_address: email_address,
-                        phone_number: phone_number,
-                        description: description,
+                        contact_email_address: contact_email_address,
+                        contact_phone_number: contact_phone_number,
+                        short_description: short_description,
+                        long_description: long_description,
                         category: category,
                         sub_category: sub_category)
     end

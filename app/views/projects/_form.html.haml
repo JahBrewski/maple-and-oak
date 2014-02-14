@@ -39,6 +39,7 @@
           .current_business_plan
             %span.glyphicon.glyphicon-file
             %span= link_to "Current business plan", @project.business_plan.url, target: "_blank"
+            = f.label "Delete current business plan"
         = f.file_field :business_plan, :class => "form-control"
         = f.hidden_field :business_plan_cache
       .upload-company-image

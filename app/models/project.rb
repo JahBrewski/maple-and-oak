@@ -18,11 +18,15 @@ class Project < ActiveRecord::Base
   mount_uploader :company_image, CompanyImageUploader
 
   def location_state_city
-    city.capitalize + ", " + state
+    if city != "" && state != ""
+      city.capitalize + ", " + state
+    end
   end
 
   def category_and_sub_category
-    self.category.gsub("_"," ") + " | " + self.sub_category.gsub("_"," ")
+    if category != "" && sub_category != ""
+      self.category.gsub("_"," ") + " | " + self.sub_category.gsub("_"," ")
+    end
   end
 
   def ready_to_publish?

@@ -2,12 +2,24 @@ require 'spec_helper'
 
 describe ConversationsController do
 
-  describe "GET #index" do
-    context "when user is signed in" do
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:other_user) { FactoryGirl.create(:user) }
+  before { FactoryGirl.create(:plan_with_subscription, user: user) }
 
-      let(:user) { FactoryGirl.create(:user) }
-      let(:other_user) { FactoryGirl.create(:user) }
-      let(:conversation_to_user) { other_user.send_message( user, "test subject", "hello user").conversation }
+  describe "GET #index" do
+    context "when user does not have an active subscription" do
+      before { sign_in user }
+      it "redirects user to plans page" do
+        user.update_attribute(:active_subscription, false)
+        user.reload
+        get :index
+        response.should redirect_to plans_path
+      end
+    end
+      
+
+    context "when user is signed in and has an active subscription" do
+
       before { sign_in user }
 
       it "renders the :index view" do
@@ -20,8 +32,6 @@ describe ConversationsController do
   describe "GET #show" do
     context "when user is signed in" do
 
-      let(:user) { FactoryGirl.create(:user) }
-      let(:other_user) { FactoryGirl.create(:user) }
       let(:conversation_to_user) { other_user.send_message( user, "test subject", "hello user").conversation }
       before { sign_in user }
 
@@ -41,8 +51,6 @@ describe ConversationsController do
   describe "POST #create" do
     context "with valid attributes" do
 
-      let(:user) { FactoryGirl.create(:user) }
-      let(:other_user) { FactoryGirl.create(:user) }
       let(:conversation_to_user) { other_user.send_message( user, "test subject", "hello user").conversation }
       before { sign_in user }
       

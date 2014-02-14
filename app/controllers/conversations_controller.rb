@@ -1,6 +1,7 @@
 class ConversationsController < ApplicationController
   before_filter :authenticate_user!
   helper_method :mailbox, :conversation
+  before_filter :active_subscription? 
 
   def create
     conversation_params

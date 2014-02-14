@@ -13,6 +13,7 @@ FactoryGirl.define do
     user_type "entrepreneur"
     username
     admin false
+    active_subscription false
   end
 
   factory :plan do
@@ -40,6 +41,9 @@ FactoryGirl.define do
     f.stripe_card_token "Test card token"
     f.stripe_customer_token "Test customer token"
     f.email "joel.brewer1@example.com"
+    after(:create) do |user, evaluator|
+      evaluator.user.update_attribute(:active_subscription, true)
+    end
   end
 
   factory :project do

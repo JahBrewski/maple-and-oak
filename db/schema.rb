@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140213182957) do
+ActiveRecord::Schema.define(version: 20140213223628) do
 
   create_table "conversations", force: true do |t|
     t.string   "subject",    default: ""
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(version: 20140213182957) do
     t.string   "username"
     t.integer  "conversations_initiated", default: 0
     t.boolean  "admin",                   default: false
+    t.boolean  "active_subscription",     default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

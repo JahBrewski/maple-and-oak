@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
   before_filter :admin, only: [:approve, :deny]
   before_action :correct_user, only: [:edit, :update, :submit_for_approval]
   before_filter :approved?, only: [:publish]
+  before_filter :active_subscription?
 
   def approve
     @project = Project.find(params[:id])

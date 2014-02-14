@@ -6,7 +6,23 @@ describe UsersController do
   let!(:investor) { FactoryGirl.create(:user, user_type: "investor") }
   let!(:entrepreneur) { FactoryGirl.create(:user, user_type: "entrepreneur") }
 
+  before do
+    FactoryGirl.create(:plan_with_subscription, user: entrepreneur) 
+    FactoryGirl.create(:plan_with_subscription, user: investor) 
+    FactoryGirl.create(:plan_with_subscription, user: admin) 
+  end
+
   describe "GET #show" do
+
+    context "when user does not have an active subscription" do
+      before { sign_in entrepreneur }
+      it "redirects user to plans page" do
+        entrepreneur.update_attribute(:active_subscription, false)
+        entrepreneur.reload
+        get :show, id: entrepreneur
+        response.should redirect_to plans_path
+      end
+    end
 
     context "when entrepreneur is viewing their own page" do
       before { sign_in entrepreneur }

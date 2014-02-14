@@ -29,6 +29,12 @@ class ApplicationController < ActionController::Base
     profile_path  
   end
 
+  def active_subscription?
+    unless current_user.active_subscription == true
+      redirect_to plans_path
+    end
+  end
+
   protected
 
   def configure_permitted_parameters

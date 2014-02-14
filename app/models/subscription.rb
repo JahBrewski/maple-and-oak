@@ -16,6 +16,7 @@ class Subscription < ActiveRecord::Base
     #self.next_bill_on          = Date.parse customer.next_recurring_charge.date
     #set_card_info customer.active_card
     save
+    user.update_attribute(:active_subscription, true)
   rescue Stripe::InvalidRequestError => e
     logger.error "[STRIPE] #{ e }"
     errors[:base] << "Unable to process your credit card!"
