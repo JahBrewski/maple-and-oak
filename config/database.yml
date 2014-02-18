@@ -28,7 +28,11 @@ test:
   username: joelbrewer
 
 #production:
-#  adapter: postgresql
-#  database: sample_app
-#  host: localhost
+  adapter: postgresql
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  database: <%= ENV['RDS_DB_NAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
 
