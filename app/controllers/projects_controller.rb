@@ -51,7 +51,8 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @search = Project.search(params[:q])
+    published = Project.where(published: true)
+    @search = published.search(params[:q])
     @projects = @search.result
   end
 
