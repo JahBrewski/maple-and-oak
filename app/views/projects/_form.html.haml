@@ -26,7 +26,7 @@
         = f.text_field :short_description, :class => "form-control"
       .form-group
         = f.label :long_description
-        = f.text_field :long_description, :class => "form-control"
+        = f.text_area :long_description, :class => "form-control", :rows => "5"
       .form-group
         = f.label :category
         = f.collection_select :category, ProjectCategory.all, :key_name, :pluralized_name, prompt: true, :class => "form-control"

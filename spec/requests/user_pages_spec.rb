@@ -31,31 +31,47 @@ describe "User Pages" do
     end
   end
 
+  describe "investor user" do
+    let!(:investor) { FactoryGirl.create(:user, user_type: "investor") }
+    let!(:plan) { FactoryGirl.create(:plan_with_subscription, user: investor) }
+    before { sign_in investor }
+
+    describe "profile page" do
+
+      context "before user had updated their profile" do
+        it "alerts the user to update their profile" do
+          visit user_path(investor)
+          page.should have_content("Start filling out your profile")
+        end
+      end
+    end
+  end
+
   describe "entrepreneur user" do
 
-    let!(:user) { FactoryGirl.create(:user, user_type: "entrepreneur") }
-    let!(:plan) { FactoryGirl.create(:plan_with_subscription, user: user, user_project_limit: 1) }
-    before { sign_in user }
+    let!(:enterepreneur) { FactoryGirl.create(:user, user_type: "entrepreneur") }
+    let!(:plan) { FactoryGirl.create(:plan_with_subscription, user: enterepreneur, user_project_limit: 1) }
+    before { sign_in enterepreneur }
 
 
     describe "profile page" do
 
       context "before user has updated their profile" do
         it "alerts the user to update their profile" do
-          visit user_path(user)
+          visit user_path(enterepreneur)
           page.should have_content("Start filling out your profile")
         end
       end
 
       context "after user has updated their profile" do
 
-        let!(:project) { FactoryGirl.create(:project, user: user) }
-        before { visit user_path(user) }
+        let!(:project) { FactoryGirl.create(:project, user: enterepreneur) }
+        before { visit user_path(enterepreneur) }
 
         it "displays profile information" do
           page.should have_content(project.company_name) 
           page.should have_content(project.location_state_city) 
-          page.should have_content(project.description) 
+          page.should have_content(project.short_description) 
         end
 
         #it "displays company image" do
