@@ -12,7 +12,7 @@
     %ul
       %li= link_to project.company_name, user_path(project.user)
       %li= project.location_state_city
-      %li= project.description
+      %li= project.short_description
       -if project.business_plan.url
         %li= link_to("#{project.company_name} business plan", project.business_plan.url, :target => "_blank")
 
