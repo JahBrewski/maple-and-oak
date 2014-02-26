@@ -24,4 +24,4 @@ ProjectSubCategory.create(key_name: "startup", description: "Start up restaurant
 ProjectSubCategory.create(key_name: "add_location", description: "Add location(s) to an existing concept")
 
 #add admin(s)
-User.create!(first_name: "Meghan", last_name: "Michel", email: "memichel81@gmail.com", username: "memmichel", password: "#{ENV['MEGHAN_ADMIN_PASSWORD']}", password_confirmation: "#{ENV['MEGHAN_ADMIN_PASSWORD']", user_type: "entrepreneur", admin: true, active_subscription: true)
+User.create!(first_name: "Meghan", last_name: "Michel", email: "memichel81@gmail.com", username: "memmichel", password: ENV['MEGHAN_ADMIN_PASSWORD'], password_confirmation: ENV['MEGHAN_ADMIN_PASSWORD'], user_type: "entrepreneur", admin: true, active_subscription: true)

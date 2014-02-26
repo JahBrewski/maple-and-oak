@@ -30,7 +30,7 @@ namespace :db do
       contact_email_address = Faker::Internet.email
       contact_phone_number = Faker::PhoneNumber.phone_number
       short_description = Faker::Company.catch_phrase
-      long_description = Faker::Lorem.sentences(sentence_count = 3)
+      long_description = Faker::Lorem.sentences(sentence_count = 3).join(",")
       category = ProjectCategory.random.key_name
       sub_category = ProjectSubCategory.random.key_name
 
