@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140213223628) do
+ActiveRecord::Schema.define(version: 20140226235535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,31 +46,30 @@ ActiveRecord::Schema.define(version: 20140213223628) do
     t.integer  "price"
     t.string   "plan_type"
     t.string   "plan_level"
-    t.integer  "user_project_limit"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_conversation_limit"
     t.string   "description"
   end
 
-  create_table "project_categories", force: true do |t|
+  create_table "profile_categories", force: true do |t|
     t.string   "key_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "project_categories", ["key_name"], name: "index_project_categories_on_key_name", using: :btree
+  add_index "profile_categories", ["key_name"], name: "index_profile_categories_on_key_name", using: :btree
 
-  create_table "project_sub_categories", force: true do |t|
+  create_table "profile_sub_categories", force: true do |t|
     t.string   "key_name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "description"
   end
 
-  add_index "project_sub_categories", ["key_name"], name: "index_project_sub_categories_on_key_name", using: :btree
+  add_index "profile_sub_categories", ["key_name"], name: "index_profile_sub_categories_on_key_name", using: :btree
 
-  create_table "projects", force: true do |t|
+  create_table "profiles", force: true do |t|
     t.string   "company_name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -96,7 +95,7 @@ ActiveRecord::Schema.define(version: 20140213223628) do
     t.string   "user_previous_restaurant_owner"
   end
 
-  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "receipts", force: true do |t|
     t.integer  "receiver_id"

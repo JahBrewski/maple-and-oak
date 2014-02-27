@@ -2,17 +2,17 @@
 .search-bar.text-center
   = search_form_for @search do |f|
     = f.label :category_cont, "Category"
-    = f.collection_select :category_cont, ProjectCategory.all, :key_name, :pluralized_name, prompt: true
+    = f.collection_select :category_cont, ProfileCategory.all, :key_name, :pluralized_name, prompt: true
     = f.label :sub_category_cont, "Sub Category"
-    = f.collection_select :sub_category_cont, ProjectSubCategory.all, :key_name, :description, prompt: true
+    = f.collection_select :sub_category_cont, ProfileSubCategory.all, :key_name, :description, prompt: true
     = f.submit "search"
-.row.projects-container
-- @projects.each do |project|
-  .project-container.col-md-4
+.row.profiles-container
+- @profiles.each do |profile|
+  .profile-container.col-md-4
     %ul
-      %li= link_to project.company_name, user_path(project.user)
-      %li= project.location_state_city
-      %li= project.short_description
-      -if project.business_plan.url
-        %li= link_to("#{project.company_name} business plan", project.business_plan.url, :target => "_blank")
+      %li= link_to profile.company_name, user_path(profile.user)
+      %li= profile.location_state_city
+      %li= profile.short_description
+      -if profile.business_plan.url
+        %li= link_to("#{profile.company_name} business plan", profile.business_plan.url, :target => "_blank")
 

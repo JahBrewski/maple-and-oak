@@ -1,8 +1,8 @@
 %div
-  %span.content= project.company_name
+  %span.content= profile.company_name
   %span.timestamp
-    = "(Posted #{time_ago_in_words(project.created_at)} ago.)"
-    = link_to "edit", edit_project_path(project)
-    = link_to "delete", project, method: :delete,
+    = "(Posted #{time_ago_in_words(profile.created_at)} ago.)"
+    = link_to "edit", edit_profile_path(profile)
+    = link_to "delete", profile, method: :delete,
                                    data: { confirm: "You sure?" },
-                                   company_name: project.company_name
+                                   company_name: profile.company_name

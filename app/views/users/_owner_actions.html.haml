@@ -1,9 +1,9 @@
-= link_to "Edit", edit_project_path(@project), class: "btn btn-default btn-sm pull-left"
-- if @project.status == "not_approved"
-  = button_to "Submit for approval", submit_for_approval_project_path(@project), class: "btn btn-success btn-sm pull-left", method: :put, data: { confirm: "Click OK to submit your profile for approval" }
-- if @project.status == "pending_approval"
+= link_to "Edit", edit_profile_path(@profile), class: "btn btn-default btn-sm pull-left"
+- if @profile.status == "not_approved"
+  = button_to "Submit for approval", submit_for_approval_profile_path(@profile), class: "btn btn-success btn-sm pull-left", method: :put, data: { confirm: "Click OK to submit your profile for approval" }
+- if @profile.status == "pending_approval"
   = button_to "Pending approval", "#", class: "btn btn-default disabled btn-sm pull-left"
-- if @project.status == "approved" && @project.published == false
-  = button_to "Publish profile", publish_project_path(@project), class: "btn btn-success btn-sm pull-left", method: :put
-- if @project.status == "approved" && @project.published == true
-  = button_to "Unplublish profile", unpublish_project_path(@project), class: "btn btn-danger btn-sm pull-left", method: :put
+- if @profile.status == "approved" && @profile.published == false
+  = button_to "Publish profile", publish_profile_path(@profile), class: "btn btn-success btn-sm pull-left", method: :put
+- if @profile.status == "approved" && @profile.published == true
+  = button_to "Unplublish profile", unpublish_profile_path(@profile), class: "btn btn-danger btn-sm pull-left", method: :put

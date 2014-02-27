@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Project pages" do
+describe "Profile pages" do
 
   let!(:entrepreneur) { FactoryGirl.create(:user, user_type: "entrepreneur") }
   
@@ -11,40 +11,40 @@ describe "Project pages" do
       visit user_path(entrepreneur)
     end
 
-    describe "Adding a new project" do
+    describe "Adding a new profile" do
 
-      it "should create a project" do
+      it "should create a profile" do
         click_link "Start filling out your profile"
-        expect { click_button "Update Profile" }.to change(Project, :count)
+        expect { click_button "Update Profile" }.to change(Profile, :count)
       end
     end
 
-    describe "Updating a project" do
+    describe "Updating a profile" do
 
       it "should update profile with new information" do
 
-         FactoryGirl.create(:project, user: entrepreneur)
+         FactoryGirl.create(:profile, user: entrepreneur)
          visit user_path(entrepreneur)
          click_link "Edit"
-         fill_in_project_fields
+         fill_in_profile_fields
          click_button "Update Profile"
 
          fields_on_profile = [
-           "project_company_name",
-           "project[state]",
-           "project_city",
-           "project_short_description",
-           "project_long_description",
-           "project[category]",
-           "project_sub_category"]
+           "profile_company_name",
+           "profile[state]",
+           "profile_city",
+           "profile_short_description",
+           "profile_long_description",
+           "profile[category]",
+           "profile_sub_category"]
 
-         project_text_fields.each do |key, value|
+         profile_text_fields.each do |key, value|
            if fields_on_profile.include?(key)
              page.should have_content value
            end
          end
 
-         project_select_fields do |key, value|
+         profile_select_fields do |key, value|
            if fields_on_profile.include?(key)
              page.should have_content value.inject.last
            end

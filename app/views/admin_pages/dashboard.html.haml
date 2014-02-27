@@ -1,6 +1,6 @@
 .row
-  %h1.text-center Project Authorization
-  - if @projects.any?
-    = render 'project_authorization_table'
+  %h1.text-center Profile Authorization
+  - if @profiles.any?
+    = render 'profile_authorization_table'
   - else
-    %h2.text-center No projects to authorize :)
+    %h2.text-center No profiles to authorize :)

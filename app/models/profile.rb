@@ -1,4 +1,4 @@
-class Project < ActiveRecord::Base
+class Profile < ActiveRecord::Base
 
   USER_EXPERIENCE_VALUES =
     [

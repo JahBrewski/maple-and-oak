@@ -16,8 +16,8 @@ describe Plan do
       FactoryGirl.build(:plan, plan_level: nil).should_not be_valid
     end
 
-    it "is invalid without a user_project_limit" do
-      FactoryGirl.build(:plan, user_project_limit: nil).should_not be_valid
+    it "is invalid without a user_profile_limit" do
+      FactoryGirl.build(:plan, user_profile_limit: nil).should_not be_valid
     end
 
     it "is invalid without a user_conversation_limit" do

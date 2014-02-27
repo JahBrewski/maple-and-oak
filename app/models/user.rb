@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   has_one :subscription
   has_one :plan, :through => :subscription
-  has_one :project
+  has_one :profile
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -18,8 +18,8 @@ class User < ActiveRecord::Base
       first_name + " " + last_name
   end
 
-  #def total_projects
-  #  self.projects.count
+  #def total_profiles
+  #  self.profiles.count
   #end
   
   def admin?

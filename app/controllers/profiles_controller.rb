@@ -1,4 +1,4 @@
-class ProjectsController < ApplicationController
+class ProfilesController < ApplicationController
   before_filter :authenticate_user!
   before_filter(:only => [:index]) { |c| c.authorized_users_and_admin_only ["investor"] } 
   before_filter :admin, only: [:approve, :deny]
@@ -7,68 +7,68 @@ class ProjectsController < ApplicationController
   before_filter :active_subscription?
 
   def approve
-    @project = Project.find(params[:id])
-    @project.update_status_with("approved")
+    @profile = Profile.find(params[:id])
+    @profile.update_status_with("approved")
     redirect_to admin_path
   end
 
   def deny
-    @project = Project.find(params[:id])
-    @project.update_status_with("not_approved")
+    @profile = Profile.find(params[:id])
+    @profile.update_status_with("not_approved")
     redirect_to admin_path
   end
 
   def submit_for_approval
-    @project = Project.find(params[:id])
-    @project.update_status_with("pending_approval")
+    @profile = Profile.find(params[:id])
+    @profile.update_status_with("pending_approval")
     redirect_to user_path(current_user)
   end
 
   def publish
-    @project = Project.find(params[:id])
-    @project.publish
+    @profile = Profile.find(params[:id])
+    @profile.publish
     redirect_to user_path(current_user)
   end
 
   def unpublish
-    @project = Project.find(params[:id])
-    @project.unpublish
+    @profile = Profile.find(params[:id])
+    @profile.unpublish
     redirect_to user_path(current_user)
   end
 
   def update_status
-    @project = Project.find(params[:id])
+    @profile = Profile.find(params[:id])
   end
 
   def create
-    @project = current_user.create_project(project_params)
-    if @project.save
-      flash[:success] = "Project created!"
+    @profile = current_user.create_profile(profile_params)
+    if @profile.save
+      flash[:success] = "Profile created!"
       redirect_to user_path(current_user)
     else
-      render new_project_path
+      render new_profile_path
     end
   end
 
   def index
-    published = Project.where(published: true)
+    published = Profile.where(published: true)
     @search = published.search(params[:q])
-    @projects = @search.result
+    @profiles = @search.result
   end
 
   def edit
-    @project = current_user.project
+    @profile = current_user.profile
   end
 
   def new
-    @project = current_user.build_project
-    @categories = ProjectCategory.all
+    @profile = current_user.build_profile
+    @categories = ProfileCategory.all
   end
 
   def update
-    @project = current_user.project
-    if @project.update_attributes(project_params)
-      flash[:success] = "Project updated"
+    @profile = current_user.profile
+    if @profile.update_attributes(profile_params)
+      flash[:success] = "Profile updated"
       redirect_to user_path(current_user)
     else
       render 'edit'
@@ -76,14 +76,14 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    current_user.project.destroy
+    current_user.profile.destroy
     redirect_to profile_path
   end
 
   private
 
-    def project_params
-      params.require(:project).permit(
+    def profile_params
+      params.require(:profile).permit(
         :business_plan,
         :business_plan_cache,
         :company_image_cache,
@@ -109,13 +109,13 @@ class ProjectsController < ApplicationController
     # before filters
 
     def correct_user
-      @user = Project.find(params[:id]).user
+      @user = Profile.find(params[:id]).user
       redirect_to(root_url) unless current_user == @user
     end
 
     def approved?
-      @project = Project.find(params[:id])
-      redirect_to(current_user) unless @project.status == "approved" 
+      @profile = Profile.find(params[:id])
+      redirect_to(current_user) unless @profile.status == "approved" 
     end
 
     def admin

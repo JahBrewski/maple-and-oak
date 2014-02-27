@@ -2,25 +2,25 @@
   .row
     .col-md-12
       .company_image.pull-left
-        = image_tag @project.company_image.url(:thumb_lg), alt: @project.company_name, class: "img-responsive company-image"
+        = image_tag @profile.company_image.url(:thumb_lg), alt: @profile.company_name, class: "img-responsive company-image"
       .profile-information
-        %h1= @project.company_name
+        %h1= @profile.company_name
         .location
-          %h4= @project.location_state_city
+          %h4= @profile.location_state_city
         .category
-          %h4= @project.category_and_sub_category
-        - if current_user == @project.user
+          %h4= @profile.category_and_sub_category
+        - if current_user == @profile.user
           = render 'owner_actions'
         - else 
-          = link_to "Message me", new_conversation_path(receiver: @project.user)
+          = link_to "Message me", new_conversation_path(receiver: @profile.user)
 
   .row
     .col-md-12
-      - if @project.short_description? || @project.long_description?
+      - if @profile.short_description? || @profile.long_description?
         %h2 Description
-        = @project.short_description
-        = @project.long_description
-      - if @project.business_plan?
+        = @profile.short_description
+        = @profile.long_description
+      - if @profile.business_plan?
         %h2 Documents
         %span.glyphicon.glyphicon-file
-        = link_to "#{@project.company_name} business plan", @project.business_plan.url, target: "_blank"
+        = link_to "#{@profile.company_name} business plan", @profile.business_plan.url, target: "_blank"

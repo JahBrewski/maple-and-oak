@@ -1,4 +1,4 @@
-class ProjectCategory < ActiveRecord::Base
+class ProfileCategory < ActiveRecord::Base
 
   def pluralized_name
     self.key_name.gsub("_"," ").capitalize.pluralize

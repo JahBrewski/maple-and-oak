@@ -24,7 +24,7 @@ FactoryGirl.define do
 
     plan_type "entrepreneur"
     plan_level "bronze"
-    user_project_limit '1'
+    user_profile_limit '1'
     user_conversation_limit '5'
     price '15'
 
@@ -46,16 +46,16 @@ FactoryGirl.define do
     end
   end
 
-  factory :project do
+  factory :profile do
     association :user
-    company_name "Sample Project"
+    company_name "Sample Profile"
     city "Nashville"
     state "TN"
     contact_name "Jay Z"
     contact_email_address "jay@z.com"
     contact_phone_number "123-456-7890"
-    short_description "Best project ever"
-    long_description "Best project ever. Best project ever."
+    short_description "Best profile ever"
+    long_description "Best profile ever. Best profile ever."
     category "clothing store"
     sub_category "record studio"
     status "approved"

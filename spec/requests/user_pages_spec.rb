@@ -50,7 +50,7 @@ describe "User Pages" do
   describe "entrepreneur user" do
 
     let!(:enterepreneur) { FactoryGirl.create(:user, user_type: "entrepreneur") }
-    let!(:plan) { FactoryGirl.create(:plan_with_subscription, user: enterepreneur, user_project_limit: 1) }
+    let!(:plan) { FactoryGirl.create(:plan_with_subscription, user: enterepreneur, user_profile_limit: 1) }
     before { sign_in enterepreneur }
 
 
@@ -65,17 +65,17 @@ describe "User Pages" do
 
       context "after user has updated their profile" do
 
-        let!(:project) { FactoryGirl.create(:project, user: enterepreneur) }
+        let!(:profile) { FactoryGirl.create(:profile, user: enterepreneur) }
         before { visit user_path(enterepreneur) }
 
         it "displays profile information" do
-          page.should have_content(project.company_name) 
-          page.should have_content(project.location_state_city) 
-          page.should have_content(project.short_description) 
+          page.should have_content(profile.company_name) 
+          page.should have_content(profile.location_state_city) 
+          page.should have_content(profile.short_description) 
         end
 
         #it "displays company image" do
-        #  page.should have_selector("img[alt='#{project.company_name}']")
+        #  page.should have_selector("img[alt='#{profile.company_name}']")
         #end
       end
     end

@@ -6,7 +6,7 @@ describe "Messages" do
   let!(:entrepreneur) { FactoryGirl.create(:user, user_type: "entrepreneur") }
 
   before do
-    FactoryGirl.create(:project, user: entrepreneur)
+    FactoryGirl.create(:profile, user: entrepreneur)
     sign_in investor
   end
 

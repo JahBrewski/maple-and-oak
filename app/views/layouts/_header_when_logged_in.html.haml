@@ -16,7 +16,7 @@
         - if current_user.admin?
           %li= link_to "Admin", admin_path
         - if current_user.investor?
-          %li= link_to "Browse", projects_path
+          %li= link_to "Browse", profiles_path
       %ul.nav.navbar-nav.navbar-right
         %li
           = link_to '<span class="glyphicon glyphicon-envelope"></span> Messages'.html_safe, conversations_path

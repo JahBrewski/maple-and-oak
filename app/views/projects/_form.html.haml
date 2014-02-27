@@ -1,6 +1,6 @@
 .row
   .col-md-6.col-md-offset-3
-    = form_for @project, :html => {:multipart => true} do |f|
+    = form_for @profile, :html => {:multipart => true} do |f|
       = render 'shared/error_messages', object: f.object
       %h2 Company Information
       .form-group
@@ -29,34 +29,34 @@
         = f.text_area :long_description, :class => "form-control", :rows => "5"
       .form-group
         = f.label :category
-        = f.collection_select :category, ProjectCategory.all, :key_name, :pluralized_name, prompt: true, :class => "form-control"
+        = f.collection_select :category, ProfileCategory.all, :key_name, :pluralized_name, prompt: true, :class => "form-control"
       .form-group
         = f.label :sub_category
-        = f.collection_select :sub_category, ProjectSubCategory.all, :key_name, :description, prompt: true, :class => "form-control"
+        = f.collection_select :sub_category, ProfileSubCategory.all, :key_name, :description, prompt: true, :class => "form-control"
       .upload-plan
         = f.label "Upload business plan"
-        - if @project.business_plan?
+        - if @profile.business_plan?
           .current_business_plan
             %span.glyphicon.glyphicon-file
-            %span= link_to "Current business plan", @project.business_plan.url, target: "_blank"
+            %span= link_to "Current business plan", @profile.business_plan.url, target: "_blank"
             = f.label "Delete current business plan"
         = f.file_field :business_plan, :class => "form-control"
         = f.hidden_field :business_plan_cache
       .upload-company-image
         = f.label "Upload company image"
-        - if @project.company_image?
+        - if @profile.company_image?
           .current_company_image
             %span Current Image:
-            = image_tag(@project.company_image.url(:thumb_sm)) 
+            = image_tag(@profile.company_image.url(:thumb_sm)) 
         = f.file_field :company_image, :class => "form-control"
         = f.hidden_field :company_image_cache
       %h2 Personal Information
       .form-group
         = f.label :user_hospitality_experience
-        = f.select :user_hospitality_experience, Project::USER_EXPERIENCE_VALUES, :class => "form-control"
+        = f.select :user_hospitality_experience, Profile::USER_EXPERIENCE_VALUES, :class => "form-control"
       .form-group
         = f.label :user_management_experience
-        = f.select :user_management_experience, Project::USER_EXPERIENCE_VALUES, :class => "form-control"
+        = f.select :user_management_experience, Profile::USER_EXPERIENCE_VALUES, :class => "form-control"
       .form-group
         = f.label "Current position/title"
         = f.text_field :user_current_position, :class => "form-control"

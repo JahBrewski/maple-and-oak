@@ -7,14 +7,14 @@
         %th Authorize
         %th Deny
     %tbody
-      - @projects.each do |project|
+      - @profiles.each do |profile|
         %tr
           %td
-            = link_to project.company_name, project.user
+            = link_to profile.company_name, profile.user
           %td
-            = project.created_at.strftime("%d %B %Y")
+            = profile.created_at.strftime("%d %B %Y")
           %td
-            = button_to "Authorize", approve_project_path(project), class: "btn btn-success", method: :put, data: { confirm: "Click OK to authorize \"#{project.company_name}\"" }
+            = button_to "Authorize", approve_profile_path(profile), class: "btn btn-success", method: :put, data: { confirm: "Click OK to authorize \"#{profile.company_name}\"" }
           %td
-            = button_to "Deny", deny_project_path(project), class: "btn btn-danger", method: :put, data: { confirm: "Click OK to deny \"#{project.company_name}\"" }
+            = button_to "Deny", deny_profile_path(profile), class: "btn btn-danger", method: :put, data: { confirm: "Click OK to deny \"#{profile.company_name}\"" }
 
