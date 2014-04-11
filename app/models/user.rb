@@ -12,15 +12,18 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true
   validates_uniqueness_of :username
- 
 
   def full_name
       first_name + " " + last_name
   end
+  
+  def has_unread_messages?
+    self.mailbox.conversations(:unread => true).any?
+  end
 
-  #def total_profiles
-  #  self.profiles.count
-  #end
+  def unread_messages_count
+    self.mailbox.conversations(:unread => true).count.to_s
+  end
   
   def admin?
     self.admin

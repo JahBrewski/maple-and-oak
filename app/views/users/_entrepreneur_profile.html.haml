@@ -12,7 +12,8 @@
         - if current_user == @profile.user
           = render 'owner_actions'
         - else 
-          = link_to "Message me", new_conversation_path(receiver: @profile.user)
+          -#= link_to "Message me", new_conversation_path(receiver: @profile.user)
+          = render 'new_message_modal', :recipient => @profile.user
 
   .row
     .col-md-12

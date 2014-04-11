@@ -1,0 +1,19 @@
+%span= button_tag "Message", :class => "btn btn-primary btn-sm reply-button margin-right pull-left", "data-toggle" => "modal", "data-target" => "#myModal"
+
+#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"}
+        %h4#myModalLabel.modal-title Send Message
+      .modal-body
+        = form_tag({:controller => "messages", :action => "create"}) do
+          = label_tag "Subject"
+          = text_field_tag "subject", nil, :class => "form-control"
+          = label_tag "Message"
+          = text_field_tag "body", nil, :class => "form-control"
+          = hidden_field_tag "recipient_id", recipient.id
+          .modal-footer
+            = button_tag "Cancel", :class => "btn btn-danger", "data-dismiss" => "modal", type: "button"
+            = button_tag "Send", :class => "btn btn-success"
+

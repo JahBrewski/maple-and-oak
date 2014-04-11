@@ -14,14 +14,21 @@ TnBusinessConnection::Application.routes.draw do
   end
   resources :subscriptions
   resources :users
-  resources :conversations, only: [:index, :show, :new, :create] do
+  resources :conversations, only: [:index] do
     member do
-      post :reply
-      post :trash
-      post :delete
-      post :untrash
+      put :trash
+      put :delete
+      put :untrash
     end
   end
+
+  resources :messages, only: [:show] do
+    member do
+      post :reply
+      post :create
+    end
+  end      
+
 
   match '/signup',          to:     'static_pages#signup',      via: 'get'
   match '/plan/:plan',      to:     'plans#show',               via: 'get',   as: 'plan'

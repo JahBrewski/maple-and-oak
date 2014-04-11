@@ -1,0 +1,13 @@
+.col-md-9.col-md-offset-1
+  .panel.panel-default
+    .panel-body
+      - @receipts.each do |receipt|
+        = render 'receipt', :receipt => receipt
+    .panel-footer
+      = form_tag({:controller => "messages", :action => "reply"}) do
+        = text_area_tag "body", nil, :class => "form-control", :rows => 3
+        = hidden_field_tag "receipt_id", @last_receipt.id
+        .modal-footer
+          %a.btn.btn-primary.btn-default.glyphicon.glyphicon-arrow-left.pull-left{href: "#{conversations_path}"}
+          = button_tag "Reply", :class => "btn btn-success btn-default pull-right"
+

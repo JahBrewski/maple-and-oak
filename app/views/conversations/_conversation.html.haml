@@ -1,9 +1,8 @@
-= content_tag_for(:li, conversation) do |conversation|
-  %p
-    = link_to conversation.subject, conversation
-    |
-    - if conversation.is_completely_trashed?(current_user)
-      = link_to 'Untrash', [:untrash, conversation], method: :post
-      = link_to 'Delete',  [:delete,  conversation], method: :post
-    - else
-      = link_to 'Move to trash', [:trash, conversation], method: :post
+%a.list-group-item.clearfix{href: "#{message_path(conversation)}"}
+  %span.name.pull-left#conversation-sender{style: "min-width: 120px; display: inline-block;"}= conversation.last_sender.username
+  %span.pull-left#conversation-subject= conversation.subject
+  - if conversation.is_trashed?(current_user)
+    %span= button_to "Delete", delete_conversation_path(conversation), class: "btn btn-danger btn-sm pull-right", method: :put
+    %span= button_to "Untrash", untrash_conversation_path(conversation), class: "btn btn-success btn-sm pull-right margin-right", method: :put
+  - else
+    %span= button_to "Trash", trash_conversation_path(conversation), class: "btn btn-danger btn-sm pull-right", method: :put

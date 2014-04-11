@@ -1,0 +1,14 @@
+.inbox-panel.panel.panel-default
+  .panel-heading
+    %i.fa.fa-envelope.fa-fw
+    = receipt.message.subject
+    .sender
+      %span From:
+      %span= link_to(receipt.message.sender.username, user_url(receipt.message.sender))
+      %span To:
+      %span= link_to(receipt.message.recipients.last.username, user_url(receipt.message.recipients.last))
+  .panel-body
+    .row
+      .col-md-12
+        .e-message.col-md-12
+          %span= receipt.message.body

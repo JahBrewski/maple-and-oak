@@ -19,8 +19,16 @@
           %li= link_to "Browse", profiles_path
       %ul.nav.navbar-nav.navbar-right
         %li
-          = link_to '<span class="glyphicon glyphicon-envelope"></span> Messages'.html_safe, conversations_path
+          = link_to conversations_path do
+            %span.glyphicon.glyphicon-envelope
+            -if current_user.has_unread_messages?
+              %span= "(" + current_user.unread_messages_count + ")"
+            %span Messages
         %li
-          = link_to '<span class="glyphicon glyphicon-user"></span> Profile'.html_safe, user_path(current_user)
+          = link_to user_path(current_user) do
+            %span.glyphicon.glyphicon-user
+            %span Profile
         %li
-          = link_to "Sign out", destroy_user_session_path, method: "delete"
+          = link_to destroy_user_session_path, method: "delete" do
+            %span.glyphicon.glyphicon-share-alt
+            %span Sign Out
