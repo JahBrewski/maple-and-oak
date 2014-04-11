@@ -3,7 +3,7 @@ TnBusinessConnection::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
   root 'static_pages#home'
 
-  resources :projects do
+  resources :profiles do
     member do
       put :unpublish
       put :publish
