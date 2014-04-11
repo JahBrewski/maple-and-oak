@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-TnBusinessConnection::Application.config.secret_key_base = '31581988e182bce94cf00c7595d2f8185514f73323fc7b086e3cad24c4d53902ccfb1faf8ddf565b7256c995f181838833ef6771ca14ce509f1cfdea93ad1949'
+MapleAndOak::Application.config.secret_key_base = '31581988e182bce94cf00c7595d2f8185514f73323fc7b086e3cad24c4d53902ccfb1faf8ddf565b7256c995f181838833ef6771ca14ce509f1cfdea93ad1949'
