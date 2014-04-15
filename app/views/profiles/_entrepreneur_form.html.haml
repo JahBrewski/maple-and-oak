@@ -64,11 +64,20 @@
         = f.label "Highest position/title"
         = f.text_field :user_highest_position, :class => "form-control"
       .form-group
-        = f.label "Do you currently owned/operated a restaurant?"
-        = f.text_field :user_current_restaurant_owner, :class => "form-control"
+        = f.label "Do you currently own/operate a restaurant?"
+        = f.radio_button :user_current_restaurant_owner, "yes"
+        = f.label :user_current_restaurnat_owner_yes, "Yes"
+        = f.radio_button :user_current_restaurant_owner, "no"
+        = f.label :user_current_restaurant_owner_no, "No"
       .form-group
         = f.label "Have you ever owned/operated a restaurant?"
-        = f.text_field :user_previous_restaurant_owner, :class => "form-control"
+        = f.radio_button :user_previous_restaurant_owner, "yes"
+        = f.label :user_previous_restaurnat_owner_yes, "Yes"
+        = f.radio_button :user_previous_restaurant_owner, "no"
+        = f.label :user_previous_restaurant_owner_no, "No"
+      .form-group
+        = f.label :previous_restaurant_status
+        = f.text_field :previous_restaurant_status
       .actions
         = f.submit "Update Profile", :class => "btn btn-success pull-left"
         = button_to "Cancel", user_path(current_user), :class => "btn btn-danger pull-left"

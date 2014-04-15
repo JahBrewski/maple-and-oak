@@ -19,21 +19,22 @@
         #inbox.tab-pane.fade.in.active
           .list-group
           - if @inbox.any?
-            = render partial: "conversation", collection: @inbox
+            = render partial: "conversation", collection: @inbox, locals: {mailbox_type: "inbox"}
+
           - else
             .list-group-item
               No new messages.
         #sentbox.tab-pane.fade.in
           .list-group
           - if @sentbox.any?
-            = render partial: "conversation", collection: @sentbox
+            = render partial: "conversation", collection: @sentbox, locals: {mailbox_type: "sentbox"}
           - else
             .list-group-item
               No sent messages.
         #trash.tab-pane.fade.in
           .list-group
           - if @trash.any?
-            = render partial: "conversation", collection: @trash
+            = render partial: "conversation", collection: @trash, locals: {mailbox_type: "trash"}
           - else
             .list-group-item
               Nothing in the trash.

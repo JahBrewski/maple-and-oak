@@ -8,8 +8,30 @@ class Profile < ActiveRecord::Base
       ['7-10', '7-10'],
       ['10+', '10+']
     ]
+
   REQUIRED_FIELDS_FOR_PUBLISHING = ["state", "city", "company_name", "email_address",
                      "phone_number", "description", "category", "sub_category"]
+
+  INVESTMENT_AMOUNT_VALUES =
+    [ 
+      ['less than 25,000', 'less than 25,000'],
+      ['25,000-50,000', '25,000-50,000'],
+      ['50,000-75,000', '50,000-75,000'],
+      ['75,000-125,000', '75,000-125,000'],
+      ['125,000-150,000', '125,000-150,000'],
+      ['150,000-250,000', '150,000-250,000'],
+      ['more than 250,000', 'more than 250,000']
+    ]
+
+  SEAT_NUMBER_VALUES =
+    [
+      ['0-25', '0-25'],
+      ['25-50', '25-50'],
+      ['50-75', '50-75'],
+      ['75-100', '75-100'],
+      ['100-150', '100-150'],
+      ['150+', '150+']
+    ]
 
   belongs_to :user
   validates :user, presence: true 

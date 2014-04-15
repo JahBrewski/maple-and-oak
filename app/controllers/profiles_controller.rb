@@ -84,26 +84,33 @@ class ProfilesController < ApplicationController
 
     def profile_params
       params.require(:profile).permit(
+        :address,
+        :business_experience,
         :business_plan,
         :business_plan_cache,
-        :company_image_cache,
-        :company_image,
-        :city,
-        :state,
-        :company_name,
-        :contact_name,
-        :contact_email_address,
-        :contact_phone_number,
-        :short_description,
-        :long_description,
         :category,
+        :city,
+        :company_image,
+        :company_image_cache,
+        :company_name,
+        :contact_email_address,
+        :contact_name,
+        :contact_phone_number,
+        :investment_type,
+        :investment_amount,
+        :long_description,
+        :partner_type,
+        :previous_restaurant_status,
+        :short_description,
+        :seat_number,
+        :state,
+        :sub_category,
+        :user_current_position,
+        :user_current_restaurant_owner,
+        :user_highest_position,
         :user_hospitality_experience,
         :user_management_experience,
-        :user_highest_position,
-        :user_current_position,
-        :user_current_restaurant_owner?,
-        :user_previous_restaurant_owner?,
-        :sub_category)
+        :user_previous_restaurant_owner)
     end
 
     # before filters

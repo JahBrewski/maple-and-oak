@@ -1,5 +1,4 @@
-.opaque-container.col-md-8.col-md-offset-2
-  .row
-    .col-md-12
-      .profile-information
-        %h1= @user.full_name
+- if @user.profile
+  = render 'investor_profile'
+- else
+  = render 'no_profile'

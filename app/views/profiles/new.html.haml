@@ -1,2 +1,5 @@
 %h1.text-center Profile Details
-= render 'form'
+- if current_user.entrepreneur?
+  = render 'entrepreneur_form'
+- elsif current_user.investor?
+  = render 'investor_form'

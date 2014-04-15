@@ -1,0 +1,155 @@
+.row
+  .col-md-6.col-md-offset-3.panel.panel-default
+    .panel-body
+      %ul.nav.nav-tabs
+        %li.active
+          %a{"data-toggle" => "tab", href: "#general"}
+            General Information
+        %li
+          %a{"data-toggle" => "tab", href: "#net-worth"}
+            Net Worth
+      .tab-content
+        #general.tab-pane.fade.in.active
+          = form_for @profile, :html => {:multipart => true} do |f|
+            = render 'shared/error_messages', object: f.object
+            %h2 Contact Information
+            .form-group
+              = f.label :contact_name
+              = f.text_field :contact_name, :class => "form-control"
+            .form-group
+              = f.label :contact_email_address
+              = f.text_field :contact_email_address, :class => "form-control"
+            .form-group
+              = f.label :contact_phone_number
+              = f.text_field :contact_phone_number, :class => "form-control"
+            .form-group
+              = f.label :address
+              = f.text_field :address, :class => "form-control"
+            %h2 Investor Details
+            .form-group
+              = f.label :investment_amount
+              = f.select :investment_amount, Profile::INVESTMENT_AMOUNT_VALUES, :class => "form-control"
+            .form-group
+              = f.radio_button :partner_type, "silent"
+              = f.label :partner_type_silent, "Slient Partner"
+              = f.radio_button :partner_type, "operating"
+              = f.label :partner_type_operating, "Operating Partner"
+            .form-group
+              = f.label :business_experience
+              = f.text_field :business_experience, :class => "form-control"
+            .form-group
+              = f.label :user_current_position
+              = f.text_field :user_current_position, :class => "form-control"
+            .form-group
+              = f.label "Do you currently own/operate a restaurant?"
+              = f.radio_button :user_current_restaurant_owner, "yes"
+              = f.label :user_current_restaurnat_owner_yes, "Yes"
+              = f.radio_button :user_current_restaurant_owner, "no"
+              = f.label :user_current_restaurant_owner_no, "No"
+            .form-group
+              = f.label "Have you ever owned/operated a restaurant?"
+              = f.radio_button :user_previous_restaurant_owner, "yes"
+              = f.label :user_previous_restaurnat_owner_yes, "Yes"
+              = f.radio_button :user_previous_restaurant_owner, "no"
+              = f.label :user_previous_restaurant_owner_no, "No"
+            .form-group
+              = f.label :previous_restaurant_status
+              = f.text_field :previous_restaurant_status, :class => "form-control"
+            .form-group
+              = f.label :investment_type
+              = f.radio_button :investment_type, "short"
+              = f.label :investment_type_short, "Short term"
+              = f.radio_button :investment_type, "long"
+              = f.label :investment_type_long, "long"
+
+            %h2 Area of Interest
+            .form-group
+              = f.label :category
+              = f.collection_select :category, ProfileCategory.all, :key_name, :pluralized_name, prompt: true, :class => "form-control"
+            .form-group
+              = f.label :sub_category
+              = f.collection_select :sub_category, ProfileSubCategory.all, :key_name, :description, prompt: true, :class => "form-control"
+            .form-group
+              = f.label "Number of Seats"
+              = f.select :seat_number, Profile::SEAT_NUMBER_VALUES, :class => "form-control"
+            .form-group
+              = f.label :city
+              = f.text_field :city, :class => "form-control"
+            .form-group
+              = f.label :state
+              = f.select :state, us_states, :class => "form-control"
+            .actions
+              = f.submit "Update Profile", :class => "btn btn-group-item btn-success pull-left"
+              = button_to "Cancel", user_path(current_user), :class => "btn btn-group-item btn-danger pull-left"
+        #net-worth.tab-pane.fade.in
+          = form_for @profile, :html => {:multipart => true} do |f|
+            = render 'shared/error_messages', object: f.object
+            %h2 Contact Information
+            .form-group
+              = f.label :contact_name
+              = f.text_field :contact_name, :class => "form-control"
+            .form-group
+              = f.label :contact_email_address
+              = f.text_field :contact_email_address, :class => "form-control"
+            .form-group
+              = f.label :contact_phone_number
+              = f.text_field :contact_phone_number, :class => "form-control"
+            .form-group
+              = f.label :address
+              = f.text_field :address, :class => "form-control"
+            %h2 Investor Details
+            .form-group
+              = f.label :investment_amount
+              = f.select :investment_amount, Profile::INVESTMENT_AMOUNT_VALUES, :class => "form-control"
+            .form-group
+              = f.radio_button :partner_type, "silent"
+              = f.label :partner_type_silent, "Slient Partner"
+              = f.radio_button :partner_type, "operating"
+              = f.label :partner_type_operating, "Operating Partner"
+            .form-group
+              = f.label :business_experience
+              = f.text_field :business_experience, :class => "form-control"
+            .form-group
+              = f.label :user_current_position
+              = f.text_field :user_current_position, :class => "form-control"
+            .form-group
+              = f.label "Do you currently own/operate a restaurant?"
+              = f.radio_button :user_current_restaurant_owner, "yes"
+              = f.label :user_current_restaurnat_owner_yes, "Yes"
+              = f.radio_button :user_current_restaurant_owner, "no"
+              = f.label :user_current_restaurant_owner_no, "No"
+            .form-group
+              = f.label "Have you ever owned/operated a restaurant?"
+              = f.radio_button :user_previous_restaurant_owner, "yes"
+              = f.label :user_previous_restaurnat_owner_yes, "Yes"
+              = f.radio_button :user_previous_restaurant_owner, "no"
+              = f.label :user_previous_restaurant_owner_no, "No"
+            .form-group
+              = f.label :previous_restaurant_status
+              = f.text_field :previous_restaurant_status, :class => "form-control"
+            .form-group
+              = f.label :investment_type
+              = f.radio_button :investment_type, "short"
+              = f.label :investment_type_short, "Short term"
+              = f.radio_button :investment_type, "long"
+              = f.label :investment_type_long, "long"
+
+            %h2 Area of Interest
+            .form-group
+              = f.label :category
+              = f.collection_select :category, ProfileCategory.all, :key_name, :pluralized_name, prompt: true, :class => "form-control"
+            .form-group
+              = f.label :sub_category
+              = f.collection_select :sub_category, ProfileSubCategory.all, :key_name, :description, prompt: true, :class => "form-control"
+            .form-group
+              = f.label "Number of Seats"
+              = f.select :seat_number, Profile::SEAT_NUMBER_VALUES, :class => "form-control"
+            .form-group
+              = f.label :city
+              = f.text_field :city, :class => "form-control"
+            .form-group
+              = f.label :state
+              = f.select :state, us_states, :class => "form-control"
+            .actions
+              = f.submit "Update Profile", :class => "btn btn-group-item btn-success pull-left"
+              = button_to "Cancel", user_path(current_user), :class => "btn btn-group-item btn-danger pull-left"

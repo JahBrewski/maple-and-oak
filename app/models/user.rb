@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   end
 
   def entrepreneur?
-    self.user_type = "entrepreneur"
+    self.user_type == "entrepreneur"
   end
 
   def name
