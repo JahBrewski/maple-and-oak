@@ -1,4 +1,5 @@
 class Profile < ActiveRecord::Base
+  monetize :assets_liquid_cents
 
   USER_EXPERIENCE_VALUES =
     [
@@ -38,6 +39,7 @@ class Profile < ActiveRecord::Base
 
   mount_uploader :business_plan, BusinessPlanUploader
   mount_uploader :company_image, CompanyImageUploader
+
 
   def location_state_city
     if city != "" && state != ""

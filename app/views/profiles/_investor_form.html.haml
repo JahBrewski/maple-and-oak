@@ -84,72 +84,65 @@
         #net-worth.tab-pane.fade.in
           = form_for @profile, :html => {:multipart => true} do |f|
             = render 'shared/error_messages', object: f.object
-            %h2 Contact Information
+            %h2 Assets
             .form-group
-              = f.label :contact_name
-              = f.text_field :contact_name, :class => "form-control"
-            .form-group
-              = f.label :contact_email_address
-              = f.text_field :contact_email_address, :class => "form-control"
-            .form-group
-              = f.label :contact_phone_number
-              = f.text_field :contact_phone_number, :class => "form-control"
-            .form-group
-              = f.label :address
-              = f.text_field :address, :class => "form-control"
-            %h2 Investor Details
-            .form-group
-              = f.label :investment_amount
-              = f.select :investment_amount, Profile::INVESTMENT_AMOUNT_VALUES, :class => "form-control"
-            .form-group
-              = f.radio_button :partner_type, "silent"
-              = f.label :partner_type_silent, "Slient Partner"
-              = f.radio_button :partner_type, "operating"
-              = f.label :partner_type_operating, "Operating Partner"
-            .form-group
-              = f.label :business_experience
-              = f.text_field :business_experience, :class => "form-control"
-            .form-group
-              = f.label :user_current_position
-              = f.text_field :user_current_position, :class => "form-control"
-            .form-group
-              = f.label "Do you currently own/operate a restaurant?"
-              = f.radio_button :user_current_restaurant_owner, "yes"
-              = f.label :user_current_restaurnat_owner_yes, "Yes"
-              = f.radio_button :user_current_restaurant_owner, "no"
-              = f.label :user_current_restaurant_owner_no, "No"
-            .form-group
-              = f.label "Have you ever owned/operated a restaurant?"
-              = f.radio_button :user_previous_restaurant_owner, "yes"
-              = f.label :user_previous_restaurnat_owner_yes, "Yes"
-              = f.radio_button :user_previous_restaurant_owner, "no"
-              = f.label :user_previous_restaurant_owner_no, "No"
-            .form-group
-              = f.label :previous_restaurant_status
-              = f.text_field :previous_restaurant_status, :class => "form-control"
-            .form-group
-              = f.label :investment_type
-              = f.radio_button :investment_type, "short"
-              = f.label :investment_type_short, "Short term"
-              = f.radio_button :investment_type, "long"
-              = f.label :investment_type_long, "long"
-
-            %h2 Area of Interest
-            .form-group
-              = f.label :category
-              = f.collection_select :category, ProfileCategory.all, :key_name, :pluralized_name, prompt: true, :class => "form-control"
-            .form-group
-              = f.label :sub_category
-              = f.collection_select :sub_category, ProfileSubCategory.all, :key_name, :description, prompt: true, :class => "form-control"
-            .form-group
-              = f.label "Number of Seats"
-              = f.select :seat_number, Profile::SEAT_NUMBER_VALUES, :class => "form-control"
-            .form-group
-              = f.label :city
-              = f.text_field :city, :class => "form-control"
-            .form-group
-              = f.label :state
-              = f.select :state, us_states, :class => "form-control"
+              = f.label "Liquid assets available for cash down payment and operating capital"
+              .input-group
+                %span.input-group-addon $
+                = f.text_field :assets_liquid_cents
+            -#
+              .form-group
+                = f.label "401Ks; IRAs; Marketable securities"
+                .input-group
+                  %span.input-group-addon $
+                  = f.text_field :assets_marketable_securities
+              .form-group
+                = f.label "Real estate market value"
+                .input-group
+                  %span.input-group-addon $
+                  = f.text_field :assets_real_estate
+              .form-group
+                = f.label "Auto, home furnishings, other assets"
+                .input-group
+                  %span.input-group-addon $
+                  = f.text_field :assets_personal
+              .form-group
+                = f.label "Notes receivable"
+                .input-group
+                  %span.input-group-addon $
+                  = f.text_field :assets_notes_receivable
+              .form-group
+                = f.label "Business holdings"
+                .input-group
+                  %span.input-group-addon $
+                  = f.text_field :assets_business_holdings
+              
+              %h2 Liabilities
+              .form-group
+                = f.label "Notes Payable"
+                .input-group
+                  %span.input-group-addon $
+                  = f.text_field :liabilities_notes_payable
+              .form-group
+                = f.label "Accounts payable / credit card debt"
+                .input-group
+                  %span.input-group-addon $
+                  = f.text_field :liabilities_accounts_payable
+              .form-group
+                = f.label "Auto loans"
+                .input-group
+                  %span.input-group-addon $
+                  = f.text_field :liabilities_auto_loans
+              .form-group
+                = f.label "Real estate mortgate balance"
+                .input-group
+                  %span.input-group-addon $
+                  = f.text_field :liabilities_mortgage
+              .form-group
+                = f.label "Other liabilities"
+                .input-group
+                  %span.input-group-addon $
+                  = f.text_field :liabilities_other
             .actions
               = f.submit "Update Profile", :class => "btn btn-group-item btn-success pull-left"
               = button_to "Cancel", user_path(current_user), :class => "btn btn-group-item btn-danger pull-left"

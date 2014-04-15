@@ -85,6 +85,7 @@ class ProfilesController < ApplicationController
     def profile_params
       params.require(:profile).permit(
         :address,
+        :assets_liquid_cents,
         :business_experience,
         :business_plan,
         :business_plan_cache,
