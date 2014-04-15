@@ -270,6 +270,7 @@ DEPENDENCIES
   jquery-rails
   mailboxer
   mini_magick
+  monetize
   money-rails
   pg
   pry

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140415033718) do
+ActiveRecord::Schema.define(version: 20140415140828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,8 +84,8 @@ ActiveRecord::Schema.define(version: 20140415033718) do
     t.string   "state"
     t.string   "city"
     t.string   "company_image"
-    t.string   "status",                         default: "not_approved"
-    t.boolean  "published",                      default: false
+    t.string   "status",                                default: "not_approved"
+    t.boolean  "published",                             default: false
     t.string   "long_description"
     t.string   "user_hospitality_experience"
     t.string   "user_management_experience"
@@ -101,8 +101,33 @@ ActiveRecord::Schema.define(version: 20140415033718) do
     t.string   "investment_type"
     t.string   "seat_number"
     t.integer  "assets_liquid_cents"
-    t.string   "assets_liquid_currency",         default: "USD",          null: false
-    t.string   "assets_liquid"
+    t.string   "assets_liquid_currency",                default: "USD",          null: false
+    t.integer  "assets_marketable_securities_cents"
+    t.string   "assets_marketable_securities_currency", default: "USD",          null: false
+    t.integer  "assets_real_estate_cents"
+    t.string   "assets_real_estate_currency",           default: "USD",          null: false
+    t.integer  "assets_personal_cents"
+    t.string   "assets_personal_currency",              default: "USD",          null: false
+    t.integer  "assets_notes_receivable_cents"
+    t.string   "assets_notes_receivable_currency",      default: "USD",          null: false
+    t.integer  "assets_business_holdings_cents"
+    t.string   "assets_business_holdings_currency",     default: "USD",          null: false
+    t.integer  "assets_total_cents"
+    t.string   "assets_total_currency",                 default: "USD",          null: false
+    t.integer  "liabilities_notes_payable_cents"
+    t.string   "liabilities_notes_payable_currency",    default: "USD",          null: false
+    t.integer  "liabilities_accounts_payable_cents"
+    t.string   "liabilities_accounts_payable_currency", default: "USD",          null: false
+    t.integer  "liabilities_auto_loans_cents"
+    t.string   "liabilities_auto_loans_currency",       default: "USD",          null: false
+    t.integer  "liabilities_mortgage_cents"
+    t.string   "liabilities_mortgage_currency",         default: "USD",          null: false
+    t.integer  "liabilities_other_cents"
+    t.string   "liabilities_other_currency",            default: "USD",          null: false
+    t.integer  "liabilities_total_cents"
+    t.string   "liabilities_total_currency",            default: "USD",          null: false
+    t.integer  "net_worth_cents"
+    t.string   "net_worth_currency",                    default: "USD",          null: false
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree

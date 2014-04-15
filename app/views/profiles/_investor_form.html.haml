@@ -87,62 +87,77 @@
             %h2 Assets
             .form-group
               = f.label "Liquid assets available for cash down payment and operating capital"
-              .input-group
+              .input-group.col-md-6.col-sm-6
                 %span.input-group-addon $
-                = f.text_field :assets_liquid_cents
-            -#
-              .form-group
-                = f.label "401Ks; IRAs; Marketable securities"
-                .input-group
-                  %span.input-group-addon $
-                  = f.text_field :assets_marketable_securities
-              .form-group
-                = f.label "Real estate market value"
-                .input-group
-                  %span.input-group-addon $
-                  = f.text_field :assets_real_estate
-              .form-group
-                = f.label "Auto, home furnishings, other assets"
-                .input-group
-                  %span.input-group-addon $
-                  = f.text_field :assets_personal
-              .form-group
-                = f.label "Notes receivable"
-                .input-group
-                  %span.input-group-addon $
-                  = f.text_field :assets_notes_receivable
-              .form-group
-                = f.label "Business holdings"
-                .input-group
-                  %span.input-group-addon $
-                  = f.text_field :assets_business_holdings
+                = f.text_field :assets_liquid, :class => "form-control"
+            .form-group
+              = f.label "401Ks; IRAs; Marketable securities"
+              .input-group.col-md-6.col-sm-6
+                %span.input-group-addon $
+                = f.text_field :assets_marketable_securities, :class => "form-control"
+            .form-group
+              = f.label "Real estate market value"
+              .input-group.col-md-6.col-sm-6
+                %span.input-group-addon $
+                = f.text_field :assets_real_estate, :class => "form-control"
+            .form-group
+              = f.label "Auto, home furnishings, other assets"
+              .input-group.col-md-6.col-sm-6
+                %span.input-group-addon $
+                = f.text_field :assets_personal, :class => "form-control"
+            .form-group
+              = f.label "Notes receivable"
+              .input-group.col-md-6.col-sm-6
+                %span.input-group-addon $
+                = f.text_field :assets_notes_receivable, :class => "form-control"
+            .form-group
+              = f.label "Business holdings"
+              .input-group.col-md-6.col-sm-6
+                %span.input-group-addon $
+                = f.text_field :assets_business_holdings, :class => "form-control"
+            .form-group
+              = f.label "Total Assets"
+              .input-group.col-md-6.col-sm-6
+                %span.input-group-addon $
+                = f.text_field :assets_total, :class => "form-control"
               
               %h2 Liabilities
               .form-group
                 = f.label "Notes Payable"
-                .input-group
+                .input-group.col-md-6.col-sm-6
                   %span.input-group-addon $
-                  = f.text_field :liabilities_notes_payable
+                  = f.text_field :liabilities_notes_payable, :class => "form-control"
               .form-group
                 = f.label "Accounts payable / credit card debt"
-                .input-group
+                .input-group.col-md-6.col-sm-6
                   %span.input-group-addon $
-                  = f.text_field :liabilities_accounts_payable
+                  = f.text_field :liabilities_accounts_payable, :class => "form-control"
               .form-group
                 = f.label "Auto loans"
-                .input-group
+                .input-group.col-md-6.col-sm-6
                   %span.input-group-addon $
-                  = f.text_field :liabilities_auto_loans
+                  = f.text_field :liabilities_auto_loans, :class => "form-control"
               .form-group
                 = f.label "Real estate mortgate balance"
-                .input-group
+                .input-group.col-md-6.col-sm-6
                   %span.input-group-addon $
-                  = f.text_field :liabilities_mortgage
+                  = f.text_field :liabilities_mortgage, :class => "form-control"
               .form-group
                 = f.label "Other liabilities"
-                .input-group
+                .input-group.col-md-6.col-sm-6
                   %span.input-group-addon $
-                  = f.text_field :liabilities_other
+                  = f.text_field :liabilities_other, :class => "form-control"
+              .form-group
+                = f.label "Total Liabilities"
+                .input-group.col-md-6.col-sm-6
+                  %span.input-group-addon $
+                  = f.text_field :liabilities_total, :class => "form-control"
+              %h2 Net Worth
+              .form-group
+                = f.label "Net Worth"
+                .input-group.col-md-6.col-sm-6
+                  %span.input-group-addon $
+                  = f.text_field :net_worth, :class => "form-control"
             .actions
               = f.submit "Update Profile", :class => "btn btn-group-item btn-success pull-left"
               = button_to "Cancel", user_path(current_user), :class => "btn btn-group-item btn-danger pull-left"

@@ -1,5 +1,19 @@
 class Profile < ActiveRecord::Base
+
   monetize :assets_liquid_cents
+  monetize :assets_marketable_securities_cents
+  monetize :assets_real_estate_cents
+  monetize :assets_personal_cents
+  monetize :assets_notes_receivable_cents
+  monetize :assets_business_holdings_cents
+  monetize :assets_total_cents
+  monetize :liabilities_notes_payable_cents
+  monetize :liabilities_accounts_payable_cents
+  monetize :liabilities_auto_loans_cents
+  monetize :liabilities_mortgage_cents
+  monetize :liabilities_other_cents
+  monetize :liabilities_total_cents
+  monetize :net_worth_cents
 
   USER_EXPERIENCE_VALUES =
     [
