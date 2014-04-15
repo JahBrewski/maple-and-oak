@@ -56,7 +56,7 @@ class Profile < ActiveRecord::Base
 
 
   def location_state_city
-    if self.city != "" && self.state != ""
+    if city != nil && state != nil
       city.capitalize + ", " + state
     end
   end
