@@ -49,7 +49,7 @@ class Profile < ActiveRecord::Base
     ]
 
   belongs_to :user
-  validates :user, presence: true 
+  validates :user, :contact_name, :investment_amount, :state, :city, :category, :sub_category, :seat_number, :presence => true 
 
   mount_uploader :business_plan, BusinessPlanUploader
   mount_uploader :company_image, CompanyImageUploader

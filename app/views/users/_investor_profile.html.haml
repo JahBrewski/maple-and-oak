@@ -15,6 +15,7 @@
               .sub-category= "Sub-Category: " + @profile.sub_category
               .seat-number= "Number of seats: " + @profile.seat_number
               .action-buttons
+
               - if current_user == @profile.user
                 = render 'owner_actions'
               - else 
