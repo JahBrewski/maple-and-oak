@@ -1,8 +1,8 @@
-= link_to "Edit", edit_profile_path(@profile), class: "btn btn-default btn-sm pull-left"
+= link_to "Edit", edit_profile_path(@profile), class: "btn btn-default btn-sm pull-left btn-group-item"
 - if @profile.status == "not_approved"
-  = button_to "Submit for approval", submit_for_approval_profile_path(@profile), class: "btn btn-success btn-sm pull-left", method: :put, data: { confirm: "Click OK to submit your profile for approval" }
+  = button_to "Submit for approval", submit_for_approval_profile_path(@profile), class: "btn btn-success btn-sm pull-left btn-group-item", method: :put, data: { confirm: "Click OK to submit your profile for approval" }
 - if @profile.status == "pending_approval"
-  = button_to "Pending approval", "#", class: "btn btn-default disabled btn-sm pull-left"
+  = button_to "Pending approval", "#", class: "btn btn-default disabled btn-sm pull-left btn-group-item"
 - if @profile.status == "approved" && @profile.published == false
   = button_to "Publish profile", publish_profile_path(@profile), class: "btn btn-success btn-sm pull-left", method: :put
 - if @profile.status == "approved" && @profile.published == true

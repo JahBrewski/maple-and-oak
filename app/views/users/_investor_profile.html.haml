@@ -1,25 +1,21 @@
 .opaque-container.col-md-8.col-md-offset-2
   .row
     .col-md-12
-      .company_image.pull-left
-        = image_tag @profile.company_image.url(:thumb_lg), alt: @profile.company_name, class: "img-responsive company-image"
-      .profile-information
-        %h1= @profile.company_name
-        .location
-          %h4= @profile.location_state_city
-        .category
-          %h4= @profile.category_and_sub_category
-        - if current_user == @profile.user
-          = render 'owner_actions'
-        - else 
-          = render 'new_message_modal', :recipient => @profile.user
-  .row
-    .col-md-12
-      - if @profile.short_description? || @profile.long_description?
-        %h2 Description
-        = @profile.short_description
-        = @profile.long_description
-      - if @profile.business_plan?
-        %h2 Documents
-        %span.glyphicon.glyphicon-file
-        = link_to "#{@profile.company_name} business plan", @profile.business_plan.url, target: "_blank"
+      .row
+        .col-md-3
+          .company_image.text-center
+            = image_tag @profile.company_image.url(:thumb_lg), alt: @profile.contact_name, class: "img-responsive company-image"
+        .col-md-9
+          .panel.panel-default
+            .panel-body
+              %span.h1= @profile.contact_name
+              .location= "Location: " + @profile.location_state_city
+              .investment-amount= "Investment amount: " + @profile.investment_amount
+              .category= "Category: " + @profile.category
+              .sub-category= "Sub-Category: " + @profile.sub_category
+              .seat-number= "Number of seats: " + @profile.seat_number
+              .action-buttons
+              - if current_user == @profile.user
+                = render 'owner_actions'
+              - else 
+                = render 'new_message_modal', :recipient => @profile.user
