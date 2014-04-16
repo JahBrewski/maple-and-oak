@@ -24,7 +24,6 @@ FactoryGirl.define do
 
     plan_type "entrepreneur"
     plan_level "bronze"
-    user_profile_limit '1'
     user_conversation_limit '5'
     price '15'
 

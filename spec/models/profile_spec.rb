@@ -9,10 +9,6 @@ describe Profile do
     FactoryGirl.create(:profile, user: user). should be_valid
   end
 
-  describe "it responds to all fields" do
-    [:
-
-
   describe "#location_state_city" do
     let(:profile) { FactoryGirl.build(:profile, user: user, state: "TN", city: "Nashville") }
     it 'returns the state and city of the profile' do
