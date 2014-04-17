@@ -24,8 +24,8 @@ class Profile < ActiveRecord::Base
       ['10+', '10+']
     ]
 
-  REQUIRED_FIELDS_FOR_PUBLISHING = ["state", "city", "company_name", "email_address",
-                     "phone_number", "description", "category", "sub_category"]
+  REQUIRED_FIELDS_FOR_PUBLISHING = ["state", "city", "company_name", "contact_email_address",
+                     "contact_phone_number", "short_description", "long_description", "category", "sub_category"]
 
   INVESTMENT_AMOUNT_VALUES =
     [ 
@@ -48,8 +48,9 @@ class Profile < ActiveRecord::Base
       ['150+', '150+']
     ]
 
-  belongs_to :user
-  validates :user, :contact_name, :investment_amount, :state, :city, :category, :sub_category, :seat_number, :presence => true 
+  belongs_to :user, :inverse_of=>:profile
+  validates :user, :presence => true 
+  validates :contact_name, :investment_amount, :state, :city, :category, :sub_category, :seat_number, presence: true, unless: "user.entrepreneur?"
 
   mount_uploader :business_plan, BusinessPlanUploader
   mount_uploader :company_image, CompanyImageUploader

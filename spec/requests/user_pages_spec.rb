@@ -50,7 +50,7 @@ describe "User Pages" do
   describe "entrepreneur user" do
 
     let!(:enterepreneur) { FactoryGirl.create(:user, user_type: "entrepreneur") }
-    let!(:plan) { FactoryGirl.create(:plan_with_subscription, user: enterepreneur, user_profile_limit: 1) }
+    let!(:plan) { FactoryGirl.create(:plan_with_subscription, user: enterepreneur) }
     before { sign_in enterepreneur }
 
 

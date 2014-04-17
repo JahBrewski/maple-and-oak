@@ -4,7 +4,6 @@ FactoryGirl.define do
   sequence(:username) { |n| "person#{n}" }
 
   factory :user do
-
     first_name "Joel"
     last_name "Brewer"
     email
@@ -13,7 +12,7 @@ FactoryGirl.define do
     user_type "entrepreneur"
     username
     admin false
-    active_subscription false
+    active_subscription true
   end
 
   factory :plan do
@@ -59,6 +58,11 @@ FactoryGirl.define do
     sub_category "record studio"
     status "approved"
     published false
+
+    trait :investor do
+      investment_amount "100"
+      seat_number "100"
+    end
   end
 
   factory :conversation do

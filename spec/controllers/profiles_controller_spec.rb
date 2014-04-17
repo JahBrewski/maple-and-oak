@@ -19,18 +19,18 @@ describe ProfilesController do
 
     context "when investor is signed in" do
 
-      let!(:profile) { FactoryGirl.create(:profile, user: investor, category: "sushi") }
+      let!(:published_profile) { FactoryGirl.create(:profile, :investor, user: investor, category: "sushi", published: "true") }
 
       before { sign_in investor }
 
-      it "assigns all profiles to @profiles" do
+      it "assigns all published profiles to @profiles" do
         get :index
-        assigns(:profiles).should include(profile)
+        assigns(:profiles).should include(published_profile)
       end
 
       it "filters out profiles based on search terms" do
         get :index, q: {category_cont: "clothing"}
-        assigns(:profiles).should_not include(profile)
+        assigns(:profiles).should_not include(published_profile)
       end
     end
 

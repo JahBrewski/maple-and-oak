@@ -40,7 +40,7 @@ describe Profile do
       FactoryGirl.build(:profile, user: user, status: "not_approved").ready_to_publish?.should == false
     end
 
-    [:city, :state, :company_name, :email_address, :phone_number, :description, :category, :sub_category].each do |attribute|
+    [:city, :state, :company_name, :contact_email_address, :contact_phone_number, :long_description, :short_description, :category, :sub_category].each do |attribute|
       it "returns false if the profile is missing #{attribute}" do
         FactoryGirl.build(:profile, user: user, :"#{attribute}" => nil).should_not be_ready_to_publish
       end

@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   has_one :subscription
   has_one :plan, :through => :subscription
-  has_one :profile
+  has_one :profile, :inverse_of=>:user
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

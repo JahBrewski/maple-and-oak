@@ -28,8 +28,6 @@ def profile_text_fields
    profile_long_description: "I will bake the best cookies in the entire world. The entire universe will ingest my creations and become better because of them. One day my cookies might just take over the world. Consider yourself forewarned.",
    profile_user_current_position: "Head Chef/Owner at Bluebird Cafe",
    profile_user_highest_position: "Head Chef/Owner at Bluebird Cafe",
-   profile_user_current_restaurant_owner: "Yes, I own/operate Bluebird Cafe",
-   profile_user_previous_restaurant_owner: "Yes, I own/operate Bluebird Cafe",
   }
 end
 
@@ -43,6 +41,13 @@ def profile_select_fields
   }
 end
 
+def profile_radio_button_ids
+  [
+    "profile_user_current_restaurant_owner_yes",
+    "profile_user_previous_restaurant_owner_yes"
+  ]
+end
+
 def fill_in_profile_fields
 
   profile_text_fields.each do |key, value|
@@ -52,6 +57,11 @@ def fill_in_profile_fields
   profile_select_fields.each do |key, value|
    select value.inject.first, from: key
   end
+
+  profile_radio_button_ids.each do |button_id|
+    choose(button_id)
+  end
+
 end
 
 
