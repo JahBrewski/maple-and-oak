@@ -49,12 +49,14 @@ class Profile < ActiveRecord::Base
     ]
 
   belongs_to :user, :inverse_of=>:profile
+  has_and_belongs_to_many :familiarities
+
   validates :user, :presence => true 
   validates :contact_name, :investment_amount, :state, :city, :category, :sub_category, :seat_number, presence: true, unless: "user.entrepreneur?"
 
   mount_uploader :business_plan, BusinessPlanUploader
   mount_uploader :company_image, CompanyImageUploader
-
+  mount_uploader :profit_loss_statement, ProfitLossStatementUploader
 
   def location_state_city
     if city != nil && state != nil

@@ -9,10 +9,17 @@ FactoryGirl.define do
     email
     password "booyabooya"
     password_confirmation "booyabooya"
-    user_type "entrepreneur"
     username
     admin false
     active_subscription true
+
+    trait :entrepreneur do
+      user_type "entrepreneur"
+    end
+
+    trait :investor do
+      user_type "investor"
+    end
   end
 
   factory :plan do

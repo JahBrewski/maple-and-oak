@@ -1,8 +1,16 @@
 require 'spec_helper'
 
-describe "Profile pages" do
+describe "Profiles" do
 
-  let!(:entrepreneur) { FactoryGirl.create(:user, user_type: "entrepreneur") }
+  let!(:entrepreneur) { FactoryGirl.create(:user, :entrepreneur) }
+  let!(:investor) { FactoryGirl.create(:user, :investor) }
+
+  context "when investor is signed in" do
+
+    before do
+      sign_in investor
+      visit user_path(investor)
+    end
   
   context "when entrepreneur is signed in" do
 

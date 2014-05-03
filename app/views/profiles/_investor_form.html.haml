@@ -10,7 +10,7 @@
             Net Worth
       .tab-content
         #general.tab-pane.fade.in.active
-          = form_for @profile, :html => {:multipart => true} do |f|
+          = form_for @profile, :html => {:multipart => true, :id => "investor-form"} do |f|
             = render 'shared/error_messages', object: f.object
             %h2 Contact Information
             .form-group

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140415140828) do
+ActiveRecord::Schema.define(version: 20140503170054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,18 @@ ActiveRecord::Schema.define(version: 20140415140828) do
     t.string   "subject",    default: ""
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "familiarities", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "profile_ids"
+  end
+
+  create_table "familiarities_profiles", id: false, force: true do |t|
+    t.integer "familiarity_id", null: false
+    t.integer "profile_id",     null: false
   end
 
   create_table "notifications", force: true do |t|
@@ -128,6 +140,8 @@ ActiveRecord::Schema.define(version: 20140415140828) do
     t.string   "liabilities_total_currency",            default: "USD",          null: false
     t.integer  "net_worth_cents"
     t.string   "net_worth_currency",                    default: "USD",          null: false
+    t.string   "profit_loss_statement"
+    t.string   "familiarity_ids"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree

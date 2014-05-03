@@ -40,8 +40,15 @@ jQuery ->
     $("#profile_liabilities_total").val(get_total_liabilities())
     $("#profile_net_worth").val(get_net_worth())
 
+  is_investor_form = ->
+    if $("#investor-form").length > 0
+      return true
+    else
+      return false
+
   init = ->
     update_dynamic_fields()
     update_fields_on_form_change()
 
-  init()
+  if is_investor_form() == true
+    init()

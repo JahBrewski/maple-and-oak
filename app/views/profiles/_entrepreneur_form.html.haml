@@ -1,6 +1,6 @@
 .row
   .col-md-6.col-md-offset-3
-    = form_for @profile, :html => {:multipart => true} do |f|
+    = form_for @profile, :html => {:multipart => true, :id => "entrepreneur-form"} do |f|
       = render 'shared/error_messages', object: f.object
       %h2 Company Information
       .form-group
@@ -33,13 +33,21 @@
       .form-group
         = f.label :sub_category
         = f.collection_select :sub_category, ProfileSubCategory.all, :key_name, :description, prompt: true, :class => "form-control"
+      #profit-loss
+        = f.label "Upload Profit/Loss Statement"
+        - if @profile.profit_loss_statement?
+          .current_profit_loss
+            %span.glyphicon.glyphicon-file
+            %span= link_to "Current profit-loss statement", @profile.profit_loss_statement.url, target: "_blank"
+        = f.file_field :profit_loss_statement, :class => "form-control"
+        = f.hidden_field :profit_loss_statement_cache
+          
       .upload-plan
         = f.label "Upload business plan"
         - if @profile.business_plan?
           .current_business_plan
             %span.glyphicon.glyphicon-file
             %span= link_to "Current business plan", @profile.business_plan.url, target: "_blank"
-            = f.label "Delete current business plan"
         = f.file_field :business_plan, :class => "form-control"
         = f.hidden_field :business_plan_cache
       .upload-company-image
@@ -75,6 +83,13 @@
         = f.label :user_previous_restaurnat_owner_yes, "Yes"
         = f.radio_button :user_previous_restaurant_owner, "no"
         = f.label :user_previous_restaurant_owner_no, "No"
+
+      .form-group
+        = f.label "Familiar with (check all that apply):"
+        - Familiarity.all.each do |familiarity|
+          = check_box_tag 'profile[familiarity_ids][]', familiarity.id, @profile.familiarity_ids.include?(familiarity.id)
+          = familiarity.name.humanize 
+
       .form-group
         = f.label :previous_restaurant_status
         = f.text_field :previous_restaurant_status
