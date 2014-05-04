@@ -3,7 +3,7 @@ class AdminPagesController < ApplicationController
   before_filter :admin_user
 
   def dashboard 
-    @profiles = Profile.where(status: "pending_approval")
+    @profiles = Profile.where(submitted: true).where(approved: false)
   end
 
   private

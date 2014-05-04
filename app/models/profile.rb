@@ -53,6 +53,7 @@ class Profile < ActiveRecord::Base
 
   validates :user, :presence => true 
   validates :contact_name, :investment_amount, :state, :city, :category, :sub_category, :seat_number, presence: true, unless: "user.entrepreneur?"
+  validates :published, inclusion: { :in => [false]}, unless: "self.approved?"
 
   mount_uploader :business_plan, BusinessPlanUploader
   mount_uploader :company_image, CompanyImageUploader
@@ -76,28 +77,56 @@ class Profile < ActiveRecord::Base
     contains_required_fields? && approved?
   end
 
-  def update_status_with(status)
-    self.update_attribute(:status, status)
+  #def update_status_with(status)
+  #  self.update_attribute(:status, status)
+  #end
+
+  #def approve
+  #  self.update_attribute(:status, "approved")
+  #end
+
+  #def publish
+  #  self.update_attribute(:published, true)
+  #end
+
+  #def unpublish
+  #  self.update_attribute(:published, false)
+  #end
+
+  #def deny
+  #  self.update_attribute(:status, "not_approved")
+  #end
+
+  #def submit_for_approval
+  #  self.update_attribute(:status, "pending_approval")
+  #end
+
+  def approved?
+    self.approved == true
   end
 
-  def approve
-    self.update_attribute(:status, "approved")
+  def approved_and_published?
+    self.approved? && self.published == true
   end
 
-  def publish
-    self.update_attribute(:published, true)
+  def approved_and_not_published?
+    self.approved? && self.published == false
+  end
+  
+  def not_approved?
+    self.approved == false
   end
 
-  def unpublish
-    self.update_attribute(:published, false)
+  def not_submitted?
+    self.submitted == false
   end
 
-  def deny
-    self.update_attribute(:status, "not_approved")
+  def submitted?
+    self.submitted == true
   end
 
-  def submit_for_approval
-    self.update_attribute(:status, "pending_approval")
+  def pending_approval?
+    submitted? && not_approved?
   end
 
   private
@@ -113,7 +142,4 @@ class Profile < ActiveRecord::Base
     ready
   end
 
-  def approved?
-     self.status == "approved"
-  end
 end

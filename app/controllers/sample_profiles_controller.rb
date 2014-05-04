@@ -1,5 +1,3 @@
-%h1.text-center Update Profile
-- if current_user.entrepreneur?
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
@@ -74,6 +72,3 @@ class ProfilesController < ApplicationController
       params[:profile]
     end
 end
-  = render 'entrepreneur_form'
-- elsif current_user.investor?
-  = render 'investor_form'

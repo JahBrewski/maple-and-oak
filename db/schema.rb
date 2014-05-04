@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140503170054) do
+ActiveRecord::Schema.define(version: 20140504182620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,8 @@ ActiveRecord::Schema.define(version: 20140503170054) do
     t.string   "net_worth_currency",                    default: "USD",          null: false
     t.string   "profit_loss_statement"
     t.string   "familiarity_ids"
+    t.boolean  "submitted",                             default: false
+    t.boolean  "approved",                              default: false
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
