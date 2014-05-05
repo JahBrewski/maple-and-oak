@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  #add mailboxer methods
   acts_as_messageable
 
   has_one :subscription
