@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140504182620) do
+ActiveRecord::Schema.define(version: 20140505172431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,10 +23,11 @@ ActiveRecord::Schema.define(version: 20140504182620) do
   end
 
   create_table "familiarities", force: true do |t|
-    t.string   "name"
+    t.string   "key_name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "profile_ids"
+    t.string   "description"
   end
 
   create_table "familiarities_profiles", id: false, force: true do |t|
@@ -103,8 +104,6 @@ ActiveRecord::Schema.define(version: 20140504182620) do
     t.string   "user_management_experience"
     t.string   "user_current_position"
     t.string   "user_highest_position"
-    t.string   "user_current_restaurant_owner"
-    t.string   "user_previous_restaurant_owner"
     t.string   "address"
     t.string   "investment_amount"
     t.string   "partner_type"
@@ -142,8 +141,16 @@ ActiveRecord::Schema.define(version: 20140504182620) do
     t.string   "net_worth_currency",                    default: "USD",          null: false
     t.string   "profit_loss_statement"
     t.string   "familiarity_ids"
-    t.boolean  "submitted",                             default: false
-    t.boolean  "approved",                              default: false
+    t.boolean  "user_serv_safe_certified"
+    t.boolean  "user_has_criminal_record"
+    t.string   "user_criminal_record_explanation"
+    t.boolean  "user_attended_culinary_school"
+    t.string   "user_culinary_school_name"
+    t.boolean  "user_graduated_culinary_school"
+    t.string   "user_professional_awards"
+    t.boolean  "user_current_restaurant_owner"
+    t.boolean  "user_previous_restaurant_owner"
+    t.string   "user_culinary_school_years_attended"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree

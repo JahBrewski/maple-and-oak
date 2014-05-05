@@ -25,3 +25,12 @@ ProfileSubCategory.create(key_name: "add_location", description: "Add location(s
 
 #add admin(s)
 User.create!(first_name: "Meghan", last_name: "Michel", email: "memichel81@gmail.com", username: "memmichel", password: ENV['MEGHAN_ADMIN_PASSWORD'], password_confirmation: ENV['MEGHAN_ADMIN_PASSWORD'], user_type: "entrepreneur", admin: true, active_subscription: true)
+
+#create familiarities
+Familiarity.create(key_name: "profit_loss", description: "Profit and Loss Statements")
+Familiarity.create(key_name: "inventory", description: "Inventory")
+Familiarity.create(key_name: "ordering", description: "Ordering")
+Familiarity.create(key_name: "foot_costs", description: "Food Costs")
+Familiarity.create(key_name: "payroll", description: "Payroll")
+Familiarity.create(key_name: "taxes", description: "Taxes")
+Familiarity.create(key_name: "workmans_comp", description: "Workmans Compensation")

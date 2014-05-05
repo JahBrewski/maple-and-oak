@@ -3,7 +3,16 @@ MapleAndOak::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
   root 'static_pages#home'
 
-  resources :profiles
+  resources :profiles do
+    member do
+      put :unpublish
+      put :publish
+      put :approve
+      put :deny
+      put :submit_for_approval
+    end
+  end
+
   resources :subscriptions
   resources :users
   resources :conversations, only: [:index] do

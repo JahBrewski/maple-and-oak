@@ -14,12 +14,7 @@
           %td
             = profile.created_at.strftime("%d %B %Y")
           %td
-            = form_for(profile) do |f|
-              = f.hidden_field :approved, :value => true
-              = f.submit "Approve", class: "btn btn-success", data: { confirm: "Click OK to authorize \"#{profile.company_name}\"" }
+            = button_to "Authorize", approve_profile_path(profile), class: "btn btn-success", method: :put, data: { confirm: "Click OK to authorize \"#{profile.company_name}\"" }
           %td
-            = form_for(profile) do |f|
-              = f.hidden_field :approved, :value => false
-              = f.hidden_field :submitted, :valuse => false
-              = f.submit "Deny", class: "btn btn-success", data: { confirm: "Click OK to deny \"#{profile.company_name}\"" }
+            = button_to "Deny", deny_profile_path(profile), class: "btn btn-danger", method: :put, data: { confirm: "Click OK to deny \"#{profile.company_name}\"" }
 

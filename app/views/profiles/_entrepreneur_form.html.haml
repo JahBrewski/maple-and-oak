@@ -73,22 +73,65 @@
         = f.text_field :user_highest_position, :class => "form-control"
       .form-group
         = f.label "Do you currently own/operate a restaurant?"
-        = f.radio_button :user_current_restaurant_owner, "yes"
+        = f.radio_button :user_current_restaurant_owner, "true"
         = f.label :user_current_restaurnat_owner_yes, "Yes"
-        = f.radio_button :user_current_restaurant_owner, "no"
+        = f.radio_button :user_current_restaurant_owner, "false"
         = f.label :user_current_restaurant_owner_no, "No"
       .form-group
         = f.label "Have you ever owned/operated a restaurant?"
-        = f.radio_button :user_previous_restaurant_owner, "yes"
+        = f.radio_button :user_previous_restaurant_owner, "true"
         = f.label :user_previous_restaurnat_owner_yes, "Yes"
-        = f.radio_button :user_previous_restaurant_owner, "no"
+        = f.radio_button :user_previous_restaurant_owner, "false"
         = f.label :user_previous_restaurant_owner_no, "No"
 
       .form-group
         = f.label "Familiar with (check all that apply):"
         - Familiarity.all.each do |familiarity|
-          = check_box_tag 'profile[familiarity_ids][]', familiarity.id, @profile.familiarity_ids.include?(familiarity.id)
-          = familiarity.name.humanize 
+          .div
+            %span= check_box_tag 'profile[familiarity_ids][]', familiarity.id, @profile.familiarity_ids.include?(familiarity.id)
+            %span= familiarity.description.humanize 
+
+      .form-group
+        = f.label :user_serv_safe_certified, "Are you Serv Safe certified?"
+        = f.radio_button :user_serv_safe_certified, "true"
+        = f.label :user_serv_safe_certified_yes, "Yes"
+        = f.radio_button :user_serv_safe_certified, "false"
+        = f.label :user_serv_safe_certified_no, "No"
+
+      .form-group
+        = f.label :user_has_criminal_record, "Have you had a DUI, felony record or any criminal activity that would prevent you from obtaining a liquor license? If yes, please explain below."
+        = f.radio_button :user_has_criminal_record, "true"
+        = f.label :user_has_criminal_record_yes, "Yes"
+        = f.radio_button :user_has_criminal_record, "false"
+        = f.label :user_has_criminal_record_no, "No"
+
+      .form-group
+        = f.label "Criminal record explanation:"
+        = f.text_field :user_criminal_record_explanation, :class => "form-control"
+
+      .form-group
+        = f.label "Did you attend culinary school?"
+        = f.radio_button :user_attended_culinary_school, "true"
+        = f.label :user_attended_culinary_school_yes, "Yes"
+        = f.radio_button :user_attended_culinary_school, "false"
+        = f.label :user_attended_culinary_school_no, "No"
+
+      .form-group
+        = f.label "Years attended:"
+        = f.text_field :user_culinary_school_years_attended, :class => "form-control"
+      .form-group
+        = f.label "Graduated?"
+        = f.radio_button :user_graduated_culinary_school, "true"
+        = f.label :user_graduated_culinary_school_yes, "Yes"
+        = f.radio_button :user_graduated_culinary_school, "false"
+        = f.label :user_graduated_culinary_school_no, "No"
+      .form-group
+        = f.label "Name of school:"
+        = f.text_field :user_culinary_school_name, :class => "form-control"
+
+      .form-group
+        = f.label "Professional awards:"
+        = f.text_field :user_professional_awards, :class => "form-control"
 
       .form-group
         = f.label :previous_restaurant_status

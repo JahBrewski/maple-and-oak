@@ -53,7 +53,8 @@ class Profile < ActiveRecord::Base
 
   validates :user, :presence => true 
   validates :contact_name, :investment_amount, :state, :city, :category, :sub_category, :seat_number, presence: true, unless: "user.entrepreneur?"
-  validates :published, inclusion: { :in => [false]}, unless: "self.approved?"
+  validates :published, inclusion: { :in => [false]}, unless: "self.status == 'approved'"
+  validates :status, inclusion: { :in => %w(approved not_approved pending_approval) }
 
   mount_uploader :business_plan, BusinessPlanUploader
   mount_uploader :company_image, CompanyImageUploader
@@ -77,56 +78,29 @@ class Profile < ActiveRecord::Base
     contains_required_fields? && approved?
   end
 
-  #def update_status_with(status)
-  #  self.update_attribute(:status, status)
-  #end
-
-  #def approve
-  #  self.update_attribute(:status, "approved")
-  #end
-
-  #def publish
-  #  self.update_attribute(:published, true)
-  #end
-
-  #def unpublish
-  #  self.update_attribute(:published, false)
-  #end
-
-  #def deny
-  #  self.update_attribute(:status, "not_approved")
-  #end
-
-  #def submit_for_approval
-  #  self.update_attribute(:status, "pending_approval")
-  #end
-
-  def approved?
-    self.approved == true
+  def update_status_with(status)
+    self.update_attribute(:status, status)
   end
 
-  def approved_and_published?
-    self.approved? && self.published == true
+
+  def publish
+    self.update_attribute(:published, true)
   end
 
-  def approved_and_not_published?
-    self.approved? && self.published == false
-  end
-  
-  def not_approved?
-    self.approved == false
-  end
-
-  def not_submitted?
-    self.submitted == false
-  end
-
-  def submitted?
-    self.submitted == true
+  def unpublish
+    self.update_attribute(:published, false)
   end
 
   def pending_approval?
-    submitted? && not_approved?
+    self.status == "pending_approval"
+  end
+
+  def approved?
+    self.status == "approved"
+  end
+
+  def published?
+    self.published == true
   end
 
   private
@@ -141,5 +115,4 @@ class Profile < ActiveRecord::Base
     end
     ready
   end
-
 end
