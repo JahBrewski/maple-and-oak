@@ -1,0 +1,10 @@
+.footer {
+  height: 100px;
+  width: 100%;
+  position: absolute;
+  bottom: -100px;
+  left: 0;
+  color: white;
+  @include alpha-attribute('background-color', rgba($logo-dark-red, 0.94), white);
+}
+

@@ -1,7 +1,24 @@
-body.static_pages-home
-{
-  background: image-url("oak_trees.jpg") 0 -200px;
+.static_pages-home {
+  .wrapper {
+    background: image-url("restaurant_tables.jpg") no-repeat center center fixed;
+     -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -o-background-size: cover;
+     background-size: cover;
+
+    .container {
+      .jumbotron {
+        max-width: 850px;
+        margin: 0 auto;
+        color: white;
+        @include alpha-attribute('background-color', rgba($logo-gold, 0.9), white);
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+    }
+  }
 }
+
 
 body.sessions-new
 {

@@ -6,13 +6,19 @@
   #{$attribute}: $color;
 }
 
-a:hover { text-decoration: none; }
-
-.jumbotron
-{
-  color: white;
-  @include alpha-attribute('background-color', rgba($red, 0.3), white);
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
+
+.wrapper {
+  min-height: 100%;
+  position: relative;
+}
+
+a:hover { text-decoration: none; }
 
 .opaque-container
 {
@@ -21,14 +27,31 @@ a:hover { text-decoration: none; }
   padding: 20px;
 }
 
+
+.container {
+  max-width: 910px;
+}
+
 .company-image
 {
   padding-right: 20px;
 }
 
-.navbar-brand { padding: 25px 30px; }
+.navbar-brand {
+  padding: 25px 30px;
+  position: relative;
+  left: 30px;
+}
 .top-buffer { padding-top: 20px; } .bottom-buffer { padding-bottom: 20px; }
 
 .btn-group-item {
   margin: 0 10px 10px 0; 
+}
+
+.navbar-default {
+  .container-fluid {
+    max-width: 1000px;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }

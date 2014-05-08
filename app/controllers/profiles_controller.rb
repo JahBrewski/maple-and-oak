@@ -10,11 +10,13 @@ class ProfilesController < ApplicationController
 
   def approve
     @profile.update_status_with("approved")
+    UserMailer.profile_approved(@profile.user).deliver
     redirect_to admin_path
   end
 
   def deny
     @profile.update_status_with("not_approved")
+    UserMailer.profile_denied(@profile.user).deliver
     redirect_to admin_path
   end
 

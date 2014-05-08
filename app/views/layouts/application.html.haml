@@ -13,18 +13,19 @@
       = yield :title
 
     %body{ class: controller_name + "-" + controller.action_name }
+      .wrapper
+        %header
+          = yield :header
+          - flash.each do |name, msg|
+            - if msg.is_a?(String)
+              %div{class: "alert alert-#{name == :notice ? "success" : "danger"}"}
+                %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
+                = content_tag :div, msg, :id => "flash_#{name}" unless msg.blank?
 
-      %header
-        = yield :header
-        - flash.each do |name, msg|
-          - if msg.is_a?(String)
-            %div{class: "alert alert-#{name == :notice ? "success" : "danger"}"}
-              %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
-              = content_tag :div, msg, :id => "flash_#{name}" unless msg.blank?
+          = render current_user ? 'layouts/header_when_logged_in' : 'layouts/header_when_logged_out'
+        .container
 
-        = render current_user ? 'layouts/header_when_logged_in' : 'layouts/header_when_logged_out'
-      .container
+          = yield
 
-        = yield
-
-      %footer
+        %footer
+          = render 'layouts/footer'
