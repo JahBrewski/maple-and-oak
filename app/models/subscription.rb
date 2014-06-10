@@ -67,5 +67,4 @@ private
   def stripe_customer
     @stripe_customer ||= Stripe::Customer.retrieve stripe_customer_token
   end
-
 end

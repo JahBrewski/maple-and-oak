@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
 
   def active_subscription?
     unless current_user.active_subscription == true
-      redirect_to plans_path
+      redirect_to signup_path
     end
   end
 
