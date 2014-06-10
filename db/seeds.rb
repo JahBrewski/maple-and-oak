@@ -5,12 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Plan.create(id: "1", plan_level: "bronze", price: "49.00", plan_type: "investor", user_conversation_limit: 5, description: "Contact up to 3 members per day. Send a message to any Maple and Oak member.")
-#Plan.create(id: "2", plan_level: "silver", price: "69.00", plan_type: "investor", user_conversation_limit: 10, description: "Premium messages: messages are highlighed in the inbox. Contact up to 10 members per day. Send a message to any Mample and Oak member.")
-#Plan.create(id: "3", plan_level: "gold"  , price: "99.00", plan_type: "investor", user_conversation_limit: 15, description: "Priority messages: messages appear at the top of people's inbox. Contact the maximum number of 30 members per day. Send a message to any Maple and Oak member.")
-Plan.create(id: "4", plan_level: "bronze", price: "49.00", plan_type: "entrepreneur", user_conversation_limit: 5, description: "Contact up to 3 members per day. Send a message to any Maple and Oak member.")
-#Plan.create(id: "5", plan_level: "silver", price: "69.00", plan_type: "entrepreneur", user_conversation_limit: 10, description: "Premium messages: messages are highlighed in the inbox. Contact up to 10 members per day. Send a message to any Mample and Oak member.")
-#Plan.create(id: "6", plan_level: "gold"  , price: "99.00", plan_type: "entrepreneur", user_conversation_limit: 15, description: "Expedited approval for business plan. Priority messages: messages appear at the top of people's inbox. Contact the maximum number of 30 members per day. Send a message to any Maple and Oak member.")
+Plan.create(id: "1", plan_level: "bronze", price: "49.00", plan_type: "entrepreneur", description: "Basic investor membership")
+Plan.create(id: "2", plan_level: "bronze", price: "49.00", plan_type: "investor", description: "Basic entrepreneur membership")
 
 # read in categories
 filepath = "#{Rails.root}/public/categories.txt"
