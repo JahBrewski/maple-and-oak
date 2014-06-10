@@ -2,20 +2,9 @@ class PlansController < ApplicationController
 
   before_filter :authenticate_user!
 
-  def index
-    @user_type = current_user.user_type.to_s
-    @plans = Plan.where(:plan_type => @user_type)
-    @plan_type = @user_type
-    if current_user.subscription
-      render "upgrade"
-    else
-      render "index"
-    end
-
-  end
-
-  def show
-    @plan         = Plan.find params[:plan]
+  def signup
+    @plan = Plan.where(:plan_type => current_user.user_type.to_s).where(:plan_level => "bronze")
+    @plan = @plan[0]
     @subscription = Subscription.new
   end
 end

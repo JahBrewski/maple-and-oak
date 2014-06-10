@@ -3,6 +3,8 @@ MapleAndOak::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
   root 'static_pages#home'
 
+  resources :contacts, only: [:new, :create]
+
   resources :profiles do
     member do
       put :unpublish
@@ -31,12 +33,10 @@ MapleAndOak::Application.routes.draw do
   end      
 
 
-  match '/signup',          to:     'static_pages#signup',      via: 'get'
-  match '/plan/:plan',      to:     'plans#show',               via: 'get',   as: 'plan'
-  match '/plans',           to:     'plans#index',              via: 'get'
+  match '/signup',          to:     'plans#signup',             via: 'get'
   match '/home',            to:     'static_pages#home',        via: 'get'
   match '/about',           to:     'static_pages#about',       via: 'get'
-  match '/contact',         to:     'static_pages#contact',     via: 'get'
+  match '/contact',         to:     'contacts#new',             via: 'get'
   match '/admin',           to:     'admin_pages#dashboard',    via: 'get'
 
 

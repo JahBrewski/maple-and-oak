@@ -11,10 +11,10 @@ class RegistrationsController < Devise::RegistrationsController
 
 
   def after_sign_up_path_for(resource)
-    plans_path
+    signup_path
   end
 
   def after_inactive_sign_up_path_for(resource)
-    plans_path
+    signup_path
   end
 end
