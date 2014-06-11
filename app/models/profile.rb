@@ -53,6 +53,11 @@ class Profile < ActiveRecord::Base
 
   validates :user, :presence => true 
   validates :contact_name, :investment_amount, :state, :city, :category, :sub_category, :seat_number, presence: true, unless: "user.entrepreneur?"
+  validates :company_name,
+            :contact_name,
+            :state,
+            :city,
+            :contact_email_address, presence: true, unless: "user.investor?"
   validates :published, inclusion: { :in => [false]}, unless: "self.status == 'approved'"
   validates :status, inclusion: { :in => %w(approved not_approved pending_approval) }
 

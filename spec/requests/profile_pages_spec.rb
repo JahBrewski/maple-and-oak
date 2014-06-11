@@ -11,6 +11,7 @@ describe "Profiles" do
       sign_in investor
       visit user_path(investor)
     end
+  end
   
   context "when entrepreneur is signed in" do
 
