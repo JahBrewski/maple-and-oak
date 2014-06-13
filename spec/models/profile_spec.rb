@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Profile do
 
-  let!(:user) { FactoryGirl.create(:user) }
+  let!(:user) { FactoryGirl.create(:user, :entrepreneur) }
   let!(:plan) { FactoryGirl.create(:plan_with_subscription, user: user) }
 
   it "has a valid factory" do

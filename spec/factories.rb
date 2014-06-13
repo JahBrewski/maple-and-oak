@@ -30,7 +30,6 @@ FactoryGirl.define do
 
     plan_type "entrepreneur"
     plan_level "bronze"
-    user_conversation_limit '5'
     price '15'
 
     factory :plan_with_subscription do

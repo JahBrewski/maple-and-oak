@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe ConversationsController do
 
-  let!(:user) { FactoryGirl.create(:user) }
-  let!(:other_user) { FactoryGirl.create(:user) }
+  let!(:user) { FactoryGirl.create(:user, :entrepreneur) }
+  let!(:other_user) { FactoryGirl.create(:user, :entrepreneur) }
   before { FactoryGirl.create(:plan_with_subscription, user: user) }
 
   describe "GET #index" do

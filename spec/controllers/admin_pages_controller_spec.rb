@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe AdminPagesController do
 
-  let(:admin) { FactoryGirl.create(:user, admin: true) }
-  let(:non_admin) { FactoryGirl.create(:user, admin: false) }
-  let(:pending_profile) { FactoryGirl.create(:profile, status: "pending_approval") }
+  let(:admin) { FactoryGirl.create(:user, :entrepreneur, admin: true) }
+  let(:non_admin) { FactoryGirl.create(:user, :entrepreneur, admin: false) }
+  let(:pending_profile) { FactoryGirl.create(:profile, :entrepreneur, status: "pending_approval") }
 
 
   describe "GET #dashboard" do
