@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe UsersController do
 
-  let!(:admin) { FactoryGirl.create(:user, user_type: "entrepreneur", admin: true) }
-  let!(:investor) { FactoryGirl.create(:user, user_type: "investor") }
-  let!(:entrepreneur) { FactoryGirl.create(:user, user_type: "entrepreneur") }
+  let!(:admin) { FactoryGirl.create(:user, :entrepreneur, admin: true) }
+  let!(:investor) { FactoryGirl.create(:user, :investor) }
+  let!(:entrepreneur) { FactoryGirl.create(:user, :entrepreneur) }
 
   before do
     FactoryGirl.create(:plan_with_subscription, user: entrepreneur) 
@@ -16,11 +16,11 @@ describe UsersController do
 
     context "when user does not have an active subscription" do
       before { sign_in entrepreneur }
-      it "redirects user to plans page" do
+      it "redirects user to signup page" do
         entrepreneur.update_attribute(:active_subscription, false)
         entrepreneur.reload
         get :show, id: entrepreneur
-        response.should redirect_to plans_path
+        response.should redirect_to signup_path
       end
     end
 
