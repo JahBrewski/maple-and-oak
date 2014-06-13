@@ -3,11 +3,11 @@ require 'spec_helper'
 describe User, 'validations' do
 
   it "has a valid factory" do
-    FactoryGirl.create(:user).should be_valid
+    FactoryGirl.create(:user, :entrepreneur).should be_valid
   end
 
   it "should respond to admin" do
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user, :entrepreneur)
     user.should respond_to(:admin)
   end
 
@@ -16,8 +16,8 @@ describe User, 'validations' do
   end
 
   it "is invalid without a unique username" do
-    FactoryGirl.create(:user, username: "test")
-    FactoryGirl.build(:user, username: "test").should_not be_valid
+    FactoryGirl.create(:user, :entrepreneur, username: "test")
+    FactoryGirl.build(:user, :entrepreneur, username: "test").should_not be_valid
   end
 
   it "is invalid without an email" do
@@ -36,30 +36,5 @@ describe User, 'validations' do
   it "should have one subscription" do
     t = User.reflect_on_association(:subscription)
     t.macro.should == :has_one
-  end
-end
-
-describe User, '#conversations_remaining' do
-  it 'returns the number of conversations available for the user to initiate' do
-    #setup
-    user = FactoryGirl.create(:user)
-    other_user = FactoryGirl.create(:user)
-    FactoryGirl.create(:plan_with_subscription, :user => user, :user_conversation_limit => 5)
-    user.initiate_conversation(other_user, "hello", "world")
-    user.conversation_initiations_remaining.should == 4
-  end
-end
-
-describe User, '#initiate_conversation' do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:other_user) { FactoryGirl.create(:user) }
-  before { FactoryGirl.create(:plan_with_subscription, :user => user, :user_conversation_limit => 1) }
-
-  it 'initiates a conversation if the user has initiations remaining' do
-    user.initiate_conversation(other_user, "hello", "world").should be_true
-  end
-  it 'returns false if the user does not have initiations remaining' do
-    user.initiate_conversation(other_user, "hello", "world")
-    user.initiate_conversation(other_user, "foo", "bar").should be_false
   end
 end
