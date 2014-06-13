@@ -20,14 +20,6 @@ describe "Profiles" do
       visit user_path(entrepreneur)
     end
 
-    describe "Adding a new profile" do
-
-      it "should create a profile" do
-        click_link "Start filling out your profile"
-        expect { click_button "Update Profile" }.to change(Profile, :count)
-      end
-    end
-
     describe "Updating a profile" do
 
       it "should update profile with new information" do

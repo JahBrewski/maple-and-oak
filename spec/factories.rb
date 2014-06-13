@@ -51,7 +51,7 @@ FactoryGirl.define do
   end
 
   factory :profile do
-    association :user
+    association :user, :entrepreneur
     company_name "Sample Profile"
     city "Nashville"
     state "TN"

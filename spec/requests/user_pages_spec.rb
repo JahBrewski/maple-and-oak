@@ -17,9 +17,9 @@ describe "User Pages" do
         expect { click_button "Sign up" }.to change(User, :count).by(1)
       end
 
-      it "redirects to plans page" do
+      it "redirects to signup page" do
         click_button "Sign up"
-        page.should have_content("Select Plan")
+        page.should have_content("Credit Card Number")
       end
     end
 

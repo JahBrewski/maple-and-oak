@@ -9,11 +9,11 @@ describe ConversationsController do
   describe "GET #index" do
     context "when user does not have an active subscription" do
       before { sign_in user }
-      it "redirects user to plans page" do
+      it "redirects user to signup page" do
         user.update_attribute(:active_subscription, false)
         user.reload
         get :index
-        response.should redirect_to plans_path
+        response.should redirect_to signup_path
       end
     end
       

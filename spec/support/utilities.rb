@@ -8,6 +8,7 @@ def sign_in(user, options={})
 end
 
 def valid_signup(user_type)
+  visit new_user_registration_path
   fill_in "First name",             with: "Joel"
   fill_in "Last name",              with: "Brewer"
   fill_in "Username",               with: "jbrewski"
@@ -15,6 +16,7 @@ def valid_signup(user_type)
   fill_in "Password",               with: "foobarfoobar"
   fill_in "Password confirmation",  with: "foobarfoobar"
   choose(user_type.capitalize)
+  click_button "Sign up"
 end
 
 def profile_text_fields

@@ -26,7 +26,9 @@ class ProfilesController < ApplicationController
   end
 
   def publish
-    @profile.publish
+    if @profile.approved?
+      @profile.publish
+    end
     redirect_to user_path(current_user)
   end
 
