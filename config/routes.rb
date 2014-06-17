@@ -1,4 +1,5 @@
 MapleAndOak::Application.routes.draw do
+  mount StripeEvent::Engine => 'billing_events'
 
   devise_for :users, :controllers => { :registrations => "registrations" }
   root 'static_pages#home'
