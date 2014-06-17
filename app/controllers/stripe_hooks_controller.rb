@@ -1,0 +1,2 @@
+class StripeHooksController < ApplicationController
+end
