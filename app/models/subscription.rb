@@ -14,9 +14,10 @@ class Subscription < ActiveRecord::Base
 
     self.stripe_customer_token = customer.id
     #self.next_bill_on          = Date.parse customer.next_recurring_charge.date
-    #set_card_info customer.active_card
+    set_card_info customer.cards.retrieve(customer.default_card)
     save
     user.update_attribute(:active_subscription, true)
+    user.update_attribute(:registered, true)
   rescue Stripe::InvalidRequestError => e
     logger.error "[STRIPE] #{ e }"
     errors[:base] << "Unable to process your credit card!"
@@ -30,10 +31,10 @@ class Subscription < ActiveRecord::Base
     customer.description = self.id
     customer             = customer.save # wonky, blame stripe!
 
-    self.next_bill_on    = Date.parse customer.next_recurring_charge.date
-    set_card_info customer.active_card
-
+    #self.next_bill_on    = Date.parse customer.next_recurring_charge.date
+    set_card_info customer.cards.retrieve(customer.default_card)
     save
+    user.update_attribute(:active_subscription, true)
   rescue Stripe::InvalidRequestError => e
     logger.error "[STRIPE] #{ e }"
     errors[:base] << "Unable to update your billing info!"
@@ -47,7 +48,7 @@ class Subscription < ActiveRecord::Base
     customer.update_subscription( plan: new_plan.slug )
 
     self.plan         = new_plan
-    self.next_bill_on = Date.parse customer.next_recurring_charge.date
+    #self.next_bill_on = Date.parse customer.next_recurring_charge.date
 
     save
   rescue Stripe::InvalidRequestError => e

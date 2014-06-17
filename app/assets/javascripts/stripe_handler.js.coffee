@@ -4,7 +4,7 @@ jQuery ->
 
 window.stripe_handler =
   setupForm: () ->
-    $("#new_subscription").submit ->
+    $("#new_subscription, #edit_subscription_1").submit ->
       $('input[type=submit]').attr('disabled', true)
       if $('#card_number').length
         stripe_handler.processCard()
@@ -24,7 +24,7 @@ window.stripe_handler =
   handleStripeResponse: (status, response) ->
     if status == 200
       $('input[id$="stripe_card_token"]').val(response.id)
-      $("#new_subscription")[0].submit()
+      $("#new_subscription, #edit_subscription_1")[0].submit()
     else
       parent = $('.error_messages').find('ul')[0]
       if parent

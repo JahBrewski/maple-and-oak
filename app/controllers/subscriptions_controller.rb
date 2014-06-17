@@ -17,6 +17,24 @@ class SubscriptionsController < ApplicationController
     end
   end
 
+  def edit
+    @subscription = Subscription.find(params[:id])
+    @plan = @subscription.plan
+  end
+
+  def update
+    @subscription = Subscription.find(params[:id])
+    @plan = @subscription.plan
+    
+    if @subscription.update_with_payment(subscription_params)
+      flash[:success] = 'Card info updated!'
+      redirect_to user_path(current_user)
+    else
+      flash.now[:error] = 'Unable to update card info!'
+      redirect_to edit_subscription_path(@subscription)
+    end
+  end
+
   def show
     @subscription = Subscription.find(params[:id])
   end

@@ -30,8 +30,10 @@ class ApplicationController < ActionController::Base
   end
 
   def active_subscription?
-    unless current_user.active_subscription == true
+    if current_user.registered == false
       redirect_to signup_path
+    elsif current_user.active_subscription == false
+      redirect_to edit_subscription_path(current_user.subscription)
     end
   end
 

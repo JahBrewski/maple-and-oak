@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610230852) do
+ActiveRecord::Schema.define(version: 20140617181035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -175,6 +175,10 @@ ActiveRecord::Schema.define(version: 20140610230852) do
     t.string   "email"
     t.integer  "plan_id"
     t.integer  "user_id"
+    t.string   "last_four"
+    t.string   "card_type"
+    t.string   "card_expiration"
+    t.date     "next_bill_on"
   end
 
   add_index "subscriptions", ["plan_id"], name: "index_subscriptions_on_plan_id", using: :btree
@@ -200,6 +204,7 @@ ActiveRecord::Schema.define(version: 20140610230852) do
     t.integer  "conversations_initiated", default: 0
     t.boolean  "admin",                   default: false
     t.boolean  "active_subscription",     default: false
+    t.boolean  "registered",              default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
