@@ -1,4 +1,5 @@
 MapleAndOak::Application.routes.draw do
+  mount RailsAdmin::Engine => '/mao-admin', as: 'rails_admin'
   mount StripeEvent::Engine => 'billing_events'
 
   devise_for :users, :controllers => { :registrations => "registrations" }
