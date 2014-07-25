@@ -29,7 +29,7 @@ body.sessions-new, body.registrations-new
     background-size: cover;
 }
 
-body.users-show, body.conversations-index, body.registrations-edit
+body.users-show, body.conversations-index, body.registrations-edit, body.profiles-edit, body.subscriptions-edit, body.registrations-update
 {
   background: image-url("bar_3.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -48,7 +48,6 @@ body.users-show, body.conversations-index, body.registrations-edit
 }
 
 body.profiles-edit {
-  background: image-url("brickwall.png") repeat;
   .button {
     padding: auto 10px 20px 0;
   }

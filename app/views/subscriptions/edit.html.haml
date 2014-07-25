@@ -1,9 +1,13 @@
-%h1 Update payment information
+.row
+  .col-md-9.col-md-offset-1
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Update Payment Information
+      .panel-body
+        = form_for @subscription do |f|
+          = f.hidden_field :plan_id, value: @plan.id
+          = f.hidden_field :stripe_card_token
 
-= form_for @subscription do |f|
-  = f.hidden_field :plan_id, value: @plan.id
-  = f.hidden_field :stripe_card_token
-
-  #credit-card
-    = render :partial => 'plans/card_fields', locals: { f: f}
-    = f.submit "update"
+          #credit-card
+            = render :partial => 'plans/card_fields', locals: { f: f}
+            = f.submit "update"
