@@ -9,7 +9,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def destroy
     @user = current_user
-    customer = Stripe::Customer.retrieve(@user.stripe_customer_token)
+    customer = Stripe::Customer.retrieve(@user.subscription.stripe_customer_token)
     customer.cancel_subscription
     super
   end
