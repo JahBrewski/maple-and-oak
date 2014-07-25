@@ -1,21 +1,21 @@
 .opaque-container.col-md-12
-    .col-md-12
-      .row
-        .col-md-3
-          .company_image.text-center
-            = image_tag @profile.company_image.url(:thumb_lg), alt: @profile.contact_name, class: "img-responsive company-image"
-        .col-md-9
-          .panel.panel-default
-            .panel-body
-              %span.h1= @profile.contact_name
-              .location= "Location: " + @profile.location_state_city
-              .investment-amount= "Investment amount: " + @profile.investment_amount
-              .category= "Category: " + @profile.category
-              .sub-category= "Sub-Category: " + @profile.sub_category
-              .seat-number= "Number of seats: " + @profile.seat_number
-              .action-buttons
+  .col-md-12
+    .row
+      .col-md-3
+        .company_image.text-center
+          = image_tag @profile.company_image.url(:thumb_lg), alt: @profile.contact_name, class: "img-responsive company-image"
+      .col-md-9
+        .panel.panel-default
+          .panel-body
+            %span.h1= @profile.contact_name
+            .location= "Location: " + @profile.location_state_city
+            .investment-amount= "Investment amount: " + @profile.investment_amount
+            .category= "Category: " + @profile.category
+            .sub-category= "Sub-Category: " + @profile.sub_category
+            .seat-number= "Number of seats: " + @profile.seat_number
+            .action-buttons
 
-              - if current_user == @profile.user
-                = render 'owner_actions'
-              - else 
-                = render 'new_message_modal', :recipient => @profile.user
+            - if current_user == @profile.user
+              = render 'owner_actions'
+            - else 
+              = render 'new_message_modal', :recipient => @profile.user

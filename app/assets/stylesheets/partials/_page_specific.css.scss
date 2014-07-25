@@ -1,4 +1,4 @@
-.static_pages-home, .static_pages-about, .contacts-new {
+.static_pages-home, .static_pages-about, .contacts-new, .profiles-index {
   .wrapper {
     background: image-url("restaurant_tables.jpg") no-repeat center center fixed;
      -webkit-background-size: cover;
@@ -29,7 +29,7 @@ body.sessions-new, body.registrations-new
     background-size: cover;
 }
 
-body.users-show, body.conversations-index, body.registrations-edit, body.profiles-edit, body.subscriptions-edit, body.registrations-update
+body.users-show, body.conversations-index, body.registrations-edit, body.profiles-edit, body.subscriptions-edit, body.registrations-update, body.plans-signup, body.profiles-new, body.profiles-create
 {
   background: image-url("bar_3.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
