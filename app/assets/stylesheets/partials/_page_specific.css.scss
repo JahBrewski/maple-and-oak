@@ -1,4 +1,4 @@
-.static_pages-home {
+.static_pages-home, .static_pages-about, .contacts-new {
   .wrapper {
     background: image-url("restaurant_tables.jpg") no-repeat center center fixed;
      -webkit-background-size: cover;
@@ -20,19 +20,22 @@
 }
 
 
-body.sessions-new
+body.sessions-new, body.registrations-new
 {
-  background: image-url("woody_path_smaller.jpg");
+  background: image-url("bar_3.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
-body.registrations-new
+body.users-show, body.conversations-index, body.registrations-edit
 {
-  background: image-url("woody_path_smaller.jpg");
-}
-
-body.users-show
-{
-  background: image-url("oak_trees.jpg") 0 -200px;
+  background: image-url("bar_3.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   .profile-information {
     h1 {
       padding-top: 0;
