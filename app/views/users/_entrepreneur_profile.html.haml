@@ -1,4 +1,4 @@
-.opaque-container.col-md-12
+.opaque-container.col-md-9.col-sm-9.col-xs-12
   .row
     .col-md-12
       .company_image.pull-left
@@ -23,3 +23,17 @@
         %h2 Documents
         %span.glyphicon.glyphicon-file
         = link_to "#{@profile.company_name} business plan", @profile.business_plan.url, target: "_blank"
+.col-md-3.col-sm-3.hidden-xs.ad-large
+  .opaque-container.ad-image
+    = link_to image_tag("brewer_digital_logo_banner.png", class: "img-responsive"), "http://www.brewerdigital.com", :target => '_blank'
+  .ad-copy.opaque-container
+    Quality software development for small businesses and startups.
+.col-xs-12.visible-xs.ad-small
+  .image-and-copy
+    .opaque-container.ad-image.text-center
+      = image_tag "brewer_digital_logo_banner.png", class: "img-responsive small-ad-logo"
+    .ad-copy.opaque-container.text-center
+      Quality software development for small businesses and startups.
+
+
+
