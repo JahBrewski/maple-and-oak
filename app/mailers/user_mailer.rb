@@ -18,4 +18,5 @@ class UserMailer < ActionMailer::Base
     @url = "http://localhost:3000/users/#{@user.id}"
     mail(to: @user.email, subject: 'Oops. You Need to Work on Your Maple and Oak Profile')
   end
+
 end

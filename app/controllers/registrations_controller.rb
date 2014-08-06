@@ -4,13 +4,17 @@ class RegistrationsController < Devise::RegistrationsController
     super
     if @user.persisted?
       UserMailer.welcome(@user).deliver
+      AdminMailer.user_created(@user).deliver
     end
   end
 
   def destroy
     @user = current_user
-    customer = Stripe::Customer.retrieve(@user.subscription.stripe_customer_token)
-    customer.delete
+    AdminMailer.user_destroyed(@user).deliver
+    if @user.subscription
+      customer = Stripe::Customer.retrieve(@user.subscription.stripe_customer_token)
+      customer.delete
+    end
     super
   end
 

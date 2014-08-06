@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1
+      #{@user.full_name} has created an account
+    %ul
+      %li First Name: #{@user.first_name}
+      %li Last Name: #{@user.last_name}
+      %li Username: #{@user.username}
+      %li Email: #{@user.email}
+      %li User type: #{@user.user_type}
