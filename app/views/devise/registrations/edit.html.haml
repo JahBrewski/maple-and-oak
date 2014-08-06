@@ -5,7 +5,7 @@
         %h3.panel-title Account Settings
       / panel-heading
       .panel-body
-        = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+        = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true }) do |f|
           = devise_error_messages!
           .form-group
             = f.label :first_name

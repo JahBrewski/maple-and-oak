@@ -12,12 +12,16 @@
             = f.collection_select :sub_category_cont, ProfileSubCategory.all, :key_name, :description, prompt: true
             = f.submit "search"
         .row.profiles-container
-        - @profiles.each do |profile|
-          .profile-container.col-md-4
-            %ul
-              %li= link_to profile.company_name, user_path(profile.user)
-              %li= profile.location_state_city
-              %li= profile.short_description
-              -if profile.business_plan.url
-                %li= link_to("#{profile.company_name} business plan", profile.business_plan.url, :target => "_blank")
+        - if @profiles.any?
+          - @profiles.each do |profile|
+            .profile-container.col-md-4
+              %ul
+                %li= link_to profile.company_name, user_path(profile.user)
+                %li= profile.location_state_city
+                %li= profile.short_description
+                -if profile.business_plan.url
+                  %li= link_to("#{profile.company_name} business plan", profile.business_plan.url, :target => "_blank")
+        - else
+          Sorry, no profiles match your search criteria
+        
 

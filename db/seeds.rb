@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Plan.create(id: "1", plan_level: "bronze", price: "49.00", plan_type: "entrepreneur", description: "Basic investor membership")
-Plan.create(id: "2", plan_level: "bronze", price: "49.00", plan_type: "investor", description: "Basic entrepreneur membership")
+Plan.create(id: "2", plan_level: "bronze", price: "69.00", plan_type: "investor", description: "Basic entrepreneur membership")
 
 # read in categories
 filepath = "#{Rails.root}/public/categories.txt"

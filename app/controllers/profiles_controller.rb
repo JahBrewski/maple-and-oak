@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
 
   before_action :profile_owner, only: [:edit, :update, :submit_for_approval]
   before_action :get_profile, only: [:approve, :deny, :submit_for_approval, :publish, :unpublish]
+  before_action :is_approved?, only: [:index]
 
   def approve
     @profile.update_status_with("approved")
@@ -127,6 +128,13 @@ class ProfilesController < ApplicationController
     end
 
     # before filters
+    
+    def is_approved?
+      unless current_user.profile && current_user.profile.approved?
+        redirect_to(user_path(current_user))
+        flash[:notice] = "Sorry. Your profile must be approved before you can browse other users."
+      end
+    end
 
     def profile_owner
       @user = Profile.find(params[:id]).user
