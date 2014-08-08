@@ -40,6 +40,7 @@ MapleAndOak::Application.routes.draw do
   match '/about',           to:     'static_pages#about',       via: 'get'
   match '/contact',         to:     'contacts#new',             via: 'get'
   match '/admin',           to:     'admin_pages#dashboard',    via: 'get'
+  match '/terms',           to:     'static_pages#terms',       via: 'get'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

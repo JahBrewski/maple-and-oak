@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
   validates :user_type, presence: true
 
   validates :username, presence: true
+  validates :terms, acceptance: true
   validates_uniqueness_of :username
+
 
   def full_name
       first_name + " " + last_name
