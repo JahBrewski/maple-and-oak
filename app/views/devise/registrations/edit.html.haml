@@ -33,6 +33,13 @@
             %p
               %i (we need your current password to confirm your changes)
             = f.password_field :current_password, :class => "form-control"
+          - if current_user.admin
+            .form-group
+              = f.label :user_type, "Investor", :value => "investor"
+              = f.radio_button :user_type, "investor"
+              = f.label :user_type, "Entrepreneur", :value => "entrepreneur"
+              = f.radio_button :user_type, "entrepreneur", :checked => true
+
           - if current_user.subscription
             .form-group
               = link_to "Update Payment Settings", edit_subscription_path(current_user.subscription)
