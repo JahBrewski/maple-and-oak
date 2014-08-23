@@ -33,8 +33,9 @@
             %p
               %i (we need your current password to confirm your changes)
             = f.password_field :current_password, :class => "form-control"
-          .form-group
-            = link_to "Update Payment Settings", edit_subscription_path(current_user.subscription)
+          - if current_user.subscription
+            .form-group
+              = link_to "Update Payment Settings", edit_subscription_path(current_user.subscription)
 
           .form-group
             = link_to "Back", user_path(current_user), :class => "btn btn-primary"
