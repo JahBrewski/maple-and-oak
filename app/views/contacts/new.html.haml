@@ -2,7 +2,7 @@
   .col-md-8.col-md-offset-2
     .panel.panel-default
       .panel-heading
-        %h3.text-center Contact Us
+        %h2 Contact Us
       .panel-body
         = form_for @contact, :html => {:class => 'input-form' } do |f|
           = f.text_field :name, :autofocus => true, placeholder: "Name", class: "form-control"
